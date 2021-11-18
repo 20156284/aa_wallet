@@ -1,12 +1,10 @@
 package com.wallet.job.mapper;
 
 import com.wallet.job.entity.Bo.BzzPeers;
-import com.wallet.job.entity.Bo.BzzPrice;
 import com.wallet.job.entity.WalletBzz;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
