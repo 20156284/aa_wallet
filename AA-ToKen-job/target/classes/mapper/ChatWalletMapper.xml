@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wallet.job.mapper.ChatWalletMapper">
+    <select id="getAppId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(app_Id)
+        FROM wallet_appId
+        WHERE app_Id = #{appId}
+    </select>
+
+    <select id="getCountAddress" resultType="java.lang.Integer">
+        SELECT COUNT(address)
+        FROM wallet_address_info_${protocol}
+        WHERE app_Id = #{appId}
+          AND address = #{address}
+    </select>
+
+    <insert id="addAddress">
+        <selectKey resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO wallet_address_info_${protocol}
+        SET address=#{address}, public_key=#{publicKey}, private_key=#{privateKey},
+        mnemonic=#{mnemonic},wallet_file=#{walletFileId}
+    </insert>
+
+    <select id="getContractAddressOne" resultType="java.lang.String">
+        SELECT contract_address
+        FROM wallet_coin_chain
+        WHERE protocol = #{protocol}
+          AND coin_key = #{coinKey}
+    </select>
+
+    <select id="getContractAddressList" resultType="java.util.Map">
+        SELECT contract_address, coinKey
+        FROM wallet_coin_chain
+        WHERE protocol = #{protocol}
+    </select>
+
+    <select id="getBlockScanner" resultType="java.util.Map">
+        SELECT id, protocol, block_height, locked
+        FROM wallet_block_scanner
+        WHERE protocol = #{protocol}
+    </select>
+
+    <insert id="addBlockScanner">
+        INSERT INTO wallet_block_scanner
+        SET protocol = #{protocol}, block_hash=#{blockHash}, block_height=#{blockHeight}
+    </insert>
+
+    <select id="getContractAddress" resultType="java.util.Map">
+        SELECT contract_address, coinkey
+        FROM wallet_coin_chain
+        WHERE protocol = #{protocol}
+          AND contract_address = #{contractAddress}
+    </select>
+
+    <update id="updateBlockScanner">
+        UPDATE wallet_block_scanner
+        SET block_height=#{blockHeight}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insertWalletTransfer">
+        INSERT INTO wallet_transfer_${protocol}
+        SET qty=#{amount},
+            status = #{status}, to_address=#{toAddress}, transfer_type=#{transferType},
+            tx_id = #{txId}, from_address=#{fromAddress}, coinKey=#{coinKey}
+    </insert>
+
+    <select id="getHash" resultType="java.lang.Integer">
+        SELECT count(id)
+        FROM wallet_transfer_${protocol}
+        WHERE tx_id = #{hash}
+    </select>
+
+    <select id="getToAddress" resultType="java.util.Map">
+        SELECT address
+        FROM wallet_address_info_${protocol}
+        WHERE (address = #{toAddress} OR address = #{fromAddress})
+
+    </select>
+
+    <select id="selectTxidGroupByAddress" resultType="com.wallet.job.entity.TxIdGroupByAddressVO">
+        SELECT coinKey,
+               from_address AS fromAddress,
+               to_address   AS address,
+               tx_id        AS txids,
+               qty,
+               id
+        FROM wallet_transfer_${protocol}
+        WHERE status = #{recordStatus}
+        ORDER BY id ASC
+    </select>
+
+    <update id="updateWalletTransfer">
+        UPDATE wallet_transfer_${protocol}
+        SET status=#{recordStatus},
+        confirm_num = #{confirmations}
+        <if test='txFee != null'>
+            ,tx_fee = #{txFee}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteAddress">
+        DELETE
+        FROM wallet_address_info_${protocol}
+        WHERE address = #{address}
+    </delete>
+    <delete id="deleteAddressTransfer">
+        DELETE
+        FROM wallet_transfer_${protocol}
+        WHERE (from_address = #{address} OR to_address = #{address})
+    </delete>
+
+    <select id="getTransfer" resultType="java.util.Map">
+        SELECT coinKey ,
+        from_address AS fromAddress,
+        to_address AS toAddress,
+        tx_id AS txId,
+        qty AS transfernNumber,
+        transfer_type AS transferType,
+        status AS transferStatus,
+        tx_fee AS fee
+        FROM wallet_transfer_${protocol}
+        WHERE (from_address = #{address} OR to_address = #{address})
+        <if test='coinKey != null'>
+            AND coinKey = #{coinKey}
+        </if>
+        <if test='transferType != null'>
+            AND transfer_type = #{transferType}
+        </if>
+        <if test='transferStatus != null'>
+            AND status = #{transferStatus}
+        </if>
+        ORDER BY id ASC
+    </select>
+</mapper>
