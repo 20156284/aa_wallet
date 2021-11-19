@@ -246,7 +246,7 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <finalName>AA-ToKen-job</finalName>
+        <finalName>aa-token-job</finalName>
     </build>
 
 </project>
