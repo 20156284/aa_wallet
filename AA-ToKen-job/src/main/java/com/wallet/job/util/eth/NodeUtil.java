@@ -8,7 +8,7 @@ public final class NodeUtil {
 
     private static Logger logger = LoggerFactory.getLogger(NodeUtil.class);
     //bitcoin初始化
-    public static String xDaiNode;
-    public static Web3j xDaiWeb3j;
+    public static String aaNode;
+    public static Web3j aaWeb3j;
 
 }

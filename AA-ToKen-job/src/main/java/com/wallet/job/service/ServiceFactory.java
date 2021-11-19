@@ -14,13 +14,13 @@ import org.web3j.protocol.http.HttpService;
 @Component
 public class ServiceFactory implements ApplicationContextAware {
     private static Logger logger = LoggerFactory.getLogger(NodeUtil.class);
-    @Value("${xDai.server.url}")
-    private String xDaiUrl;
+    @Value("${aa.server.url}")
+    private String aaUrl;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        NodeUtil.xDaiNode = xDaiUrl;
+        NodeUtil.aaNode = aaUrl;
         //web3j初始化
-        NodeUtil.xDaiWeb3j = Web3j.build(new HttpService(NodeUtil.xDaiNode));
-        logger.warn("【初始化xDai节点成功】 节点：{}", NodeUtil.xDaiNode);
+        NodeUtil.aaWeb3j = Web3j.build(new HttpService(NodeUtil.aaNode));
+        logger.warn("【初始化AA节点成功】 节点：{}", NodeUtil.aaNode);
     }
 }
