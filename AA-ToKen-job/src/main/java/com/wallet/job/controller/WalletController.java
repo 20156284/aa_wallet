@@ -48,10 +48,31 @@ public class WalletController {
 
     @PostMapping("/token/wallet/getCoinKey")
     public Map<String, Object> getCoinKey(@RequestBody AddressBO addressBO) {
-        if (addressBO == null||StringUtils.isBlank(addressBO.getType())) {
+        if (addressBO == null || StringUtils.isBlank(addressBO.getType())) {
             return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
         }
         return walletService.getCoinKey(addressBO);
     }
 
+    /**
+     * 删除地址
+     *
+     * @param
+     * @return
+     */
+    @PostMapping("/token/wallet/deleteAddress")
+    public Map<String, Object> deleteAddress(@RequestBody AddressBO addressBO) {
+        if (addressBO == null) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+        if (StringUtils.isBlank(addressBO.getProtocol())) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+
+        if (StringUtils.isBlank(addressBO.getAddress())) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+        return walletService.deleteAddress(addressBO);
+    }
 }
+

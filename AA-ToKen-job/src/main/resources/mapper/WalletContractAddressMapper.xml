@@ -104,7 +104,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="getCoinKeyList" resultType="java.util.Map">
-    SELECT coin_key, protocol,contract_address FROM tb_wallet_contract_address WHERE 1=1
+    SELECT coin_key AS coinKey, protocol,contract_address AS contractAddress FROM tb_wallet_contract_address WHERE 1=1
     <if test='type != null and type =="1"'>
      AND  contract_address IS NULL
     </if>

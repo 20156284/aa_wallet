@@ -12,6 +12,7 @@ public interface WalletService {
      * @time: 2021/11/18 14:29
      */
     Map<String, Object> addAddress(AddressBO addressBO);
+
     /**
      * @description: 支持币种
      * @return: type 1 主链币；2：代币
@@ -19,4 +20,12 @@ public interface WalletService {
      * @time: 2021/11/19 11:45
      */
     Map<String, Object> getCoinKey(AddressBO addressBO);
+
+    /**
+     * @description: 删除地址
+     * @return:
+     * @author: huoche
+     * @time: 2021/11/18 14:29
+     */
+    Map<String, Object> deleteAddress(AddressBO addressBO);
 }

@@ -34,7 +34,12 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Map<String, Object> getCoinKey(AddressBO addressBO) {
-        System.out.println(addressBO.getType());
         return HttpUtil.returnData(walletContractAddressMapper.getCoinKeyList(addressBO.getType()), SuccessCode.SUCCESS);
+    }
+
+    @Override
+    public Map<String, Object> deleteAddress(AddressBO addressBO) {
+        addressInfoMapper.deleteAddress(addressBO.getAddress(), addressBO.getProtocol());
+        return HttpUtil.returnData(null, SuccessCode.SUCCESS);
     }
 }
