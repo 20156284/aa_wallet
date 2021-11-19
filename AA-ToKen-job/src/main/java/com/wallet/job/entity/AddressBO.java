@@ -1,4 +1,4 @@
-package com.wallet.job.entity.Bo;
+package com.wallet.job.entity;
 
 
 public class AddressBO {
@@ -10,6 +10,18 @@ public class AddressBO {
      * 地址
      */
     private String address;
+    /**
+     * type 1 主链币；2：代币
+     */
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getProtocol() {
         return protocol;

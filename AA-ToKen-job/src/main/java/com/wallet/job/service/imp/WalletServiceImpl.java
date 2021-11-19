@@ -1,7 +1,8 @@
 package com.wallet.job.service.imp;
 
-import com.wallet.job.entity.Bo.AddressBO;
+import com.wallet.job.entity.AddressBO;
 import com.wallet.job.mapper.AddressInfoMapper;
+import com.wallet.job.mapper.WalletContractAddressMapper;
 import com.wallet.job.service.WalletService;
 import com.wallet.job.util.HttpUtil;
 import com.wallet.job.util.SuccessCode;
@@ -17,6 +18,8 @@ public class WalletServiceImpl implements WalletService {
     private static Logger logger = LoggerFactory.getLogger(WalletServiceImpl.class);
     @Autowired
     private AddressInfoMapper addressInfoMapper;
+    @Autowired
+    private WalletContractAddressMapper walletContractAddressMapper;
 
     @Override
     public Map<String, Object> addAddress(AddressBO addressBO) {
@@ -27,5 +30,11 @@ public class WalletServiceImpl implements WalletService {
             addressInfoMapper.addAddress(addressBO.getAddress(), addressBO.getProtocol());
         }
         return HttpUtil.returnData(null, SuccessCode.SUCCESS);
+    }
+
+    @Override
+    public Map<String, Object> getCoinKey(AddressBO addressBO) {
+        System.out.println(addressBO.getType());
+        return HttpUtil.returnData(walletContractAddressMapper.getCoinKeyList(addressBO.getType()), SuccessCode.SUCCESS);
     }
 }
