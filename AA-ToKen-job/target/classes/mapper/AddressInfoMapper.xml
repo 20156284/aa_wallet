@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wallet.job.mapper.AddressInfoMapper">
+    <insert id="addAddress">
+        INSERT INTO tb_address_${protocol}
+        SET address=#{address}, protocol=#{protocol}
+    </insert>
+    <select id="getAddressCount" resultType="java.lang.Integer">
+        SELECT id FROM tb_address_${protocol} WHERE address=#{address}
+    </select>
+    <update id="updateAddress">
+        UPDATE tb_address_${protocol} SET status=1 WHERE id=#{id}
+    </update>
+    <update id="deleteAddress">
+        UPDATE tb_address_${protocol} SET status=2 WHERE address=#{address}
+    </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wallet.job.mapper.WalletContractAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.wallet.job.entity.WalletContractAddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coin_key" property="coinKey" jdbcType="VARCHAR" />
+    <result column="protocol" property="protocol" jdbcType="VARCHAR" />
+    <result column="contract_address" property="contractAddress" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coin_key, protocol, contract_address, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wallet_contract_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_wallet_contract_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wallet.job.entity.WalletContractAddress" >
+    insert into tb_wallet_contract_address (id, coin_key, protocol, 
+      contract_address, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{coinKey,jdbcType=VARCHAR}, #{protocol,jdbcType=VARCHAR}, 
+      #{contractAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wallet.job.entity.WalletContractAddress" >
+    insert into tb_wallet_contract_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coinKey != null" >
+        coin_key,
+      </if>
+      <if test="protocol != null" >
+        protocol,
+      </if>
+      <if test="contractAddress != null" >
+        contract_address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coinKey != null" >
+        #{coinKey,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAddress != null" >
+        #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wallet.job.entity.WalletContractAddress" >
+    update tb_wallet_contract_address
+    <set >
+      <if test="coinKey != null" >
+        coin_key = #{coinKey,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null" >
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="contractAddress != null" >
+        contract_address = #{contractAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wallet.job.entity.WalletContractAddress" >
+    update tb_wallet_contract_address
+    set coin_key = #{coinKey,jdbcType=VARCHAR},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      contract_address = #{contractAddress,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getCoinKeyList" resultType="java.util.Map">
+    SELECT coin_key AS coinKey, protocol,contract_address AS contractAddress FROM tb_wallet_contract_address WHERE 1=1
+    <if test='type != null and type =="1"'>
+     AND  contract_address IS NULL
+    </if>
+    <if test='type != null and type =="2"'>
+      AND contract_address IS NOT NULL
+    </if>
+    ORDER  BY  id ASC
+  </select>
+
+</mapper>
