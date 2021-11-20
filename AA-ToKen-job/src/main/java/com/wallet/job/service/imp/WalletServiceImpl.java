@@ -58,6 +58,11 @@ public class WalletServiceImpl implements WalletService {
                     String sl=(new BigDecimal(String.valueOf(ob))).stripTrailingZeros().toPlainString();
                     map.put("number",sl);
                 }
+                if(map.get("txFee")!=null){
+                    Object ob=map.get("txFee");
+                    String fee=(new BigDecimal(String.valueOf(ob))).stripTrailingZeros().toPlainString();
+                    map.put("txFee",fee);
+                }
                 if(map.get("status")!=null){
                     Object ob=map.get("status");
                     String zt=String.valueOf(ob);

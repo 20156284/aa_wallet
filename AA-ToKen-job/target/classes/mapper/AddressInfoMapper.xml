@@ -6,12 +6,32 @@
         SET address=#{address}, protocol=#{protocol}
     </insert>
     <select id="getAddressCount" resultType="java.lang.Integer">
-        SELECT id FROM tb_address_${protocol} WHERE address=#{address}
+        SELECT id
+        FROM tb_address_${protocol}
+        WHERE address = #{address}
     </select>
     <update id="updateAddress">
-        UPDATE tb_address_${protocol} SET status=1 WHERE id=#{id}
+        UPDATE tb_address_${protocol}
+        SET status=1
+        WHERE id = #{id}
     </update>
     <update id="deleteAddress">
-        UPDATE tb_address_${protocol} SET status=2 WHERE address=#{address}
+        UPDATE tb_address_${protocol}
+        SET status=2
+        WHERE address = #{address}
     </update>
+    <select id="transactionRecords" resultType="java.util.Map">
+        SELECT transfer_type AS transferType,coin_key AS coinKey,
+        from_address AS fromAddress,to_address AS toAddress,
+        qty as number,tx_id as txId,protocol,status,tx_fee AS txFee FROM
+        tb_wallet_transfer_record_${protocol} WHERE 1=1
+        <choose>
+            <when test="type != null">
+                AND transfer_type=#{type}
+            </when>
+            <otherwise>
+                AND (transfer_type=10 OR transfer_type=20)
+            </otherwise>
+        </choose>
+    </select>
 </mapper>
