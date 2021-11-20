@@ -28,4 +28,12 @@ public interface WalletService {
      * @time: 2021/11/18 14:29
      */
     Map<String, Object> deleteAddress(AddressBO addressBO);
+
+    /**
+     * @description: 转账记录
+     * @return:
+     * @author: huoche
+     * @time: 2021/11/20 15:17
+     */
+    Map<String, Object> transactionRecords(AddressBO addressBO);
 }

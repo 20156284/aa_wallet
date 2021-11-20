@@ -3,6 +3,9 @@ package com.wallet.job.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface AddressInfoMapper {
     /**
@@ -41,4 +44,14 @@ public interface AddressInfoMapper {
      */
     void deleteAddress(@Param("address") String address,
                        @Param("protocol") String protocol);
+
+    /**
+     * @description: 转账记录
+     * @return: type 10 转入；20：转出;
+     * @author: huoche
+     * @time: 2021/11/19 11:45
+     */
+    List<Map<Object, String>> transactionRecords(@Param("type") String type,
+                                                 @Param("address") String address,
+                                                 @Param("protocol") String protocol);
 }

@@ -74,5 +74,26 @@ public class WalletController {
         }
         return walletService.deleteAddress(addressBO);
     }
+
+    /**
+     * @description: 转账记录
+     * @return:
+     * @author: huoche
+     * @time: 2021/11/20 15:17
+     */
+    @PostMapping("/token/wallet/transactionRecords")
+    public Map<String, Object> transactionRecords(@RequestBody AddressBO addressBO) {
+        if (addressBO == null) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+        if (StringUtils.isBlank(addressBO.getProtocol())) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+
+        if (StringUtils.isBlank(addressBO.getAddress())) {
+            return HttpUtil.returnData(null, ErrorCode.PARAMETER_ERROR);
+        }
+        return walletService.transactionRecords(addressBO);
+    }
 }
 
