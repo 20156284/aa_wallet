@@ -105,4 +105,12 @@ public interface AddressInfoMapper {
      */
     void updateBlockScanner(@Param("id") Integer id,
                             @Param("blockHeight") BigInteger blockHeight);
+
+    /**
+     * 功能描述: <br>
+     * 增加平台同步高度
+     */
+    Integer addBlockScanner(@Param("protocol") String protocol,
+                            @Param("blockHash") String blockHash,
+                            @Param("blockHeight") BigInteger blockHeight);
 }

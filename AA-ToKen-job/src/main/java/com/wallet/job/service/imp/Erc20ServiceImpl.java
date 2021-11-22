@@ -50,7 +50,9 @@ public class Erc20ServiceImpl implements Erc20Service {
             // 无该节点，初始化该节点
             if (blockScannerMap == null || blockScannerMap.get("block_height") == null) {
                 EthBlock.Block block = EthUtil.getBlockByHeight(web3j, blockHeight);
+                addressInfoMapper.addBlockScanner(protocol, block.getHash(), blockHeight);
                 logger.warn("【扫描区块】 初始化" + protocol + "节点高度: {}", blockHeight);
+                return;
             }
             while (pt_blockHeight.intValue() <= blockHeight.intValue()) {
                 List<Transaction> historyTransactions =

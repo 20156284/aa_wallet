@@ -76,4 +76,9 @@
         SET block_height=#{blockHeight}
         WHERE id = #{id}
     </update>
+
+    <insert id="addBlockScanner">
+        INSERT INTO tb_wallet_block_scanner
+        SET protocol = #{protocol}, block_hash=#{blockHash}, block_height=#{blockHeight}
+    </insert>
 </mapper>
