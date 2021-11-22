@@ -34,4 +34,46 @@
             </otherwise>
         </choose>
     </select>
+
+    <select id="getBlockScanner" resultType="java.util.Map">
+        SELECT id, protocol, block_height, locked
+        FROM tb_wallet_block_scanner
+        WHERE protocol = #{protocol}
+    </select>
+
+    <select id="getContractAddress" resultType="java.util.Map">
+        SELECT contract_address, coin_key
+        FROM tb_wallet_contract_address
+        WHERE protocol = #{protocol}
+          AND contract_address = #{contractAddress}
+    </select>
+
+    <select id="countAddress" resultType="java.util.Map">
+        SELECT address
+        FROM tb_address_${protocol}
+        WHERE protocol = #{protocol}
+          AND (address = #{fromAddress} OR address = #{toAddress})
+    </select>
+
+    <select id="getHash" resultType="java.lang.Integer">
+        SELECT count(id)
+        FROM tb_wallet_transfer_record_${protocol}
+        WHERE tx_id = #{hash}
+          AND transfer_type = #{type}
+    </select>
+
+    <insert id="insertWalletTransfer">
+        INSERT INTO tb_wallet_transfer_record_${protocol}
+        SET transfer_type=#{transferType}, coin_type=#{coinKey},
+            from_address=#{fromAddress}, to_address=#{toAddress},
+            qty=#{amount}, tx_id = #{txId}, protocol=#{protocol},
+            tx_fee=#{txFee}, status = #{status}
+
+    </insert>
+
+    <update id="updateBlockScanner">
+        UPDATE tb_wallet_block_scanner
+        SET block_height=#{blockHeight}
+        WHERE id = #{id}
+    </update>
 </mapper>

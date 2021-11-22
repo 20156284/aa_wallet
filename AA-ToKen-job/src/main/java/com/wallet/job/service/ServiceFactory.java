@@ -16,11 +16,17 @@ public class ServiceFactory implements ApplicationContextAware {
     private static Logger logger = LoggerFactory.getLogger(NodeUtil.class);
     @Value("${aa.server.url}")
     private String aaUrl;
+    @Value("${eth.server.url}")
+    private String ethUrl;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         NodeUtil.aaNode = aaUrl;
+        NodeUtil.Node = ethUrl;
         //web3j初始化
         NodeUtil.aaWeb3j = Web3j.build(new HttpService(NodeUtil.aaNode));
         logger.warn("【初始化AA节点成功】 节点：{}", NodeUtil.aaNode);
+
+        NodeUtil.web3j = Web3j.build(new HttpService(NodeUtil.Node));
+        logger.warn("【初始化ETH节点成功】 节点：{}", NodeUtil.Node);
     }
 }

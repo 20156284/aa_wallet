@@ -10,5 +10,7 @@ public final class NodeUtil {
     //bitcoin初始化
     public static String aaNode;
     public static Web3j aaWeb3j;
+    public static String Node;
+    public static Web3j web3j;
 
 }

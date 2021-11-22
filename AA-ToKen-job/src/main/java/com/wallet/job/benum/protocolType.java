@@ -3,7 +3,7 @@ package com.wallet.job.benum;
 public enum protocolType {
 	ERC20("以太坊"),
 	TRC20("波场"),
-	FIL("Filecoin");
+	ARC20("AA");
 	protected final String name;
 
 	private protocolType(String name) {
