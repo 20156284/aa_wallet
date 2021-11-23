@@ -466,7 +466,7 @@ public class EthUtil {
                 org.web3j.protocol.core.methods.response.Transaction transaction = web3j.ethGetTransactionByHash((String) transactionResult.get()).send().getTransaction().get();
                 transactions.add(transaction);
             }
-            logger.warn("【获取交易数据成功】 区块哈希: {}, 区块高度: {}", block.getHash(), block.getNumber());
+            //logger.warn("【获取交易数据成功】 区块哈希: {}, 区块高度: {}", block.getHash(), block.getNumber());
         } catch (Exception e) {
             logger.error("【获取交易数据失败】 错误信息: {}", e);
             return null;

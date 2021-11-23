@@ -8,6 +8,9 @@ public interface Erc20Service {
      */
     void blockChainSweepingErc20(String protocol);
 
-
+    /**
+     * 充币回查
+     */
+    void rechargeCallback(String protocol);
 
 }

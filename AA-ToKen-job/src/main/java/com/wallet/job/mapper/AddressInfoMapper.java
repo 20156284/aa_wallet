@@ -1,5 +1,6 @@
 package com.wallet.job.mapper;
 
+import com.wallet.job.entity.TxIdGroupByAddressVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -113,4 +114,27 @@ public interface AddressInfoMapper {
     Integer addBlockScanner(@Param("protocol") String protocol,
                             @Param("blockHash") String blockHash,
                             @Param("blockHeight") BigInteger blockHeight);
+
+    /**
+     * @Description: 充值回调信息
+     * @Author:huoche
+     * @Date: 2021/4/15
+     * @Param:
+     * @Return:
+     */
+    List<TxIdGroupByAddressVO> selectTxidGroupByAddress(@Param("protocol") String protocol,
+                                                        @Param("recordStatus") byte recordStatus);
+
+    /**
+     * @Description: 修改充值回调信息
+     * @Author:huoche
+     * @Date: 2021/4/15
+     * @Param:
+     * @Return:
+     */
+    void updateWalletTransfer(@Param("id") Integer id,
+                              @Param("recordStatus") byte recordStatus,
+                              @Param("confirmations") Integer confirmations,
+                              @Param("protocol") String protocol);
+
 }

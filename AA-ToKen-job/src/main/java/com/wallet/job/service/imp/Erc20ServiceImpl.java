@@ -1,13 +1,12 @@
 package com.wallet.job.service.imp;
 
 import com.wallet.job.benum.RecordStatus;
-import com.wallet.job.benum.RecordType;
 import com.wallet.job.benum.protocolType;
 import com.wallet.job.entity.TransactionVO;
+import com.wallet.job.entity.TxIdGroupByAddressVO;
 import com.wallet.job.mapper.AddressInfoMapper;
 import com.wallet.job.service.Erc20Service;
 import com.wallet.job.util.BeanUtil;
-import com.wallet.job.util.SerialNumberUtil;
 import com.wallet.job.util.eth.EthUtil;
 import com.wallet.job.util.eth.NodeUtil;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +36,7 @@ public class Erc20ServiceImpl implements Erc20Service {
             web3j = NodeUtil.aaWeb3j;
             coinKey = "AAA";
         }
+
         try {
             logger.warn("开始:{}充值扫块,web3j:{}", protocol, web3j);
             //查询平台同步高度
@@ -130,6 +130,60 @@ public class Erc20ServiceImpl implements Erc20Service {
         } catch (Exception e) {
             logger.error("{}充值扫块异常", protocol);
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void rechargeCallback(String protocol) {
+        logger.warn("回调检查:{}", protocol);
+        List<TxIdGroupByAddressVO> usdtWalletTransferVOS = addressInfoMapper.selectTxidGroupByAddress(protocol, RecordStatus.CONFIRMING.getVal());
+        if (usdtWalletTransferVOS != null && usdtWalletTransferVOS.size() > 0) {
+            for (TxIdGroupByAddressVO vo : usdtWalletTransferVOS) {
+                String txid = vo.getTxids();
+                try {
+                    //erc20系列
+                    if (protocol.equals(protocolType.ERC20.name()) || protocol.equals(protocolType.ARC20.name())) {
+                        Web3j web3j = NodeUtil.web3j;
+                        if (protocol.toUpperCase().equals(protocolType.ARC20.name())) {
+                            web3j = NodeUtil.aaWeb3j;
+                        }
+                        TransactionVO transaction = null;
+                        Transaction transactionInfo = EthUtil.getTransactionInfo(web3j, txid);
+                        if (transactionInfo == null || StringUtils.isBlank(transactionInfo.getBlockHash()) || transactionInfo.getBlockHash()
+                                .equals("0x0000000000000000000000000000000000000000000000000000000000000000")) {
+                            continue;
+                        }
+                        //ETH
+                        if (vo.getCoinKey().equals("ETH") || vo.getCoinKey().equals("AAA")) {
+                            //解析ETH交易
+                            Map<String, Object> ethTransactionInfo = EthUtil.getEthTransactionInfo(transactionInfo);
+                            transaction = BeanUtil.copyMapProperties(ethTransactionInfo, TransactionVO.class);
+                        } else {
+                            Map<String, Object> tokenTransactionInfo = EthUtil.getTokenTransactionInfo(transactionInfo, web3j);
+                            transaction = BeanUtil.copyMapProperties(tokenTransactionInfo, TransactionVO.class);
+                            if (StringUtils.isNotBlank(vo.getAddress()) && !vo.getAddress().startsWith("0x")) {
+                                vo.setAddress("0x" + vo.getAddress());
+                            }
+                            if (transaction != null
+                                    && StringUtils.isNotBlank(transaction.getTo())
+                                    && !transaction.getTo().startsWith("0x")) {
+                                transaction.setTo("0x" + transaction.getTo());
+                            }
+                        }
+                        //获取当前高度
+                        BigInteger blockHeight = EthUtil.getBlockHeight(web3j);
+                        //计算确认数
+                        int confirmNum = blockHeight.intValue() - transaction.getHeight().intValue();
+                        if (confirmNum >= 3) {
+                            //更新为已确认
+                            addressInfoMapper.updateWalletTransfer(vo.getId(), RecordStatus.CONFIRMED.getVal(), confirmNum, protocol);
+                            logger.warn(protocol + "交易确认 txid: {},币种:{},数量:{},类型：{},id:{}", txid, vo.getCoinKey(), vo.getQty(), protocol, vo.getId());
+                        }
+                    }
+                } catch (Exception e) {
+                    logger.error(e.toString(), e);
+                }
+            }
         }
     }
 

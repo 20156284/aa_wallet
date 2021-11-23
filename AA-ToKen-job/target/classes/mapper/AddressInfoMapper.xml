@@ -64,7 +64,7 @@
 
     <insert id="insertWalletTransfer">
         INSERT INTO tb_wallet_transfer_record_${protocol}
-        SET transfer_type=#{transferType}, coin_type=#{coinKey},
+        SET transfer_type=#{transferType}, coin_key=#{coinKey},
             from_address=#{fromAddress}, to_address=#{toAddress},
             qty=#{amount}, tx_id = #{txId}, protocol=#{protocol},
             tx_fee=#{txFee}, status = #{status}
@@ -81,4 +81,20 @@
         INSERT INTO tb_wallet_block_scanner
         SET protocol = #{protocol}, block_hash=#{blockHash}, block_height=#{blockHeight}
     </insert>
+
+    <select id="selectTxidGroupByAddress" resultType="com.wallet.job.entity.TxIdGroupByAddressVO">
+        SELECT id, tx_id AS txids, protocol, coin_key AS coinKey
+        FROM tb_wallet_transfer_record_${protocol}
+        WHERE 1 = 1
+          AND status = #{recordStatus}
+        ORDER BY id ASC
+    </select>
+
+    <update id="updateWalletTransfer">
+        UPDATE tb_wallet_transfer_record_${protocol}
+        SET status=#{recordStatus},
+            confirm_num = #{confirmations},
+            confirm_time = CURRENT_TIMESTAMP()
+        WHERE id = #{id}
+    </update>
 </mapper>
