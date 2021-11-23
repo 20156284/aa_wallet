@@ -65,11 +65,11 @@ class WalletManagementPage extends GetView<WalletManagementLogic> {
               ),
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: [],
-            ),
-          )
+          // Expanded(
+          //   child: ListView(
+          //     children: [],
+          //   ),
+          // )
         ],
       ),
     );

@@ -139,7 +139,7 @@ dependencies:
   ####以上的插件，尽量不要更换；因为可能core会用到。您想更换的在下面添加您使用的####
   ########################################################################
   # web3dart https://pub.dev/packages/web3dart
-  web3dart: ^2.3.2
+  web3dart: ^2.3.3
   # bip39 https://pub.dev/packages/bip39
   bip39: ^1.0.6
   # bip32 https://pub.dev/packages/bip32

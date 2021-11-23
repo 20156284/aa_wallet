@@ -10,7 +10,8 @@ class EnvConfig {
   EnvConfig({
     required this.appTitle,
     required this.baseUrl,
-    required this.rpcUrl,
+    required this.aaaRpcUrl,
+    required this.ethRpcUrl,
   });
 
   //环境名称
@@ -19,8 +20,10 @@ class EnvConfig {
   //服务器地址
   final String baseUrl;
 
-  //rpc 的地址
-  final String rpcUrl;
+  //aaaRpc 的地址
+  final String aaaRpcUrl;
+  //ethRpc 的地址
+  final String ethRpcUrl;
 
   // // 代理合约，用来给token授权
   // final String proxy;
@@ -50,21 +53,24 @@ class Env {
   static final EnvConfig _debugConfig = EnvConfig(
     appTitle: 'debugTitle',
     baseUrl: 'http://test2-api.aapay.io',
-    rpcUrl: 'http://159.138.134.163:8000',
+    aaaRpcUrl: 'http://159.138.134.163:8000',
+    ethRpcUrl: 'http://159.138.134.163:8000',
   );
 
   // 发布环境
   static final EnvConfig _releaseConfig = EnvConfig(
     appTitle: 'releaseTitle',
     baseUrl: 'http://test2-api.aapay.io',
-    rpcUrl: 'http://119.8.104.104:8000',
+    aaaRpcUrl: 'http://119.8.104.104:8000',
+    ethRpcUrl: 'http://119.8.104.104:8000',
   );
 
   // 测试环境
   static final EnvConfig _testConfig = EnvConfig(
     appTitle: 'testTitle',
     baseUrl: 'http://test2-api.aapay.io',
-    rpcUrl: 'http://119.8.104.104:8000',
+    aaaRpcUrl: 'http://119.8.104.104:8000',
+    ethRpcUrl: 'http://119.8.104.104:8000',
   );
 
   static EnvConfig get envConfig => _getEnvConfig();
