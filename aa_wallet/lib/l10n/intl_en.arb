@@ -105,5 +105,15 @@
   "wallet_edit_name": "Wallet nickname",
   "wallet_edit_name_input": "Please enter wallet nickname",
   "wallet_edit_tips": "Start with an English letter, limited to 6~16 characters",
-  "wallet_edit_name_error": "Error modifying nickname, please try again later"
+  "wallet_edit_name_error": "Error modifying nickname, please try again later",
+
+  "add_wallet_choose_coin_type": "Choose coin type",
+  "add_wallet_eth": "ETH",
+  "add_wallet_eth_subtitle": "Ethereum",
+  "add_wallet_btc": "BTC",
+  "add_wallet_btc_subtitle": "Bitcoin",
+  "add_wallet_aac": "AAC",
+  "add_wallet_aac_subtitle": "AAcoin",
+
+  "choose_caret_wallet_title": "Choose identity"
 }

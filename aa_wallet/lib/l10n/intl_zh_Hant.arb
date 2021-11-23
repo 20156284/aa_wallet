@@ -105,5 +105,15 @@
   "wallet_edit_name": "錢包暱稱修改",
   "wallet_edit_name_input": "請輸入錢包暱稱",
   "wallet_edit_tips": "以英文字幕開頭或者漢字開頭,限6~16個字符，一個漢字為2個字符",
-  "wallet_edit_name_error": "修改暱稱出錯，請稍後再試"
+  "wallet_edit_name_error": "修改暱稱出錯，請稍後再試",
+
+  "add_wallet_choose_coin_type": "選擇幣種",
+  "add_wallet_eth": "ETH",
+  "add_wallet_eth_subtitle": "Ethereum",
+  "add_wallet_btc": "BTC",
+  "add_wallet_btc_subtitle": "Bitcoin",
+  "add_wallet_aac": "AAC",
+  "add_wallet_aac_subtitle": "AAcoin",
+
+  "choose_caret_wallet_title": "選擇不同身份"
 }

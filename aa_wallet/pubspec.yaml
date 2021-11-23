@@ -195,6 +195,7 @@ flutter:
     - assets/data/language.json
     - assets/images/ic_aaa.png
     - assets/images/ic_aaa_select.png
+    - assets/images/ic_aac.png
     - assets/images/ic_asdt.png
     - assets/images/ic_btc.png
     - assets/images/ic_btc_select.png

@@ -1,5 +1,6 @@
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/res.dart';
+import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,7 @@ class WalletManagementPage extends GetView<WalletManagementLogic> {
         backgroundColor: Colors.white,
         border: Border.all(width: 0.0, style: BorderStyle.none),
         trailing: InkWell(
+          onTap: () => Get.toNamed(AppRoutes.addWallet),
           child: Container(
             height: kMinInteractiveDimensionCupertino,
             width: kMinInteractiveDimensionCupertino,

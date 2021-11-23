@@ -31,6 +31,10 @@ import 'package:aa_wallet/page/profile/profile_page/profile_page_binding.dart';
 import 'package:aa_wallet/page/profile/update_record/update_record_binding.dart';
 import 'package:aa_wallet/page/profile/update_record/update_record_view.dart';
 import 'package:aa_wallet/page/splash/splash_view.dart';
+import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_binding.dart';
+import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_view.dart';
+import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_binding.dart';
+import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_view.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_binding.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_view.dart';
 import 'package:aa_wallet/page/wallet/wallet_details/wallet_details_binding.dart';
@@ -148,6 +152,18 @@ class AppPages {
       name: _Paths.walletManagement,
       page: () => const WalletManagementPage(),
       binding: WalletManagementBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.addWallet,
+      page: () => const AddWalletPage(),
+      binding: AddWalletBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.chooseCreatWallet,
+      page: () => const ChooseCreatWalletPage(),
+      binding: ChooseCreatWalletBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

@@ -939,6 +939,86 @@ class AppS {
       args: [],
     );
   }
+
+  /// `Choose coin type`
+  String get add_wallet_choose_coin_type {
+    return Intl.message(
+      'Choose coin type',
+      name: 'add_wallet_choose_coin_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ETH`
+  String get add_wallet_eth {
+    return Intl.message(
+      'ETH',
+      name: 'add_wallet_eth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ethereum`
+  String get add_wallet_eth_subtitle {
+    return Intl.message(
+      'Ethereum',
+      name: 'add_wallet_eth_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BTC`
+  String get add_wallet_btc {
+    return Intl.message(
+      'BTC',
+      name: 'add_wallet_btc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitcoin`
+  String get add_wallet_btc_subtitle {
+    return Intl.message(
+      'Bitcoin',
+      name: 'add_wallet_btc_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AAC`
+  String get add_wallet_aac {
+    return Intl.message(
+      'AAC',
+      name: 'add_wallet_aac',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AAcoin`
+  String get add_wallet_aac_subtitle {
+    return Intl.message(
+      'AAcoin',
+      name: 'add_wallet_aac_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose identity`
+  String get choose_caret_wallet_title {
+    return Intl.message(
+      'Choose identity',
+      name: 'choose_caret_wallet_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppS> {

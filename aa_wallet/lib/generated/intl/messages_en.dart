@@ -32,6 +32,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please add the coin under the identity wallet (multiple choice)"),
         "add_coin_type_title":
             MessageLookupByLibrary.simpleMessage("Add Coin type"),
+        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAC"),
+        "add_wallet_aac_subtitle":
+            MessageLookupByLibrary.simpleMessage("AAcoin"),
+        "add_wallet_btc": MessageLookupByLibrary.simpleMessage("BTC"),
+        "add_wallet_btc_subtitle":
+            MessageLookupByLibrary.simpleMessage("Bitcoin"),
+        "add_wallet_choose_coin_type":
+            MessageLookupByLibrary.simpleMessage("Choose coin type"),
+        "add_wallet_eth": MessageLookupByLibrary.simpleMessage("ETH"),
+        "add_wallet_eth_subtitle":
+            MessageLookupByLibrary.simpleMessage("Ethereum"),
         "app_album": MessageLookupByLibrary.simpleMessage("form album"),
         "app_build_now": MessageLookupByLibrary.simpleMessage("coming soon"),
         "app_camera": MessageLookupByLibrary.simpleMessage("take photo"),
@@ -86,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The mnemonic is composed of English words, please copy it and keep it in a safe place"),
         "back_up_tips_content3": MessageLookupByLibrary.simpleMessage(
             "The mnemonic phrase is lost and cannot be retrieved, please make sure to back up the mnemonic phrase"),
+        "choose_caret_wallet_title":
+            MessageLookupByLibrary.simpleMessage("Choose identity"),
         "confirm_mnemonic":
             MessageLookupByLibrary.simpleMessage("Confirm Mnemonic"),
         "confirm_mnemonic_sequence": MessageLookupByLibrary.simpleMessage(
