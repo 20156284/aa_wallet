@@ -1,0 +1,109 @@
+{
+  "app_name": "AAToken",
+  "app_cancel": "取消",
+  "app_confirm":"确定",
+  "app_permission_location_close":"定位权限被您关闭",
+  "app_permission_microphone_close":"定位权限被您关闭",
+  "app_permission_photos_close":"照片权限被您关闭",
+  "app_permission_camera_close":"相机权限被您关闭",
+  "app_permission_video_close":"音视频权限被您关闭",
+  "app_permission_storage_close":"本地存储权限被您关闭",
+  "app_permission_title": "权限提醒",
+  "app_permission_open": "开启权限",
+  "app_album":"从相册中选择",
+  "app_camera":"拍照",
+  "app_save_photos":"保存照片",
+  "app_save_photos_success":"保存成功",
+  "app_save_photos_failure":"保存失败",
+  "app_copy_success":"复制成功",
+  "app_i_know": "我知道了",
+  "app_update_version":"发现新版本{version}",
+  "app_build_now":"敬请期待",
+  "app_no_date":"暂无记录",
+  "app_img_upload": "正在上传第{num}张...",
+  "app_tips": " 温馨提示 ",
+  "app_version": "AAToken {version}新版本",
+
+
+  "wallet": "钱包",
+  "wallet_assets": "资产",
+  "wallet_choose": "选择钱包",
+  "wallet_identity": "钱包身份",
+  "wallet_create_import": "创建/导入",
+
+
+
+  "profile": "我的",
+  "profile_update_record": "更新记录",
+  "profile_wallet_management": "钱包管理",
+
+
+
+  "language_choose":"选择语言",
+
+  "creat_wallet_title": "创建钱包",
+  "creat_wallet_content": "第一次使用钱包",
+  "creat_wallet_details": "您将会拥有身份下的多链钱包,比如ETH、AAC",
+  "creat_wallet_name": "钱包名称",
+  "creat_wallet_name_input": "请输入钱包名称",
+  "creat_wallet_pwd": "密码",
+  "creat_wallet_pwd_input": "请输入钱包密码",
+  "creat_wallet_repeat_pwd_input":"请再次确认钱包密码",
+  "creat_wallet_pwd_tips":"不少于8位字符，建议混合字母、数字、符号",
+  "creat_wallet":"创建",
+  "creat_wallet_fist":"创建您的第一个数字钱包",
+  "creat_wallet_tips_content": "\n1.该密码将作为钱包的交易密码.\n2.钱包不会储存密码，也无法帮您找回，请务必妥善保管密码.",
+  "creat_wallet_pwd_repeat": "两次密码不一致",
+  "creat_wallet_ing": "创建钱包中...",
+
+  "back_up_tips": "备份提示",
+  "back_up_tips_content1": "获得助记词等于拥有钱包资产所有权",
+  "back_up_tips_content2": "助记词由英文单词组成，请抄写并妥善保管",
+  "back_up_tips_content3": "助记词丢失，无法找回，请务必备份助记词",
+  "back_up_do_not_screen_capture1":"请勿截屏",
+  "back_up_do_not_screen_capture2":"请勿截屏分享和储存，这将可能被第三方恶意软件收集，造成资产损失",
+
+  "back_up_mnemonic_title": "备份助记词",
+  "back_up_mnemonic": "请按顺序抄写助记词，确保备份正确",
+  "back_up_mnemonic_tips": "\n1.妥善保管助记词至隔离网络的安全地方.\n2.请勿将助记词在联网环境下分享和存储，比如邮件、相册、社交应用等.",
+  "back_up_mnemonic_confirm": "已确认备份",
+
+  "confirm_mnemonic": "确认助记词",
+  "confirm_mnemonic_sequence": "请按顺序点击助记词，以确认您正确备份",
+  "confirm_mnemonic_sequence_err": "助记词有误请重新点击",
+
+  "add_coin_type_title": "添加币种",
+  "add_coin_type_subtitle": "请添加身份钱包下的币种(多选)",
+
+
+  "recover_wallet_title": "恢复钱包",
+  "recover_wallet_content": "已拥有钱包",
+  "recover_wallet_mnemonic": "助记词",
+  "recover_wallet_import_mnemonic": "导入助记词",
+  "recover_wallet_private_key": "私钥",
+  "recover_wallet_import_private_key": "明文私钥字符串",
+  "recover_import_mnemonic": "请输入助记单词，并且使用空格分隔",
+  "recover_import_private_key": "请输入明文私钥",
+
+
+  "wallet_details_title": "钱包详情",
+  "wallet_export_mnemonic": "导出助记词",
+  "wallet_export_private_key": "导出私钥",
+  "wallet_export_change_pwd": "修改密码",
+  "wallet_export_reset_pwd": "重置密码",
+  "wallet_del": "删除钱包",
+  "wallet_del_only": "您确定删除钱包?",
+  "wallet_password": "钱包密码",
+  "wallet_password_err": "请输入正确密码",
+  "wallet_import_mnemonic_error": "您当前钱包导入时，并非采用助记词导入",
+  "wallet_import_key_tips": "导出提示",
+  "wallet_import_key_content1": "安全警告，私钥导出后请妥善保管，不要泄露",
+  "wallet_import_key_content2": "一旦泄露，可能导致资产损失",
+  "wallet_import_key_copy": "复制私钥",
+  "wallet_import_key_copy_success": "私钥已复制",
+
+  "wallet_edit_name": "钱包昵称修改",
+  "wallet_edit_name_input": "请输入钱包昵称",
+  "wallet_edit_tips": "以英文字母或者汉字开头，限6~16个字符，一个汉字为2个字符",
+  "wallet_edit_name_error": "修改昵称出错请稍后再试"
+}
