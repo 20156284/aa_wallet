@@ -1,0 +1,109 @@
+{
+  "app_name": "AAToken",
+  "app_cancel": "cancel",
+  "app_confirm":"confirm",
+  "app_permission_location_close":"location permission is close",
+  "app_permission_microphone_close":"microphone permission is close",
+  "app_permission_photos_close":"photos permission is close",
+  "app_permission_camera_close":"camera permission is close",
+  "app_permission_video_close":"video permission is close",
+  "app_permission_storage_close":"storage permission is close",
+  "app_permission_title": "permission tips",
+  "app_permission_open": "open permission",
+  "app_album":"form album",
+  "app_camera":"take photo",
+  "app_save_photos":"save photo",
+  "app_save_photos_success":"save photo success",
+  "app_save_photos_failure":"save photo fail",
+  "app_copy_success":"copy success",
+  "app_i_know": "I know",
+  "app_update_version":"find new version V{version}",
+  "app_build_now":"coming soon",
+  "app_no_date":"no date",
+  "app_img_upload": "uploading {num}...",
+  "app_tips": "Tips",
+  "app_version": "AAToken {version}",
+
+
+  "wallet": "Wallet",
+  "wallet_assets": "Assets",
+  "wallet_choose": "Choose wallet",
+  "wallet_identity": "Wallet identity",
+  "wallet_create_import": "Create/Import",
+
+
+
+  "profile": "Profile",
+  "profile_update_record": "Update record",
+  "profile_wallet_management": "Wallet Management",
+
+
+
+  "language_choose":"Choose Language",
+
+  "creat_wallet_title": "Creat wallet",
+  "creat_wallet_content": "use wallet by fist time",
+  "creat_wallet_details": "you will have a multi-chain wallet under your identity,for example ETH、AAC",
+  "creat_wallet_name": "Wallet name",
+  "creat_wallet_pwd": "Password",
+  "creat_wallet_name_input": "Please enter you wallet name",
+  "creat_wallet_pwd_input": "Please enter you wallet password",
+  "creat_wallet_repeat_pwd_input":"Please repeat you wallet password",
+  "creat_wallet_pwd_tips":"No less than 8 characters, it is recommended to mix letters、 numbers、 and symbols",
+  "creat_wallet":"Creat Wallet",
+  "creat_wallet_fist":"Create your first digital wallet",
+  "creat_wallet_tips_content": "\n1.The password will be used as the transaction password of the wallet.\n2. The wallet will not store the password, nor can it help you retrieve it. Please be sure to keep the password properly.",
+  "creat_wallet_pwd_repeat": "The passwords are inconsistent",
+  "creat_wallet_ing": "Creat wallet now...",
+
+  "back_up_tips": "BackUp Tips",
+  "back_up_tips_content1": "Obtaining the mnemonic phrase is equivalent to owning the wallet asset ownership",
+  "back_up_tips_content2": "The mnemonic is composed of English words, please copy it and keep it in a safe place",
+  "back_up_tips_content3": "The mnemonic phrase is lost and cannot be retrieved, please make sure to back up the mnemonic phrase",
+  "back_up_do_not_screen_capture1":"Please don't capture screen",
+  "back_up_do_not_screen_capture2":"Do not take screenshots to share and store, it may be collected by third-party malware and cause asset loss",
+
+  "back_up_mnemonic_title": "BackUp mnemonic",
+  "back_up_mnemonic": "Please copy the mnemonic words in order to ensure that the backup is correct",
+  "back_up_mnemonic_tips": "\n1. Properly keep the mnemonic phrase to a safe place isolated from the network.\n2. Do not share and store mnemonic words in a networked environment, such as emails, photo albums, social applications, etc.",
+  "back_up_mnemonic_confirm": "Confirm BackUp",
+
+  "confirm_mnemonic": "Confirm Mnemonic",
+  "confirm_mnemonic_sequence": "Please click on the mnemonic words in order to confirm that you back it up correctly",
+  "confirm_mnemonic_sequence_err": "Please click again if the mnemonic is wrong",
+
+  "add_coin_type_title": "Add Coin type",
+  "add_coin_type_subtitle": "Please add the coin under the identity wallet (multiple choice)",
+
+
+  "recover_wallet_title": "Recover wallet",
+  "recover_wallet_content": "already have a wallet",
+  "recover_wallet_mnemonic": "Mnemonic",
+  "recover_wallet_import_mnemonic": "import mnemonic",
+  "recover_wallet_private_key": "Private key",
+  "recover_wallet_import_private_key": "import private key",
+  "recover_import_mnemonic": "Please enter the mnemonic words separated by spaces",
+  "recover_import_private_key": "Please enter the plaintext private key",
+
+
+  "wallet_details_title": "Wallet Detail",
+  "wallet_export_mnemonic": "Export mnemonic",
+  "wallet_export_private_key": "Export private key",
+  "wallet_export_change_pwd": "Change password",
+  "wallet_export_reset_pwd": "Rest password",
+  "wallet_del": "Delete wallet",
+  "wallet_del_only": "Are you sure to delete the current wallet?",
+  "wallet_password": "Wallet Password",
+  "wallet_password_err": "Your password is error",
+  "wallet_import_mnemonic_error": "When you import, you are not importing with mnemonic",
+  "wallet_import_key_tips": "Import Tips",
+  "wallet_import_key_content1": "Security warning, after exporting the private key, please keep it safe and don’t disclose it",
+  "wallet_import_key_content2": "Once leaked, it may cause asset loss",
+  "wallet_import_key_copy": "Copy private key",
+  "wallet_import_key_copy_success": "Copy success",
+
+  "wallet_edit_name": "Wallet nickname",
+  "wallet_edit_name_input": "Please enter wallet nickname",
+  "wallet_edit_tips": "Start with an English letter, limited to 6~16 characters",
+  "wallet_edit_name_error": "Error modifying nickname, please try again later"
+}
