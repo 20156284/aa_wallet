@@ -29,6 +29,7 @@ class WalletService extends GetxService {
           privateKey: '',
           address: '',
           protocol: '',
+          rpcUrl: '',
           is_main: false)
       .obs;
 

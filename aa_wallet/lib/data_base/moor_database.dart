@@ -21,6 +21,8 @@ class Wallet extends Table {
   TextColumn get privateKey => text()();
   //钱包类型
   TextColumn get protocol => text()();
+  //rpc地址
+  TextColumn get rpcUrl => text()();
   TextColumn get address => text()();
   BoolColumn get is_main => boolean()();
 }
@@ -47,6 +49,7 @@ class AppDatabase extends _$AppDatabase {
     String? privateKey,
     String? protocol,
     String? address,
+    String? rpcUrl,
     bool? isMain,
   }) =>
       into(wallet).insert(
@@ -56,7 +59,8 @@ class AppDatabase extends _$AppDatabase {
           privateKey: Value(privateKey ?? ''),
           protocol: Value(protocol ?? ''),
           address: Value(address ?? ''),
-          mnemonic: Value(address ?? ''),
+          mnemonic: Value(mnemonic ?? ''),
+          rpcUrl: Value(rpcUrl ?? ''),
           is_main: Value(isMain ?? false),
         ),
       );

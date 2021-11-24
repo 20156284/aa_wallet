@@ -10,19 +10,19 @@ import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
 class RecoverByMnemonicLogic extends GetxController {
-  // final TextEditingController mnemonicEdit = TextEditingController();
-  // final TextEditingController nameEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
-  // final TextEditingController repeatPwdEdit = TextEditingController();
+  final TextEditingController mnemonicEdit = TextEditingController();
+  final TextEditingController nameEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController repeatPwdEdit = TextEditingController();
 
-  final TextEditingController mnemonicEdit = TextEditingController(
-      text:
-          'enhance old hint quote economy opera shaft asset cattle soda bottom example');
-  final TextEditingController nameEdit = TextEditingController(text: 'Will');
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
-  final TextEditingController repeatPwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController mnemonicEdit = TextEditingController(
+  //     text:
+  //         'enhance old hint quote economy opera shaft asset cattle soda bottom example');
+  // final TextEditingController nameEdit = TextEditingController(text: 'Will');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
+  // final TextEditingController repeatPwdEdit =
+  //     TextEditingController(text: ')#*will520');
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;
@@ -130,6 +130,7 @@ class RecoverByMnemonicLogic extends GetxController {
         privateKey: privateKey,
         protocol: '',
         is_main: true,
+        rpcUrl: '',
       );
       WalletService.to.wallet.value = wallet;
 

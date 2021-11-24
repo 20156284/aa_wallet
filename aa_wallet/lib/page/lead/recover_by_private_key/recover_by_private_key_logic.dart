@@ -127,6 +127,7 @@ class RecoverByPrivateKeyLogic extends GetxController {
         privateKey: privateKey,
         protocol: wService.protocol.value,
         is_main: true,
+        rpcUrl: '',
       );
       wService.wallet.value = wallet;
       //先采用默认的 发送

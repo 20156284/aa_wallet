@@ -16,6 +16,7 @@ class WalletEditNameLogic extends GetxController {
           privateKey: '',
           address: '',
           protocol: '',
+          rpcUrl: '',
           is_main: false)
       .obs;
 

@@ -36,7 +36,6 @@ class Res {
   static const String ic_wallet_management = "assets/images/ic_wallet_management.png";
   static const String ic_wallet_select = "assets/images/ic_wallet_select.png";
   static const String ic_zh_hans = "assets/images/ic_zh_hans.png";
-  static const String ic_zh_hant = "assets/images/ic_zh_hant.png";
   static const String icon = "assets/images/icon.png";
   static const String language = "assets/data/language.json";
   static const String splash = "assets/images/splash.png";

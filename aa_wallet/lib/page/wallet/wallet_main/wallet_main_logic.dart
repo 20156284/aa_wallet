@@ -1,3 +1,4 @@
+import 'package:aa_wallet/core/utils/core_utils.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/core/widget/qr_scan.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
@@ -22,10 +23,10 @@ class WalletMainLogic extends GetxController {
           privateKey: '',
           address: '',
           protocol: '',
+          rpcUrl: '',
           is_main: false)
       .obs;
   final showAddress = ''.obs;
-  final balance = '0'.obs;
 
   late Worker worker;
   @override
@@ -35,7 +36,7 @@ class WalletMainLogic extends GetxController {
     //监听钱包的变化
     worker = ever(WalletService.to.wallet, handleWalletChanged);
     onShow();
-    getEthBalance();
+    getBalances();
   }
 
   @override
@@ -55,7 +56,7 @@ class WalletMainLogic extends GetxController {
     wallet.value = WalletService.to.wallet.value;
     wallet.refresh();
     onShow();
-    getEthBalance();
+    getBalances();
   }
 
   /**
@@ -185,12 +186,25 @@ class WalletMainLogic extends GetxController {
   }
 
   /**
-   * 獲取以太坊錢包餘額
+   * 獲取所有主币余额
    * @author Will
    * @date 2021/11/22 15:59
    */
-  void getEthBalance() async {
-    balance.value = await TokenService.getBalance(wallet.value.address);
+  void getBalances() async {
+    final List<String> balances = <String>[];
+    walletList.value = await WalletService.to.appDate.getAllWallets();
+    for (final wallet in walletList) {
+      if (CoreUtil.isNotEmptyString(wallet.rpcUrl)) {
+        balances.add(await TokenService.getBalance(wallet.address,
+            rpcUrl: wallet.rpcUrl));
+      } else {
+        balances.add(await TokenService.getBalance(wallet.address));
+      }
+    }
+    print(balances.toString());
+    // balance.value = await TokenService.getBalance(wallet.value.address);
+    //獲取 主連 餘額 比如說 AAA
+    //獲取 ETH 餘額
   }
 
   /**

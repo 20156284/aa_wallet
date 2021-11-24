@@ -229,7 +229,6 @@ flutter:
     - assets/images/ic_wallet_management.png
     - assets/images/ic_wallet_select.png
     - assets/images/ic_zh_hans.png
-    - assets/images/ic_zh_hant.png
     - assets/images/icon.png
     - assets/images/splash.png
   #   - images/a_dot_burr.jpeg

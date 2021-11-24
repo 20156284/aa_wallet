@@ -31,6 +31,7 @@ class WalletDetailsLogic extends GetxController {
           privateKey: '',
           address: '',
           protocol: '',
+          rpcUrl: '',
           is_main: false)
       .obs;
 
