@@ -137,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "recover_wallet_private_key":
             MessageLookupByLibrary.simpleMessage("私鑰"),
         "recover_wallet_title": MessageLookupByLibrary.simpleMessage("恢復錢包"),
+        "token_add": MessageLookupByLibrary.simpleMessage("添加代幣"),
+        "token_customize": MessageLookupByLibrary.simpleMessage("自定義代幣"),
+        "token_main_assets": MessageLookupByLibrary.simpleMessage("首頁資產管理"),
+        "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
         "wallet": MessageLookupByLibrary.simpleMessage("錢包"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("資產"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("選擇錢包"),

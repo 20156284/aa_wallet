@@ -1,10 +1,8 @@
 import 'dart:math';
 
-import 'package:aa_wallet/api/token/token_api.dart';
 import 'package:aa_wallet/core/toast.dart';
-import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
-import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
@@ -140,52 +138,32 @@ class ConfirmMnemonicLogic extends GetxController {
    * @param mnemonics 助记词
    */
   void onCreat(String mnemonic) async {
+    final wService = WalletService.to;
+
     final cancelFunc = CoreKitToast.showLoading();
     //通过 助记词产生 私钥
-    final privateKey = TokenService.getPrivateKey(mnemonic);
+    String privateKey = TokenService.getPrivateKey(mnemonic);
     //通过 私钥 产生 地址.
     final EthereumAddress publicAddress =
         TokenService.getPublicAddress(privateKey);
     //把 用户的 地址 和钱包密码 钱包名称 存储起来 创建一个新的 就采用他为默认的 钱包
-    final String walletName = WalletService.to.walletName.value;
-    String pwd = WalletService.to.password.value;
+    final String walletName = wService.walletName.value;
+    String pwd = wService.password.value;
     //加密后的密码
     pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
     //加密后的助记词
     mnemonic = await const WalletCrypt().encrypt(pwd, mnemonic);
+    //加密后秘钥
+    privateKey = await const WalletCrypt().encrypt(pwd, privateKey);
 
-    WalletService.to.appDate
-        .insertWallet(
+    AppService.to.insertWallet(
       name: walletName,
       password: pwd,
-      address: publicAddress.hexEip55,
       mnemonic: mnemonic,
+      address: publicAddress.hexEip55,
       privateKey: privateKey,
-      isMain: true,
-    )
-        .then((value) {
-      final wService = WalletService.to;
-
-      final WalletEntry wallet = WalletEntry(
-        id: value,
-        name: walletName,
-        password: pwd,
-        address: publicAddress.hexEip55,
-        mnemonic: mnemonic,
-        privateKey: privateKey,
-        protocol: wService.protocol.value,
-        is_main: true,
-        rpcUrl: '',
-      );
-      wService.wallet.value = wallet;
-      //先采用默认的 发送
-      ToKenApi.acquire().walletAddAddress(
-          protocol: wService.protocol.value, address: publicAddress.toString());
-
-      //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-      Get.offAllNamed(AppRoutes.appMain);
-    }).catchError((error) {
-      CoreKitToast.showError(error);
-    }).whenComplete(cancelFunc);
+      cancelFunc: cancelFunc,
+      protocol: wService.protocol.value,
+    );
   }
 }

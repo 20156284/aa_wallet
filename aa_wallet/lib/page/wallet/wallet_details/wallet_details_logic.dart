@@ -23,17 +23,7 @@ class WalletDetailsLogic extends GetxController {
   final pwdVisible = true.obs;
   final showAddress = ''.obs;
 
-  final wallet = WalletEntry(
-          id: 0,
-          name: '',
-          password: '',
-          mnemonic: '',
-          privateKey: '',
-          address: '',
-          protocol: '',
-          rpcUrl: '',
-          is_main: false)
-      .obs;
+  final wallet = WalletEntry(id: 0).obs;
 
   late Worker worker;
 
@@ -44,7 +34,7 @@ class WalletDetailsLogic extends GetxController {
     if (arguments is WalletEntry) {
       wallet.value = arguments;
 
-      final address = arguments.address;
+      final address = arguments.address!;
       final front = address.substring(0, 8);
       final behind = address.substring(address.length - 8, address.length);
       showAddress.value = front + '****' + behind;
@@ -236,7 +226,7 @@ class WalletDetailsLogic extends GetxController {
     }
 
     if (!await const WalletCrypt()
-        .contrastPwd(pwdEdit.text.trim(), wallet.value.password)) {
+        .contrastPwd(pwdEdit.text.trim(), wallet.value.password!)) {
       CoreKitToast.showError(AppS().wallet_password_err);
       return;
     }
@@ -253,7 +243,7 @@ class WalletDetailsLogic extends GetxController {
           //加密后的密码
           pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
           final mnemonic =
-              await const WalletCrypt().decrypt(pwd, wallet.value.mnemonic);
+              await const WalletCrypt().decrypt(pwd, wallet.value.mnemonic!);
           //清空输入框内容
           pwdEdit.text = '';
           Get.toNamed(AppRoutes.backUp, arguments: mnemonic);
@@ -268,7 +258,7 @@ class WalletDetailsLogic extends GetxController {
         //加密后的密码
         pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
         final privateKey =
-            await const WalletCrypt().decrypt(pwd, wallet.value.privateKey);
+            await const WalletCrypt().decrypt(pwd, wallet.value.privateKey!);
         //清空输入框内容
         pwdEdit.text = '';
         Get.toNamed(AppRoutes.exportPrivateKey, arguments: privateKey);

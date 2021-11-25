@@ -1,7 +1,6 @@
 import 'package:aa_wallet/core/toast.dart';
-import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
-import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
@@ -10,19 +9,20 @@ import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
 class RecoverByMnemonicLogic extends GetxController {
-  final TextEditingController mnemonicEdit = TextEditingController();
-  final TextEditingController nameEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
-  final TextEditingController repeatPwdEdit = TextEditingController();
+  // final TextEditingController mnemonicEdit = TextEditingController();
+  // final TextEditingController nameEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController repeatPwdEdit = TextEditingController();
 
-  // final TextEditingController mnemonicEdit = TextEditingController(
-  //     text:
-  //         'enhance old hint quote economy opera shaft asset cattle soda bottom example');
-  // final TextEditingController nameEdit = TextEditingController(text: 'Will');
-  // final TextEditingController pwdEdit =
-  //     TextEditingController(text: ')#*will520');
-  // final TextEditingController repeatPwdEdit =
-  //     TextEditingController(text: ')#*will520');
+  final TextEditingController mnemonicEdit = TextEditingController(
+      text:
+          'song convince art planet domain property load satoshi rocket west vital cycle');
+  final TextEditingController nameEdit =
+      TextEditingController(text: 'Will’sWallet');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
+  final TextEditingController repeatPwdEdit =
+      TextEditingController(text: ')#*will520');
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;
@@ -111,33 +111,14 @@ class RecoverByMnemonicLogic extends GetxController {
     //加密后秘钥
     privateKey = await const WalletCrypt().encrypt(pwd, privateKey);
 
-    WalletService.to.appDate
-        .insertWallet(
+    AppService.to.insertWallet(
       name: walletName,
       password: pwd,
       address: publicAddress.hexEip55,
       mnemonic: mnemonic,
       privateKey: privateKey,
-      isMain: true,
-    )
-        .then((value) {
-      final WalletEntry wallet = WalletEntry(
-        id: value,
-        name: walletName,
-        password: pwd,
-        address: publicAddress.hexEip55,
-        mnemonic: mnemonic,
-        privateKey: privateKey,
-        protocol: '',
-        is_main: true,
-        rpcUrl: '',
-      );
-      WalletService.to.wallet.value = wallet;
-
-      //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-      Get.offAllNamed(AppRoutes.appMain);
-    }).catchError((error) {
-      CoreKitToast.showError(error);
-    }).whenComplete(cancelFunc);
+      cancelFunc: cancelFunc,
+      protocol: WalletService.to.protocol.value,
+    );
   }
 }

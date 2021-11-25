@@ -128,7 +128,6 @@ class TokenService {
     }
   }
 
-  /// 获取代币的小数位数
   /**
    * 获取代币的小数位
    * @author Will

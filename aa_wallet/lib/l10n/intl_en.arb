@@ -115,5 +115,11 @@
   "add_wallet_aac": "AAC",
   "add_wallet_aac_subtitle": "AAcoin",
 
-  "choose_caret_wallet_title": "Choose identity"
+  "choose_caret_wallet_title": "Choose identity",
+
+  "token_add": "Add Token",
+  "token_main_assets": "Main Assets Management",
+  "token_user_all_assets": "All Assets",
+  "token_customize": "Customize Token",
+  "add_token_input": "Please enter token name or token address"
 }

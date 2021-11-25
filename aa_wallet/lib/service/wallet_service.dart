@@ -21,17 +21,7 @@ class WalletService extends GetxService {
 
   final appDate = AppDatabase();
   //当前App默认的钱包
-  final wallet = WalletEntry(
-          id: 0,
-          name: '',
-          password: '',
-          mnemonic: '',
-          privateKey: '',
-          address: '',
-          protocol: '',
-          rpcUrl: '',
-          is_main: false)
-      .obs;
+  final wallet = WalletEntry(id: 0).obs;
 
   final walletName = ''.obs;
   final password = ''.obs;
@@ -51,7 +41,7 @@ class WalletService extends GetxService {
     final List<WalletEntry> walletList = await appDate.getAllWallets();
 
     for (final walletEntry in walletList) {
-      if (walletEntry.is_main) {
+      if (walletEntry.is_main!) {
         wallet.value = walletEntry;
         break;
       }

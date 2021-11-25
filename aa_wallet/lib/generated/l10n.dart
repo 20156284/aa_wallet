@@ -1019,6 +1019,56 @@ class AppS {
       args: [],
     );
   }
+
+  /// `Add Token`
+  String get token_add {
+    return Intl.message(
+      'Add Token',
+      name: 'token_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Assets Management`
+  String get token_main_assets {
+    return Intl.message(
+      'Main Assets Management',
+      name: 'token_main_assets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Assets`
+  String get token_user_all_assets {
+    return Intl.message(
+      'All Assets',
+      name: 'token_user_all_assets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customize Token`
+  String get token_customize {
+    return Intl.message(
+      'Customize Token',
+      name: 'token_customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter token name or token address`
+  String get add_token_input {
+    return Intl.message(
+      'Please enter token name or token address',
+      name: 'add_token_input',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppS> {

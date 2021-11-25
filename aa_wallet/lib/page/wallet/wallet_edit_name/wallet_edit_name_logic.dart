@@ -8,17 +8,7 @@ import 'package:get/get.dart';
 class WalletEditNameLogic extends GetxController {
   final TextEditingController nameEdit = TextEditingController();
 
-  final wallet = WalletEntry(
-          id: 0,
-          name: '',
-          password: '',
-          mnemonic: '',
-          privateKey: '',
-          address: '',
-          protocol: '',
-          rpcUrl: '',
-          is_main: false)
-      .obs;
+  final wallet = WalletEntry(id: 0).obs;
 
   @override
   void onInit() {

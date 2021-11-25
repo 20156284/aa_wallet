@@ -10,6 +10,7 @@ import 'package:aa_wallet/core/utils/error_utils.dart';
 import 'package:aa_wallet/core/widget/toast/icon_text.dart';
 import 'package:aa_wallet/core/widget/toast/loading.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,11 @@ class CoreKitToast {
     Duration duration = CoreKitConst.toastDuration,
   }) {
     return showIconText(
-      icon: CoreRes.assets_toast_icon_done_png,
+      icon: const Icon(
+        CupertinoIcons.check_mark_circled,
+        size: 30,
+        color: Colors.red,
+      ),
       text: text,
       color: Colors.green,
       crossPage: crossPage,
@@ -95,9 +100,12 @@ class CoreKitToast {
     Duration duration = CoreKitConst.toastDuration,
   }) {
     return showIconText(
-      icon: CoreRes.assets_toast_icon_error_png,
+      icon: const Icon(
+        CupertinoIcons.xmark_circle,
+        size: 30,
+        color: Colors.red,
+      ),
       text: text,
-      color: Colors.red,
       crossPage: crossPage,
       clickClose: clickClose,
       onClose: () {
@@ -121,7 +129,7 @@ class CoreKitToast {
   }
 
   static CancelFunc showIconText({
-    String? icon,
+    Widget? icon,
     String? text,
     Color color = Colors.white,
     bool crossPage = false,

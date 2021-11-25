@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_coin_type_subtitle":
             MessageLookupByLibrary.simpleMessage("请添加身份钱包下的币种(多选)"),
         "add_coin_type_title": MessageLookupByLibrary.simpleMessage("添加币种"),
+        "add_token_input":
+            MessageLookupByLibrary.simpleMessage("输入Token名称或合约地址"),
         "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAC"),
         "add_wallet_aac_subtitle":
             MessageLookupByLibrary.simpleMessage("AAcoin"),
@@ -137,6 +139,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "recover_wallet_private_key":
             MessageLookupByLibrary.simpleMessage("私钥"),
         "recover_wallet_title": MessageLookupByLibrary.simpleMessage("恢复钱包"),
+        "token_add": MessageLookupByLibrary.simpleMessage("添加代币"),
+        "token_customize": MessageLookupByLibrary.simpleMessage("自定义代币"),
+        "token_main_assets": MessageLookupByLibrary.simpleMessage("首页资产管理"),
+        "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),
         "wallet": MessageLookupByLibrary.simpleMessage("钱包"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("资产"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("选择钱包"),
