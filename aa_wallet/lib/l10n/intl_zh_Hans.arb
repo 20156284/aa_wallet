@@ -105,5 +105,21 @@
   "wallet_edit_name": "钱包昵称修改",
   "wallet_edit_name_input": "请输入钱包昵称",
   "wallet_edit_tips": "以英文字母或者汉字开头，限6~16个字符，一个汉字为2个字符",
-  "wallet_edit_name_error": "修改昵称出错请稍后再试"
+  "wallet_edit_name_error": "修改昵称出错请稍后再试",
+
+  "add_wallet_choose_coin_type": "选择币种",
+  "add_wallet_eth": "ETH",
+  "add_wallet_eth_subtitle": "Ethereum",
+  "add_wallet_btc": "BTC",
+  "add_wallet_btc_subtitle": "Bitcoin",
+  "add_wallet_aac": "AAC",
+  "add_wallet_aac_subtitle": "AAcoin",
+
+  "choose_caret_wallet_title": "选择不同身份",
+
+  "token_add": "添加代币",
+  "token_main_assets": "首页资产管理",
+  "token_user_all_assets": "我的所有资产",
+  "token_customize": "自定义代币",
+  "add_token_input": "输入Token名称或合约地址"
 }

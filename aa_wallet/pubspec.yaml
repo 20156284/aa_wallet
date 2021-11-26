@@ -139,7 +139,7 @@ dependencies:
   ####以上的插件，尽量不要更换；因为可能core会用到。您想更换的在下面添加您使用的####
   ########################################################################
   # web3dart https://pub.dev/packages/web3dart
-  web3dart: ^2.3.2
+  web3dart: ^2.3.3
   # bip39 https://pub.dev/packages/bip39
   bip39: ^1.0.6
   # bip32 https://pub.dev/packages/bip32
@@ -195,6 +195,7 @@ flutter:
     - assets/data/language.json
     - assets/images/ic_aaa.png
     - assets/images/ic_aaa_select.png
+    - assets/images/ic_aac.png
     - assets/images/ic_asdt.png
     - assets/images/ic_btc.png
     - assets/images/ic_btc_select.png
@@ -228,7 +229,6 @@ flutter:
     - assets/images/ic_wallet_management.png
     - assets/images/ic_wallet_select.png
     - assets/images/ic_zh_hans.png
-    - assets/images/ic_zh_hant.png
     - assets/images/icon.png
     - assets/images/splash.png
   #   - images/a_dot_burr.jpeg

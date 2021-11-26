@@ -31,6 +31,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_coin_type_subtitle":
             MessageLookupByLibrary.simpleMessage("请添加身份钱包下的币种(多选)"),
         "add_coin_type_title": MessageLookupByLibrary.simpleMessage("添加币种"),
+        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAC"),
+        "add_wallet_aac_subtitle":
+            MessageLookupByLibrary.simpleMessage("AAcoin"),
+        "add_wallet_btc": MessageLookupByLibrary.simpleMessage("BTC"),
+        "add_wallet_btc_subtitle":
+            MessageLookupByLibrary.simpleMessage("Bitcoin"),
+        "add_wallet_choose_coin_type":
+            MessageLookupByLibrary.simpleMessage("選擇幣種"),
+        "add_wallet_eth": MessageLookupByLibrary.simpleMessage("ETH"),
+        "add_wallet_eth_subtitle":
+            MessageLookupByLibrary.simpleMessage("Ethereum"),
         "app_album": MessageLookupByLibrary.simpleMessage("從相冊選擇"),
         "app_build_now": MessageLookupByLibrary.simpleMessage("敬請期待"),
         "app_camera": MessageLookupByLibrary.simpleMessage("拍照"),
@@ -79,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("助記詞由英文單詞組成，請抄寫並妥善保管"),
         "back_up_tips_content3":
             MessageLookupByLibrary.simpleMessage("助记词丢失，无法找回，请务必备份助记词"),
+        "choose_caret_wallet_title":
+            MessageLookupByLibrary.simpleMessage("選擇不同身份"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("確認助記詞"),
         "confirm_mnemonic_sequence":
             MessageLookupByLibrary.simpleMessage("請按順序點擊助記詞，已確認您真確備份"),
@@ -124,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "recover_wallet_private_key":
             MessageLookupByLibrary.simpleMessage("私鑰"),
         "recover_wallet_title": MessageLookupByLibrary.simpleMessage("恢復錢包"),
+        "token_add": MessageLookupByLibrary.simpleMessage("添加代幣"),
+        "token_customize": MessageLookupByLibrary.simpleMessage("自定義代幣"),
+        "token_main_assets": MessageLookupByLibrary.simpleMessage("首頁資產管理"),
+        "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
         "wallet": MessageLookupByLibrary.simpleMessage("錢包"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("資產"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("選擇錢包"),

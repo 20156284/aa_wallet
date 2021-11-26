@@ -1,8 +1,6 @@
-import 'package:aa_wallet/api/token/token_api.dart';
 import 'package:aa_wallet/core/toast.dart';
-import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
-import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
@@ -17,8 +15,8 @@ class RecoverByPrivateKeyLogic extends GetxController {
   final TextEditingController repeatPwdEdit = TextEditingController();
 
   // final TextEditingController privateEdit = TextEditingController(
-  //     text: '900123e145c71acb1086a68da724d471c79cafd34e7e77e0fb07db0fc4f4f5f1');
-  // final TextEditingController nameEdit = TextEditingController(text: 'Will');
+  //     text: '17caf803d03ae2cb64c9aebe79563477a9b40215212e360b718724c1c124e600');
+  // final TextEditingController nameEdit = TextEditingController(text: 'Will’sWallet');
   // final TextEditingController pwdEdit =
   //     TextEditingController(text: ')#*will520');
   // final TextEditingController repeatPwdEdit =
@@ -107,36 +105,13 @@ class RecoverByPrivateKeyLogic extends GetxController {
     //加密后的私钥
     privateKey = await const WalletCrypt().encrypt(pwd, privateKey);
 
-    WalletService.to.appDate
-        .insertWallet(
+    AppService.to.insertWallet(
       name: walletName,
       password: pwd,
-      privateKey: privateKey,
       address: publicAddress.hexEip55,
-      isMain: true,
-    )
-        .then((value) {
-      final wService = WalletService.to;
-
-      final WalletEntry wallet = WalletEntry(
-        id: value,
-        name: walletName,
-        password: pwd,
-        address: publicAddress.hexEip55,
-        mnemonic: '',
-        privateKey: privateKey,
-        protocol: wService.protocol.value,
-        is_main: true,
-      );
-      wService.wallet.value = wallet;
-      //先采用默认的 发送
-      ToKenApi.acquire().walletAddAddress(
-          protocol: wService.protocol.value, address: publicAddress.toString());
-
-      //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-      Get.offAllNamed(AppRoutes.appMain);
-    }).catchError((error) {
-      CoreKitToast.showError(error);
-    }).whenComplete(cancelFunc);
+      privateKey: privateKey,
+      cancelFunc: cancelFunc,
+      protocol: WalletService.to.protocol.value,
+    );
   }
 }

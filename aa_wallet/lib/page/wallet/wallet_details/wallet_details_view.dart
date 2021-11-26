@@ -79,7 +79,7 @@ class WalletDetailsPage extends GetView<WalletDetailsLogic> {
               children: [
                 Obx(
                   () => Text(
-                    controller.wallet.value.name,
+                    controller.wallet.value.name!,
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
