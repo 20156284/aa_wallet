@@ -23,6 +23,7 @@ import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.*;
+import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
@@ -691,6 +692,12 @@ public class EthUtil {
             logger.error("ERC20 计算手续费发生异常 txid: {}，异常信息: {}", txid, e);
             return Convert.fromWei(transactionInfo.getGas().multiply(transactionInfo.getGasPrice()).toString(10), Convert.Unit.ETHER);
         }
+    }
+
+    public static void main(String[] args) {
+       // Web3j web3j = Web3j.build(new HttpService(" http://159.138.134.163:8000"));
+        //System.out.println(getTokenDecimal(web3j, "0x724Cbb5c969890Adc6580d610f9086Ecc003A53A"));
+       // System.out.println(getTokenDecimal(web3j, "0xf8dbfeebbdc8f81a82754c0e4a81c6bd10c46dcf"));
     }
 
 }
