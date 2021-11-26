@@ -281,8 +281,8 @@ CupertinoThemeData appCupertinoThemeData(Brightness brightness) {
     textTheme: const CupertinoTextThemeData(
       textStyle: TextStyle(
         color: CupertinoDynamicColor.withBrightness(
-          color: CupertinoColors.white,
-          darkColor: CupertinoColors.black,
+          color: CupertinoColors.black,
+          darkColor: CupertinoColors.white,
         ),
         fontSize: 14,
       ),

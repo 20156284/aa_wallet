@@ -14,7 +14,7 @@ class IconTextWidget extends StatelessWidget {
       {Key? key, this.icon, this.text, this.color = Colors.white})
       : super(key: key);
 
-  final String? icon;
+  final Widget? icon;
   final String? text;
   final Color? color;
 
@@ -27,15 +27,7 @@ class IconTextWidget extends StatelessWidget {
           if (icon != null)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: Image(
-                image: AssetImage(
-                  icon!,
-                ),
-                width: 30,
-                height: 30,
-                color: color,
-                fit: BoxFit.contain,
-              ),
+              child: icon,
             ),
           if (text != null) Text(text!),
         ],

@@ -16,6 +16,7 @@ part 'app_preferences.g.dart';
 class AppPreferences {
   AppPreferences({
     this.languageInfo,
+    this.isFistTime,
   });
 
   factory AppPreferences.fromJson(Map<String, dynamic> json) =>
@@ -23,6 +24,8 @@ class AppPreferences {
 
   // 用户设置的语言编码
   LanguageInfo? languageInfo;
+  //用户是否第一次打开 创建 钱包;
+  bool? isFistTime;
 
   Map<String, dynamic> toJson() => _$AppPreferencesToJson(this);
 }

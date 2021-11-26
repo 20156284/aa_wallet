@@ -12,20 +12,64 @@ part 'moor_database.g.dart';
 @DataClassName('WalletEntry')
 class Wallet extends Table {
   IntColumn get id => integer().autoIncrement()();
-  TextColumn get name => text().withLength(min: 1, max: 50)();
+
+  TextColumn get name => text().nullable()();
+
   //加密后的密码
-  TextColumn get password => text()();
+  TextColumn get password => text().nullable()();
+
   //加密后的助记词
-  TextColumn get mnemonic => text()();
+  TextColumn get mnemonic => text().nullable()();
+
   //加密后的私钥
-  TextColumn get privateKey => text()();
+  TextColumn get privateKey => text().nullable()();
+
   //钱包类型
-  TextColumn get protocol => text()();
-  TextColumn get address => text()();
-  BoolColumn get is_main => boolean()();
+  TextColumn get protocol => text().nullable()();
+
+  //rpc地址
+  TextColumn get rpcUrl => text().nullable()();
+
+  //钱包地址
+  TextColumn get address => text().nullable()();
+
+  //是否选择为主钱包
+  BoolColumn get is_main => boolean().nullable()();
+
+  //是否第一次默认的创建 因为默认创建的话 会天机 aa的所有代币
+  //其他不需要 当然相对应的删除 也就没有
+  //包括回复钱包的时候 也会默认给他创建aa的代币
+  BoolColumn get is_fist => boolean().nullable()();
 }
 
-@UseMoor(tables: [Wallet])
+@DataClassName('TokenEntry')
+class Token extends Table {
+  IntColumn get id => integer().autoIncrement()();
+
+  //钱包主键的id
+  IntColumn get wallet_id =>
+      integer().customConstraint('NULLABLE REFERENCES wallet(id)')();
+
+  //代币地址
+  TextColumn get contractAddress => text().nullable()();
+
+  //代币Icon
+  TextColumn get imageUrl => text().nullable()();
+
+  //代币区块
+  TextColumn get protocol => text().nullable()();
+
+  //代币名称
+  TextColumn get coinKey => text().nullable()();
+
+  //当前币种的余额 但是不会存进数据库 只是方便前端显示而已
+  TextColumn get balance => text().nullable()();
+
+  //当前币种的兑换后的显示的价格 但是不会存进数据库 只是方便前端显示而已
+  TextColumn get totalMoney => text().nullable()();
+}
+
+@UseMoor(tables: [Wallet, Token])
 class AppDatabase extends _$AppDatabase {
   AppDatabase()
       : super(FlutterQueryExecutor.inDatabaseFolder(
@@ -47,17 +91,21 @@ class AppDatabase extends _$AppDatabase {
     String? privateKey,
     String? protocol,
     String? address,
+    String? rpcUrl,
     bool? isMain,
+    bool? isFist,
   }) =>
       into(wallet).insert(
         WalletCompanion(
-          name: Value(name ?? ''),
-          password: Value(password ?? ''),
-          privateKey: Value(privateKey ?? ''),
-          protocol: Value(protocol ?? ''),
-          address: Value(address ?? ''),
-          mnemonic: Value(address ?? ''),
-          is_main: Value(isMain ?? false),
+          name: Value(name),
+          password: Value(password),
+          privateKey: Value(privateKey),
+          protocol: Value(protocol),
+          address: Value(address),
+          mnemonic: Value(mnemonic),
+          rpcUrl: Value(rpcUrl),
+          is_main: Value(isMain),
+          is_fist: Value(isFist),
         ),
       );
 
@@ -66,4 +114,35 @@ class AppDatabase extends _$AppDatabase {
 
   /// 删除一条数据
   Future<int> deleteWallet(WalletEntry entry) => delete(wallet).delete(entry);
+
+  Future<List<TokenEntry>> getAllToken() => select(token).get();
+
+  /// 每当基础数据发生变化时，都会发出新项
+  Stream<List<TokenEntry>> watchAllToken() => select(token).watch();
+
+  /// 插入一条数据
+  Future<int> insertToken({
+    required int wallet_id,
+    String? contractAddress,
+    String? imageUrl,
+    String? protocol,
+    String? coinKey,
+  }) =>
+      into(token).insert(
+        TokenCompanion(
+          wallet_id: Value(wallet_id),
+          contractAddress: Value(contractAddress),
+          imageUrl: Value(imageUrl),
+          protocol: Value(protocol),
+          coinKey: Value(coinKey),
+        ),
+      );
+
+  /// 更新一条数据
+  Future<bool> updateToken(TokenEntry tokenEntry) =>
+      update(token).replace(tokenEntry);
+
+  /// 删除一条数据
+  Future<int> deleteToken(TokenEntry tokenEntry) =>
+      delete(token).delete(tokenEntry);
 }

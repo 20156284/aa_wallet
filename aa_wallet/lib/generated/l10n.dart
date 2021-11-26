@@ -939,6 +939,136 @@ class AppS {
       args: [],
     );
   }
+
+  /// `Choose coin type`
+  String get add_wallet_choose_coin_type {
+    return Intl.message(
+      'Choose coin type',
+      name: 'add_wallet_choose_coin_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ETH`
+  String get add_wallet_eth {
+    return Intl.message(
+      'ETH',
+      name: 'add_wallet_eth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ethereum`
+  String get add_wallet_eth_subtitle {
+    return Intl.message(
+      'Ethereum',
+      name: 'add_wallet_eth_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BTC`
+  String get add_wallet_btc {
+    return Intl.message(
+      'BTC',
+      name: 'add_wallet_btc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bitcoin`
+  String get add_wallet_btc_subtitle {
+    return Intl.message(
+      'Bitcoin',
+      name: 'add_wallet_btc_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AAC`
+  String get add_wallet_aac {
+    return Intl.message(
+      'AAC',
+      name: 'add_wallet_aac',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AAcoin`
+  String get add_wallet_aac_subtitle {
+    return Intl.message(
+      'AAcoin',
+      name: 'add_wallet_aac_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose identity`
+  String get choose_caret_wallet_title {
+    return Intl.message(
+      'Choose identity',
+      name: 'choose_caret_wallet_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Token`
+  String get token_add {
+    return Intl.message(
+      'Add Token',
+      name: 'token_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Assets Management`
+  String get token_main_assets {
+    return Intl.message(
+      'Main Assets Management',
+      name: 'token_main_assets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Assets`
+  String get token_user_all_assets {
+    return Intl.message(
+      'All Assets',
+      name: 'token_user_all_assets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customize Token`
+  String get token_customize {
+    return Intl.message(
+      'Customize Token',
+      name: 'token_customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter token name or token address`
+  String get add_token_input {
+    return Intl.message(
+      'Please enter token name or token address',
+      name: 'add_token_input',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppS> {

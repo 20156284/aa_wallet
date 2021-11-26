@@ -1,3 +1,4 @@
+import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/res.dart';
 import 'package:aa_wallet/route/app_pages.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'wallet_main_logic.dart';
 
@@ -46,29 +48,42 @@ class WalletMainPage extends GetView<WalletMainLogic> {
           ),
         ),
       ),
-      child: ListView(
-        padding: const EdgeInsets.only(top: 15),
-        children: [
-          _buildWalletMain(),
-          const SizedBox(
-            height: 15,
-          ),
-          _buildAssets(),
-          // _buildCell(
-          //   title: AppS().language_choose,
-          //   icon: Res.ic_choose_lang,
-          //   onTap: () => Get.toNamed(AppRoutes.languageChoose),
-          // ),
-          // const Divider(
-          //   indent: 71,
-          // ),
-          // _buildCell(
-          //   title: AppS().language_choose,
-          //   icon: Res.ic_choose_lang,
-          //   onTap: () => Get.toNamed(AppRoutes.languageChoose),
-          // ),
-        ],
+      child: Obx(
+        () => SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: false,
+          header: const WaterDropHeader(),
+          controller: controller.refreshCtrl,
+          onRefresh: () => controller.onRefreshFun(),
+          child: _buildChild(),
+        ),
       ),
+    );
+  }
+
+  Widget _buildChild() {
+    return ListView.builder(
+      itemBuilder: (c, i) {
+        switch (i) {
+          case 0:
+            return _buildWalletMain();
+          case 1:
+            return const SizedBox(
+              height: 15,
+            );
+          case 2:
+            return _buildAssets();
+          default:
+            final tokenEntry = controller.tokenList[i - 3];
+            return _buildCell(
+              title: tokenEntry.coinKey,
+              imageUrl: tokenEntry.imageUrl,
+              balance: tokenEntry.balance,
+              totalMoney: tokenEntry.totalMoney,
+            );
+        }
+      },
+      itemCount: controller.tokenList.length + 3,
     );
   }
 
@@ -94,7 +109,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
               children: [
                 Obx(
                   () => Text(
-                    controller.wallet.value.name,
+                    controller.wallet.value.name!,
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -154,7 +169,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
 
   Widget _buildCell(
       {required String? title,
-      String? icon,
+      String? imageUrl,
       String? balance,
       String? totalMoney,
       GestureTapCallback? onTap}) {
@@ -171,11 +186,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Image.asset(
-              icon!,
-              width: 40,
-              height: 40,
-            ),
+            CoreKitStyle.image(imageUrl!, size: 40),
             const SizedBox(
               width: 13,
             ),
@@ -191,7 +202,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  balance ?? '19181811818181.8',
+                  balance ?? '',
                   style: const TextStyle(
                       fontSize: 17, fontWeight: FontWeight.bold),
                 ),
@@ -199,7 +210,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
                   height: 5,
                 ),
                 Text(
-                  totalMoney ?? '7120.0',
+                  totalMoney ?? '',
                   style: const TextStyle(
                     fontSize: 10,
                     color: Color(0xFF878889),
