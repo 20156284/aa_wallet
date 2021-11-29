@@ -26,6 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(version) => "AAToken ${version}";
 
+  static String m3(money) => "≈${money} ASDT";
+
+  static String m4(money) => "0/${money}AAA<1minute";
+
+  static String m5(money) => "0/${money}AAA<5minute";
+
+  static String m6(money) => "0/${money}AAA<30minute";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_coin_type_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -159,8 +167,35 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_add": MessageLookupByLibrary.simpleMessage("Add Token"),
         "token_customize":
             MessageLookupByLibrary.simpleMessage("Customize Token"),
+        "token_details_collection":
+            MessageLookupByLibrary.simpleMessage("Collection"),
+        "token_details_roughly_money": m3,
+        "token_details_state_all": MessageLookupByLibrary.simpleMessage("All"),
+        "token_details_state_transfer_in":
+            MessageLookupByLibrary.simpleMessage("In"),
+        "token_details_state_transfer_out":
+            MessageLookupByLibrary.simpleMessage("Out"),
+        "token_details_transfer":
+            MessageLookupByLibrary.simpleMessage("Transfer"),
         "token_main_assets":
             MessageLookupByLibrary.simpleMessage("Main Assets Management"),
+        "token_transfer_addr":
+            MessageLookupByLibrary.simpleMessage("Transfer Address"),
+        "token_transfer_addr_input":
+            MessageLookupByLibrary.simpleMessage("Please enter eth address"),
+        "token_transfer_customize":
+            MessageLookupByLibrary.simpleMessage("Customize"),
+        "token_transfer_fee": MessageLookupByLibrary.simpleMessage("Fee"),
+        "token_transfer_money": MessageLookupByLibrary.simpleMessage("Amount"),
+        "token_transfer_money_input":
+            MessageLookupByLibrary.simpleMessage("please enter amount"),
+        "token_transfer_quick": MessageLookupByLibrary.simpleMessage("Quick"),
+        "token_transfer_quick_info": m4,
+        "token_transfer_recommend":
+            MessageLookupByLibrary.simpleMessage("Recommend"),
+        "token_transfer_recommend_info": m5,
+        "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
+        "token_transfer_slow_info": m6,
         "token_user_all_assets":
             MessageLookupByLibrary.simpleMessage("All Assets"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),

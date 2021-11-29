@@ -120,5 +120,25 @@
   "token_add": "添加代幣",
   "token_main_assets": "首頁資產管理",
   "token_user_all_assets": "我的所有資產",
-  "token_customize": "自定義代幣"
+  "token_customize": "自定義代幣",
+  "add_token_input": "請輸入Token名稱或者合約地址",
+  "token_details_transfer": "轉賬",
+  "token_details_collection": "收款",
+  "token_details_state_all":"全部",
+  "token_details_state_transfer_out":"轉出",
+  "token_details_state_transfer_in":"轉入",
+  "token_details_roughly_money": "≈{money} ASDT",
+
+  "token_transfer_addr": "收款地址",
+  "token_transfer_addr_input": "請輸入ETH地址",
+  "token_transfer_money":"金額",
+  "token_transfer_money_input": "請輸入轉賬金額",
+  "token_transfer_fee": "礦工費",
+  "token_transfer_slow": "慢",
+  "token_transfer_slow_info": "0/{money}AAA<30分鐘",
+  "token_transfer_recommend": "推薦",
+  "token_transfer_recommend_info": "0/{money}AAA<5分鐘",
+  "token_transfer_quick": "快",
+  "token_transfer_quick_info": "0/{money}AAA<1分鐘",
+  "token_transfer_customize": "自定義"
 }

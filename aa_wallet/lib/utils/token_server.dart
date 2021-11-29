@@ -107,17 +107,14 @@ class TokenService {
       num decimals, String coinAddress) async {
     final Map params = {
       'data': AppPolicies.funcHashes['getTokenBalance()']! +
-          coinAddress.replaceFirst('0x', '').padLeft(64, '0')
+          coinAddress.replaceFirst('0x', '').padLeft(64, '0'),
+      'to': coinAddress
     };
     final response = await TokenNetwork.acquire().network(
       jsonrpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
-      params: [
-        params,
-        {'to': coinAddress},
-        'latest'
-      ],
+      params: [params, 'latest'],
     );
     final double balance =
         BigInt.parse(response.result!) / BigInt.from(pow(10, decimals));
@@ -136,17 +133,16 @@ class TokenService {
    * @return 返回几位
    */
   static Future<int> getDecimals(String address) async {
-    final Map params = {'data': AppPolicies.funcHashes['getDecimals()']};
+    final Map params = {
+      'data': AppPolicies.funcHashes['getDecimals()'],
+      'to': address
+    };
 
     final response = await TokenNetwork.acquire().network(
       jsonrpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
-      params: [
-        params,
-        {'to': address},
-        'latest'
-      ],
+      params: [params, 'latest'],
     );
 
     return int.parse(response.result!.replaceFirst('0x', ''), radix: 16);
@@ -160,16 +156,12 @@ class TokenService {
    * @return token 名称
    */
   static Future<String> getTokenName(String address) async {
-    final Map params = {'data': '0x95d89b41'};
+    final Map params = {'data': '0x95d89b41', 'to': address};
     final response = await TokenNetwork.acquire().network(
       jsonrpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
-      params: [
-        params,
-        {'to': address},
-        'latest'
-      ],
+      params: [params, 'latest'],
     );
 
     final String name = response.result!.replaceFirst('0x', '');
@@ -186,5 +178,36 @@ class TokenService {
       }
     }
     return nameString;
+  }
+
+  // 自定义转账
+  // data的组成，
+  // 0x + 要调用的合约方法的function signature + 要传递的方法参数，每个参数都为64位
+  // (对transfer来说，第一个是接收人的地址去掉0x，第二个是代币数量的16进制表示，去掉前面0x，然后补齐为64位)
+
+  /**
+   * 转账逻辑
+   * @author Will
+   * @date 2021/11/26 18:10
+   * @param null
+   * @return null
+   */
+  static Future<String> sendToken(
+      {String? privateKey, String? toAddress, String? rpcUrl}) async {
+    final client = Web3Client(rpcUrl ?? Env.envConfig.aaaRpcUrl, Client());
+    final private = EthPrivateKey.fromHex(privateKey!);
+
+    final rsp = await client.sendTransaction(
+      private,
+      Transaction(
+        to: EthereumAddress.fromHex(toAddress!),
+        gasPrice: EtherAmount.inWei(BigInt.one),
+        maxGas: 100000,
+        value: EtherAmount.fromUnitAndValue(EtherUnit.ether, 1),
+      ),
+    );
+
+    print('transaction => $rsp');
+    return rsp;
   }
 }

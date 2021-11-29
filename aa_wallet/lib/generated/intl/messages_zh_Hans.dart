@@ -26,6 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(version) => "AAToken ${version}新版本";
 
+  static String m3(money) => "≈${money} ASDT";
+
+  static String m4(money) => "0/${money}AAA<1分钟";
+
+  static String m5(money) => "0/${money}AAA<5分钟";
+
+  static String m6(money) => "0/${money}AAA<30分钟";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_coin_type_subtitle":
@@ -141,7 +149,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "recover_wallet_title": MessageLookupByLibrary.simpleMessage("恢复钱包"),
         "token_add": MessageLookupByLibrary.simpleMessage("添加代币"),
         "token_customize": MessageLookupByLibrary.simpleMessage("自定义代币"),
+        "token_details_collection": MessageLookupByLibrary.simpleMessage("收款"),
+        "token_details_roughly_money": m3,
+        "token_details_state_all": MessageLookupByLibrary.simpleMessage("全部"),
+        "token_details_state_transfer_in":
+            MessageLookupByLibrary.simpleMessage("转入"),
+        "token_details_state_transfer_out":
+            MessageLookupByLibrary.simpleMessage("转出"),
+        "token_details_transfer": MessageLookupByLibrary.simpleMessage("转账"),
         "token_main_assets": MessageLookupByLibrary.simpleMessage("首页资产管理"),
+        "token_transfer_addr": MessageLookupByLibrary.simpleMessage("收款地址"),
+        "token_transfer_addr_input":
+            MessageLookupByLibrary.simpleMessage("请输入ETH地址"),
+        "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定义"),
+        "token_transfer_fee": MessageLookupByLibrary.simpleMessage("矿工费"),
+        "token_transfer_money": MessageLookupByLibrary.simpleMessage("金额"),
+        "token_transfer_money_input":
+            MessageLookupByLibrary.simpleMessage("请输入转账金额"),
+        "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
+        "token_transfer_quick_info": m4,
+        "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推荐"),
+        "token_transfer_recommend_info": m5,
+        "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
+        "token_transfer_slow_info": m6,
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),
         "wallet": MessageLookupByLibrary.simpleMessage("钱包"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("资产"),

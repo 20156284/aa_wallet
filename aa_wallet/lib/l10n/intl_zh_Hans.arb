@@ -121,5 +121,24 @@
   "token_main_assets": "首页资产管理",
   "token_user_all_assets": "我的所有资产",
   "token_customize": "自定义代币",
-  "add_token_input": "输入Token名称或合约地址"
+  "add_token_input": "输入Token名称或合约地址",
+  "token_details_transfer": "转账",
+  "token_details_collection": "收款",
+  "token_details_state_all":"全部",
+  "token_details_state_transfer_out":"转出",
+  "token_details_state_transfer_in":"转入",
+  "token_details_roughly_money": "≈{money} ASDT",
+
+  "token_transfer_addr": "收款地址",
+  "token_transfer_addr_input": "请输入ETH地址",
+  "token_transfer_money":"金额",
+  "token_transfer_money_input": "请输入转账金额",
+  "token_transfer_fee": "矿工费",
+  "token_transfer_slow": "慢",
+  "token_transfer_slow_info": "0/{money}AAA<30分钟",
+  "token_transfer_recommend": "推荐",
+  "token_transfer_recommend_info": "0/{money}AAA<5分钟",
+  "token_transfer_quick": "快",
+  "token_transfer_quick_info": "0/{money}AAA<1分钟",
+  "token_transfer_customize": "自定义"
 }

@@ -31,6 +31,8 @@ abstract class AppRoutes {
   static const addWallet = _Paths.addWallet;
   static const chooseCreatWallet = _Paths.chooseCreatWallet;
   static const addToken = _Paths.addToken;
+  static const tokenDetails = _Paths.tokenDetails;
+  static const tokenTransfer = _Paths.tokenTransfer;
   static const updateRecord = _Paths.updateRecord;
 }
 
@@ -56,5 +58,7 @@ abstract class _Paths {
   static const String addWallet = '/addWallet';
   static const String chooseCreatWallet = '/chooseCreatWallet';
   static const String addToken = '/addToken';
+  static const String tokenDetails = '/tokenDetails';
+  static const String tokenTransfer = '/tokenTransfer';
   static const String updateRecord = '/updateRecord';
 }

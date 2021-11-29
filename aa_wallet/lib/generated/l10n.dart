@@ -1069,6 +1069,186 @@ class AppS {
       args: [],
     );
   }
+
+  /// `Transfer`
+  String get token_details_transfer {
+    return Intl.message(
+      'Transfer',
+      name: 'token_details_transfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Collection`
+  String get token_details_collection {
+    return Intl.message(
+      'Collection',
+      name: 'token_details_collection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get token_details_state_all {
+    return Intl.message(
+      'All',
+      name: 'token_details_state_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out`
+  String get token_details_state_transfer_out {
+    return Intl.message(
+      'Out',
+      name: 'token_details_state_transfer_out',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In`
+  String get token_details_state_transfer_in {
+    return Intl.message(
+      'In',
+      name: 'token_details_state_transfer_in',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `≈{money} ASDT`
+  String token_details_roughly_money(Object money) {
+    return Intl.message(
+      '≈$money ASDT',
+      name: 'token_details_roughly_money',
+      desc: '',
+      args: [money],
+    );
+  }
+
+  /// `Transfer Address`
+  String get token_transfer_addr {
+    return Intl.message(
+      'Transfer Address',
+      name: 'token_transfer_addr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter eth address`
+  String get token_transfer_addr_input {
+    return Intl.message(
+      'Please enter eth address',
+      name: 'token_transfer_addr_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount`
+  String get token_transfer_money {
+    return Intl.message(
+      'Amount',
+      name: 'token_transfer_money',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter amount`
+  String get token_transfer_money_input {
+    return Intl.message(
+      'please enter amount',
+      name: 'token_transfer_money_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fee`
+  String get token_transfer_fee {
+    return Intl.message(
+      'Fee',
+      name: 'token_transfer_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slow`
+  String get token_transfer_slow {
+    return Intl.message(
+      'Slow',
+      name: 'token_transfer_slow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0/{money}AAA<30minute`
+  String token_transfer_slow_info(Object money) {
+    return Intl.message(
+      '0/${money}AAA<30minute',
+      name: 'token_transfer_slow_info',
+      desc: '',
+      args: [money],
+    );
+  }
+
+  /// `Recommend`
+  String get token_transfer_recommend {
+    return Intl.message(
+      'Recommend',
+      name: 'token_transfer_recommend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0/{money}AAA<5minute`
+  String token_transfer_recommend_info(Object money) {
+    return Intl.message(
+      '0/${money}AAA<5minute',
+      name: 'token_transfer_recommend_info',
+      desc: '',
+      args: [money],
+    );
+  }
+
+  /// `Quick`
+  String get token_transfer_quick {
+    return Intl.message(
+      'Quick',
+      name: 'token_transfer_quick',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0/{money}AAA<1minute`
+  String token_transfer_quick_info(Object money) {
+    return Intl.message(
+      '0/${money}AAA<1minute',
+      name: 'token_transfer_quick_info',
+      desc: '',
+      args: [money],
+    );
+  }
+
+  /// `Customize`
+  String get token_transfer_customize {
+    return Intl.message(
+      'Customize',
+      name: 'token_transfer_customize',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppS> {

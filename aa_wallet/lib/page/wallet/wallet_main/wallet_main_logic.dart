@@ -1,8 +1,6 @@
-import 'package:aa_wallet/core/utils/core_utils.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/core/widget/qr_scan.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
-import 'package:aa_wallet/entity/token/coin_key_entity.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/app_service.dart';
@@ -250,20 +248,21 @@ class WalletMainLogic extends GetxController {
     final list = await WalletService.to.appDate.getAllToken();
     final newList = <TokenEntry>[];
     for (final tokenEntry in list) {
+      TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
       if (tokenEntry.protocol == wallet.value.protocol) {
         if (tokenEntry.contractAddress == null) {
           //这个是主币 所以 获取主币的余额
           final balance = await TokenService.getBalance(wallet.value.address!);
-          tokenEntry.copyWith(balance: balance);
+          newTokenEntry = tokenEntry.copyWith(balance: balance);
         } else {
           //这个是代币的 获取小数点
           final int decimals =
               await TokenService.getDecimals(tokenEntry.contractAddress!);
           final balance = await TokenService.getTokenBalance(
               decimals, tokenEntry.contractAddress!);
-          tokenEntry.copyWith(balance: balance);
+          newTokenEntry = tokenEntry.copyWith(balance: balance);
         }
-        newList.add(tokenEntry);
+        newList.add(newTokenEntry);
       }
     }
 

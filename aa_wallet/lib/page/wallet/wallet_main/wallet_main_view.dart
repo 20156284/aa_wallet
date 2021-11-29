@@ -80,6 +80,8 @@ class WalletMainPage extends GetView<WalletMainLogic> {
               imageUrl: tokenEntry.imageUrl,
               balance: tokenEntry.balance,
               totalMoney: tokenEntry.totalMoney,
+              onTap: () =>
+                  Get.toNamed(AppRoutes.tokenDetails, arguments: tokenEntry),
             );
         }
       },
@@ -177,49 +179,56 @@ class WalletMainPage extends GetView<WalletMainLogic> {
       onTap: () {
         if (onTap != null) onTap();
       },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            CoreKitStyle.image(imageUrl!, size: 40),
-            const SizedBox(
-              width: 13,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
             ),
-            Expanded(
-              child: Text(
-                title ?? '',
-                style:
-                    const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
-                  balance ?? '',
-                  style: const TextStyle(
-                      fontSize: 17, fontWeight: FontWeight.bold),
-                ),
+                CoreKitStyle.image(imageUrl!, size: 40),
                 const SizedBox(
-                  height: 5,
+                  width: 13,
                 ),
-                Text(
-                  totalMoney ?? '',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Color(0xFF878889),
+                Expanded(
+                  child: Text(
+                    title ?? '',
+                    style: const TextStyle(
+                        fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                 ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      balance ?? '',
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      totalMoney ?? '',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Color(0xFF878889),
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          const Divider(
+            indent: 71,
+          ),
+        ],
       ),
     );
   }

@@ -121,5 +121,24 @@
   "token_main_assets": "Main Assets Management",
   "token_user_all_assets": "All Assets",
   "token_customize": "Customize Token",
-  "add_token_input": "Please enter token name or token address"
+  "add_token_input": "Please enter token name or token address",
+  "token_details_transfer": "Transfer",
+  "token_details_collection": "Collection",
+  "token_details_state_all":"All",
+  "token_details_state_transfer_out":"Out",
+  "token_details_state_transfer_in":"In",
+  "token_details_roughly_money": "≈{money} ASDT",
+
+  "token_transfer_addr": "Transfer Address",
+  "token_transfer_addr_input": "Please enter eth address",
+  "token_transfer_money":"Amount",
+  "token_transfer_money_input": "please enter amount",
+  "token_transfer_fee": "Fee",
+  "token_transfer_slow": "Slow",
+  "token_transfer_slow_info": "0/{money}AAA<30minute",
+  "token_transfer_recommend": "Recommend",
+  "token_transfer_recommend_info": "0/{money}AAA<5minute",
+  "token_transfer_quick": "Quick",
+  "token_transfer_quick_info": "0/{money}AAA<1minute",
+  "token_transfer_customize": "Customize"
 }
