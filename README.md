@@ -1,39 +1,24 @@
-# AA-TOKEN
-
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
-
-#### 软件架构
-软件架构说明
+# aa_wallet 简介            v 1.0.10
 
 
-#### 安装教程
+# 使用指南
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+    1、环境变量 可以参考
+    # Flutter
+    export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+    export PATH=~/flutter/bin:$PATH
+    export DART_HOME=~flutter/bin/cache/dart-sdk/bin
+    export FLUTTER_HOME=~/flutter/bin
+    # Flutter END
 
-#### 使用说明
+    2、如果您使用了以上的配置 可以使用 apptools 工具类来生成 相对应的 全局 文件
+       非常重要 一定要运行 不然报错 非常重要 一定要运行 不然报错 非常重要 一定要运行 不然报错
+       mac 系统 请 用这样的命令 ./apptools.sh 之后输入 1 || 回车 如果配置和上面一样的话
+       win 系统 请 用这样的命令  apptools.bat 之后输入 1 || 回车 如果配置和上面一样的话
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+    3、打包命令 Android only
+       使用build_apk.sh 进行打包 Release 表示正式版本 采用正式环境 Debug采用测试环境 而Charles 是正式环境可以抓包的
+       配合 环境 是在 lib/const/env_config 里面配置相对应环境
 
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
