@@ -900,6 +900,16 @@ class AppS {
     );
   }
 
+  /// `Copy success`
+  String get wallet_add_copy_success {
+    return Intl.message(
+      'Copy success',
+      name: 'wallet_add_copy_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet nickname`
   String get wallet_edit_name {
     return Intl.message(

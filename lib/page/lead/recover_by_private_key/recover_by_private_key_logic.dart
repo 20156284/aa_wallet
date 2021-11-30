@@ -14,8 +14,14 @@ class RecoverByPrivateKeyLogic extends GetxController {
   final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController repeatPwdEdit = TextEditingController();
 
+  // //  第一测试 密要 匹配  song convince art planet domain property load satoshi rocket west vital cycle 私钥
   // final TextEditingController privateEdit = TextEditingController(
   //     text: '17caf803d03ae2cb64c9aebe79563477a9b40215212e360b718724c1c124e600');
+
+  //// 第一测试 密要 匹配  forest palm main jelly embody cigar select physical clown tape dutch profit 私钥
+  // final TextEditingController privateEdit = TextEditingController(
+  //     text: '479cd64cc4dc834aaf90f23b795f0c4084745726cf6a514d4cd8158c74625b63');
+
   // final TextEditingController nameEdit = TextEditingController(text: 'Will’sWallet');
   // final TextEditingController pwdEdit =
   //     TextEditingController(text: ')#*will520');

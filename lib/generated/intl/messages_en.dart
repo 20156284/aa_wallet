@@ -199,6 +199,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_user_all_assets":
             MessageLookupByLibrary.simpleMessage("All Assets"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
+        "wallet_add_copy_success":
+            MessageLookupByLibrary.simpleMessage("Copy success"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("Assets"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("Choose wallet"),
         "wallet_create_import":

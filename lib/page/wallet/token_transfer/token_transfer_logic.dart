@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aa_wallet/const/app_theme.dart';
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
@@ -12,10 +14,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TokenTransferLogic extends GetxController {
-  final TextEditingController addrEdit = TextEditingController();
+  //0x201ac284b61461ca7c13aaca3999434b840c6476
+  // final TextEditingController addrEdit = TextEditingController();
+  final TextEditingController addrEdit =
+      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
   final TextEditingController moneyEdit = TextEditingController();
 
-  final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
   final pwdVisible = true.obs;
 
   final chooseTag = 3.obs;
@@ -199,8 +206,28 @@ class TokenTransferLogic extends GetxController {
     final privateKey =
         await const WalletCrypt().decrypt(pwd, wallet.value.privateKey!);
 
+    // //主币种转账
+    // final rsp = await TokenService.sendToken(
+    //   privateKey: privateKey,
+    //   toAddress: addrEdit.text.trim(),
+    //   amount: BigInt.parse(moneyEdit.text.trim()),
+    //   maxGas: 100000,
+    // );
+
+    final hexNum =
+        (BigInt.parse('1') * BigInt.from(pow(10, 18))).toRadixString(16);
+    final String postData =
+        '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
+
+    //代币转账
     final rsp = await TokenService.sendToken(
-        privateKey: privateKey, toAddress: addrEdit.text.trim());
+      privateKey: privateKey,
+      toAddress: addrEdit.text.trim(),
+      amount: BigInt.parse(moneyEdit.text.trim()),
+      postData: postData,
+      maxGas: 100000,
+      contractAddress: '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A',
+    );
 
     print('transaction => $rsp');
   }

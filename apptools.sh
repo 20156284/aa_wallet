@@ -9,6 +9,7 @@ commands=(
 "$FLUTTER_HOME/flutter pub run flutter_native_splash:remove"
 "$FLUTTER_HOME/flutter build web --web-renderer html"
 "$FLUTTER_HOME/flutter run --release --dart-define=APP_ENV=Release"
+"$FLUTTER_HOME/flutter run --release --dart-define=APP_ENV=Debug"
 )
 
 echo Your DART_HOME: $DART_HOME

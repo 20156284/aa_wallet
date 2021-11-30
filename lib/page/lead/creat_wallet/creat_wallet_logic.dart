@@ -9,9 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreatWalletLogic extends GetxController {
-  final TextEditingController nameEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
-  final TextEditingController repeatPwdEdit = TextEditingController();
+  // final TextEditingController nameEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController repeatPwdEdit = TextEditingController();
+
+  final TextEditingController nameEdit =
+      TextEditingController(text: 'Will\'s Wallet');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
+  final TextEditingController repeatPwdEdit =
+      TextEditingController(text: ')#*will520');
 
   final coinKeyList = <CoinKeyEntity>[].obs;
 

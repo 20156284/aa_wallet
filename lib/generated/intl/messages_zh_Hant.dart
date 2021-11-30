@@ -174,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_slow_info": m6,
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
         "wallet": MessageLookupByLibrary.simpleMessage("錢包"),
+        "wallet_add_copy_success":
+            MessageLookupByLibrary.simpleMessage("錢包地址已複製"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("資產"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("選擇錢包"),
         "wallet_create_import": MessageLookupByLibrary.simpleMessage("創建/導入"),

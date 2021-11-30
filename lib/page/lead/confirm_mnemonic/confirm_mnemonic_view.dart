@@ -181,7 +181,7 @@ class ConfirmMnemonicPage extends GetView<ConfirmMnemonicLogic> {
   }
 
   Widget _buildMnemonicRandom(int index) {
-    final width = (Get.width - 15 * 2 - 7.5 * 2) / 3;
+    final width = (Get.width - 15 * 2 - 8 * 2) / 3;
     final String title = controller.randomList[index];
     return InkWell(
       onTap: () => controller.onRemove(index, title),

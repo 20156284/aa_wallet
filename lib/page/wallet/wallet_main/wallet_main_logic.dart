@@ -190,7 +190,7 @@ class WalletMainLogic extends GetxController {
           const SizedBox(
             height: 20,
           ),
-          Text(AppS().wallet_import_key_copy_success),
+          Text(AppS().wallet_add_copy_success),
         ],
       ),
     );
@@ -259,8 +259,9 @@ class WalletMainLogic extends GetxController {
           final int decimals =
               await TokenService.getDecimals(tokenEntry.contractAddress!);
           final balance = await TokenService.getTokenBalance(
-              decimals, tokenEntry.contractAddress!);
-          newTokenEntry = tokenEntry.copyWith(balance: balance);
+              decimals, wallet.value.address!, tokenEntry.contractAddress!);
+          newTokenEntry =
+              tokenEntry.copyWith(balance: balance, decimals: decimals);
         }
         newList.add(newTokenEntry);
       }

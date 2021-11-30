@@ -73,7 +73,7 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        resValue "string", "app_name", "flutter_base${dartEnv.APP_ENV}"
+        resValue "string", "app_name", "AAToken${dartEnv.APP_ENV}"
 
         multiDexEnabled true
     }

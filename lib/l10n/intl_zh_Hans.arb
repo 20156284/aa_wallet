@@ -101,6 +101,7 @@
   "wallet_import_key_content2": "一旦泄露，可能导致资产损失",
   "wallet_import_key_copy": "复制私钥",
   "wallet_import_key_copy_success": "私钥已复制",
+  "wallet_add_copy_success":"地址已复制",
 
   "wallet_edit_name": "钱包昵称修改",
   "wallet_edit_name_input": "请输入钱包昵称",

@@ -99,15 +99,16 @@ class TokenService {
    * 当前还是固定的18位
    * @author Will
    * @date 2021/11/24 16:43
+   * @param walletAddress 钱包地址
    * @param coinAddress 代币地址
    * @param decimals 代币的小数位数
    * @return 代币的余额
    */
   static Future<String> getTokenBalance(
-      num decimals, String coinAddress) async {
+      num decimals, String walletAddress, String coinAddress) async {
     final Map params = {
       'data': AppPolicies.funcHashes['getTokenBalance()']! +
-          coinAddress.replaceFirst('0x', '').padLeft(64, '0'),
+          walletAddress.replaceFirst('0x', '').padLeft(64, '0'),
       'to': coinAddress
     };
     final response = await TokenNetwork.acquire().network(
@@ -192,22 +193,59 @@ class TokenService {
    * @param null
    * @return null
    */
-  static Future<String> sendToken(
-      {String? privateKey, String? toAddress, String? rpcUrl}) async {
+  static Future<String?> sendToken({
+    String? privateKey,
+    String? toAddress,
+    BigInt? amount,
+    String? postData,
+    int? maxGas,
+    String? contractAddress,
+    String? rpcUrl,
+  }) async {
     final client = Web3Client(rpcUrl ?? Env.envConfig.aaaRpcUrl, Client());
-    final private = EthPrivateKey.fromHex(privateKey!);
+    final formAddr = EthPrivateKey.fromHex(privateKey!);
+    final from = await formAddr.extractAddress();
+    final networkId = await client.getNetworkId();
+    final nonce = await client.getTransactionCount(from,
+        atBlock: const BlockNum.current());
 
-    final rsp = await client.sendTransaction(
-      private,
-      Transaction(
-        to: EthereumAddress.fromHex(toAddress!),
-        gasPrice: EtherAmount.inWei(BigInt.one),
-        maxGas: 100000,
-        value: EtherAmount.fromUnitAndValue(EtherUnit.ether, 1),
-      ),
-    );
+    String? transactionId = '';
 
-    print('transaction => $rsp');
-    return rsp;
+    try {
+      //主币转账
+      if (postData == null) {
+        transactionId = await client.sendTransaction(
+          formAddr,
+          Transaction(
+            nonce: nonce,
+            to: EthereumAddress.fromHex(toAddress!),
+            gasPrice: EtherAmount.inWei(BigInt.one),
+            maxGas: maxGas,
+            value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
+          ),
+          chainId: networkId,
+        );
+      } else {
+        //代币转账
+        transactionId = await client.sendTransaction(
+          formAddr,
+          Transaction(
+            nonce: nonce,
+            to: EthereumAddress.fromHex(contractAddress!),
+            gasPrice: EtherAmount.inWei(BigInt.two),
+            maxGas: maxGas,
+            value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
+            data: hexToBytes(postData),
+          ),
+          chainId: networkId,
+        );
+      }
+
+      print('transact started $transactionId');
+      return transactionId;
+    } catch (ex) {
+      print('ex $ex');
+      return null;
+    }
   }
 }

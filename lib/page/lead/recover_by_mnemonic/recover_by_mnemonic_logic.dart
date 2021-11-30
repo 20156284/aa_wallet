@@ -14,9 +14,15 @@ class RecoverByMnemonicLogic extends GetxController {
   // final TextEditingController pwdEdit = TextEditingController();
   // final TextEditingController repeatPwdEdit = TextEditingController();
 
+  //主要测试钱包
   final TextEditingController mnemonicEdit = TextEditingController(
       text:
           'song convince art planet domain property load satoshi rocket west vital cycle');
+
+  // //第二测试钱包
+  // final TextEditingController mnemonicEdit = TextEditingController(
+  //     text:
+  //         'forest palm main jelly embody cigar select physical clown tape dutch profit');
   final TextEditingController nameEdit =
       TextEditingController(text: 'Will’sWallet');
   final TextEditingController pwdEdit =

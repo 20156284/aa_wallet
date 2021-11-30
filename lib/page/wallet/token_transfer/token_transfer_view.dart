@@ -19,129 +19,137 @@ class TokenTransferPage extends GetView<TokenTransferLogic> {
         backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
         border: Border.all(width: 0.0, style: BorderStyle.none),
       ),
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Stack(
         children: [
-          Text(
-            AppS().token_transfer_addr,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          TextField(
-            controller: controller.addrEdit,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              labelText: AppS().token_transfer_addr_input,
+          ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            children: [
+              Text(
+                AppS().token_transfer_addr,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              TextField(
+                controller: controller.addrEdit,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  labelText: AppS().token_transfer_addr_input,
 
-              ///设置输入框可编辑时的边框样式
-              enabledBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                borderSide: BorderSide(
-                  color: AppTheme.of(context).inputBgColor,
-                  width: 1,
+                  ///设置输入框可编辑时的边框样式
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: AppTheme.of(context).inputBgColor,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: CupertinoTheme.of(context).primaryContrastingColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  fillColor: AppTheme.of(context).inputBgColor,
+                  filled: true,
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                borderSide: BorderSide(
-                  color: CupertinoTheme.of(context).primaryContrastingColor,
-                  width: 1,
+              const SizedBox(
+                height: 25,
+              ),
+              Text(
+                AppS().token_transfer_money,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              TextField(
+                controller: controller.moneyEdit,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  labelText: AppS().token_transfer_money_input,
+
+                  ///设置输入框可编辑时的边框样式
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: AppTheme.of(context).inputBgColor,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: CupertinoTheme.of(context).primaryContrastingColor,
+                      width: 1,
+                    ),
+                  ),
+
+                  fillColor: AppTheme.of(context).inputBgColor,
+                  filled: true,
                 ),
               ),
-
-              fillColor: AppTheme.of(context).inputBgColor,
-              filled: true,
+              const SizedBox(
+                height: 25,
+              ),
+              Text(
+                AppS().token_transfer_fee,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Obx(
+                () => SizedBox(
+                  width: Get.width - 15 * 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      _buildBtn(
+                        title: AppS().token_transfer_slow,
+                        money: AppS().token_transfer_slow_info('000175'),
+                        btnTag: 0,
+                      ),
+                      _buildBtn(
+                        title: AppS().token_transfer_recommend,
+                        money: AppS().token_transfer_recommend_info('000175'),
+                        btnTag: 1,
+                      ),
+                      _buildBtn(
+                        title: AppS().token_transfer_quick,
+                        money: AppS().token_transfer_quick_info('000175'),
+                        btnTag: 2,
+                      ),
+                      _buildBtn(
+                        title: AppS().token_transfer_customize,
+                        btnTag: 3,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            left: 15,
+            child: SafeArea(
+              child: CoreKitStyle.cupertinoButton(
+                context,
+                width: Get.width - 15 * 2,
+                title: AppS().app_confirm,
+                onPressed: () => controller.onCheck(),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Text(
-            AppS().token_transfer_money,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          TextField(
-            controller: controller.moneyEdit,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              labelText: AppS().token_transfer_money_input,
-
-              ///设置输入框可编辑时的边框样式
-              enabledBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                borderSide: BorderSide(
-                  color: AppTheme.of(context).inputBgColor,
-                  width: 1,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                borderSide: BorderSide(
-                  color: CupertinoTheme.of(context).primaryContrastingColor,
-                  width: 1,
-                ),
-              ),
-
-              fillColor: AppTheme.of(context).inputBgColor,
-              filled: true,
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Text(
-            AppS().token_transfer_fee,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Obx(
-            () => SizedBox(
-              width: Get.width - 15 * 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  _buildBtn(
-                    title: AppS().token_transfer_slow,
-                    money: AppS().token_transfer_slow_info('000175'),
-                    btnTag: 0,
-                  ),
-                  _buildBtn(
-                    title: AppS().token_transfer_recommend,
-                    money: AppS().token_transfer_recommend_info('000175'),
-                    btnTag: 1,
-                  ),
-                  _buildBtn(
-                    title: AppS().token_transfer_quick,
-                    money: AppS().token_transfer_quick_info('000175'),
-                    btnTag: 2,
-                  ),
-                  _buildBtn(
-                    title: AppS().token_transfer_customize,
-                    btnTag: 3,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: Get.width * 276 / 375,
-          ),
-          CoreKitStyle.cupertinoButton(
-            context,
-            title: AppS().app_confirm,
-            onPressed: () => controller.onCheck(),
           ),
         ],
       ),

@@ -62,6 +62,9 @@ class Token extends Table {
   //代币名称
   TextColumn get coinKey => text().nullable()();
 
+  //代币小数位
+  IntColumn get decimals => integer().nullable()();
+
   //当前币种的余额 但是不会存进数据库 只是方便前端显示而已
   TextColumn get balance => text().nullable()();
 
@@ -127,6 +130,7 @@ class AppDatabase extends _$AppDatabase {
     String? imageUrl,
     String? protocol,
     String? coinKey,
+    int? decimals,
   }) =>
       into(token).insert(
         TokenCompanion(
@@ -135,6 +139,7 @@ class AppDatabase extends _$AppDatabase {
           imageUrl: Value(imageUrl),
           protocol: Value(protocol),
           coinKey: Value(coinKey),
+          decimals: Value(decimals),
         ),
       );
 
