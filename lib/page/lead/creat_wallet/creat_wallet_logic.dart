@@ -9,16 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreatWalletLogic extends GetxController {
-  // final TextEditingController nameEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
-  // final TextEditingController repeatPwdEdit = TextEditingController();
+  final TextEditingController nameEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController repeatPwdEdit = TextEditingController();
 
-  final TextEditingController nameEdit =
-      TextEditingController(text: 'Will\'s Wallet');
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
-  final TextEditingController repeatPwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController nameEdit =
+  //     TextEditingController(text: 'Will\'s Wallet');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
+  // final TextEditingController repeatPwdEdit =
+  //     TextEditingController(text: ')#*will520');
 
   final coinKeyList = <CoinKeyEntity>[].obs;
 
@@ -59,7 +59,7 @@ class CreatWalletLogic extends GetxController {
     WalletService.to.password.value = pwdEdit.text;
     WalletService.to.walletName.value = nameEdit.text;
     //这里先使用默认的创建的
-    WalletService.to.protocol.value = 'ARC20';
+    // WalletService.to.protocol.value = 'ARC20';
 
     // getCoinType();
     Get.toNamed(AppRoutes.backUp);

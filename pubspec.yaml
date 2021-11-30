@@ -226,6 +226,8 @@ flutter:
     - assets/images/ic_update_record.png
     - assets/images/ic_usdt.png
     - assets/images/ic_wallet.png
+    - assets/images/ic_wallet_all.png
+    - assets/images/ic_wallet_all_select.png
     - assets/images/ic_wallet_management.png
     - assets/images/ic_wallet_select.png
     - assets/images/ic_zh_hans.png

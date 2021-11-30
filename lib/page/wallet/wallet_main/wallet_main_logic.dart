@@ -18,6 +18,7 @@ class WalletMainLogic extends GetxController {
   //刷新控件
   late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
 
+  List<TokenEntry> dbTokenList = <TokenEntry>[];
   final walletList = <WalletEntry>[].obs;
   final tokenList = <TokenEntry>[].obs;
   final wallet = WalletEntry(id: 0).obs;
@@ -26,8 +27,10 @@ class WalletMainLogic extends GetxController {
   late Worker worker;
   late Worker tokenWorker;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+
+    dbTokenList = await WalletService.to.appDate.getAllToken();
 
     wallet.value = WalletService.to.wallet.value;
     getToken(wallet.value);
@@ -54,6 +57,7 @@ class WalletMainLogic extends GetxController {
    * @param _wallet 钱包实体类
    */
   void handleTokenChanged(_token) async {
+    dbTokenList = await WalletService.to.appDate.getAllToken();
     //主要是通过刷新去获取新的代币余额
     onRefreshFun();
   }
@@ -68,6 +72,7 @@ class WalletMainLogic extends GetxController {
     wallet.value = WalletService.to.wallet.value;
     wallet.refresh();
     onShow();
+    onRefreshFun();
   }
 
   /**
@@ -196,28 +201,6 @@ class WalletMainLogic extends GetxController {
     );
   }
 
-  // /**
-  //  * 獲取所有主币余额
-  //  * @author Will
-  //  * @date 2021/11/22 15:59
-  //  */
-  // void getBalances() async {
-  //   final List<String> balances = <String>[];
-  //   walletList.value = await WalletService.to.appDate.getAllWallets();
-  //   for (final wallet in walletList) {
-  //     if (CoreUtil.isNotEmptyString(wallet.rpcUrl)) {
-  //       balances.add(await TokenService.getBalance(wallet.address!,
-  //           rpcUrl: wallet.rpcUrl));
-  //     } else {
-  //       balances.add(await TokenService.getBalance(wallet.address!));
-  //     }
-  //   }
-  //   print(balances.toString());
-  //   // balance.value = await TokenService.getBalance(wallet.value.address);
-  //   //獲取 主連 餘額 比如說 AAA
-  //   //獲取 ETH 餘額
-  // }
-
   /**
    * 添加資產
    * @author Will
@@ -233,21 +216,18 @@ class WalletMainLogic extends GetxController {
    * @date 2021/11/25 17:10
    */
   void getToken(WalletEntry walletEntry) async {
-    final list = await WalletService.to.appDate.getAllToken();
     final newList = <TokenEntry>[];
-    for (final tokenEntry in list) {
+    for (final tokenEntry in dbTokenList) {
       if (tokenEntry.protocol == walletEntry.protocol) {
         newList.add(tokenEntry);
       }
     }
-
     tokenList.value = newList;
   }
 
   void onRefreshFun() async {
-    final list = await WalletService.to.appDate.getAllToken();
     final newList = <TokenEntry>[];
-    for (final tokenEntry in list) {
+    for (final tokenEntry in dbTokenList) {
       TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
       if (tokenEntry.protocol == wallet.value.protocol) {
         if (tokenEntry.contractAddress == null) {

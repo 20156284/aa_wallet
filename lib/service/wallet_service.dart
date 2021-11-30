@@ -135,6 +135,12 @@ class WalletService extends GetxService {
     }
   }
 
+  /**
+   * 更新钱包
+   * @author Will
+   * @date 2021/11/30 17:59
+   * @param entry 钱包对象
+   */
   Future<bool> onUpdateWalletName(WalletEntry entry) {
     return appDate.updateWallet(entry);
   }

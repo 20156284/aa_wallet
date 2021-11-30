@@ -9,26 +9,26 @@ import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
 class RecoverByMnemonicLogic extends GetxController {
-  // final TextEditingController mnemonicEdit = TextEditingController();
-  // final TextEditingController nameEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
-  // final TextEditingController repeatPwdEdit = TextEditingController();
+  final TextEditingController mnemonicEdit = TextEditingController();
+  final TextEditingController nameEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController repeatPwdEdit = TextEditingController();
 
-  //主要测试钱包
-  final TextEditingController mnemonicEdit = TextEditingController(
-      text:
-          'song convince art planet domain property load satoshi rocket west vital cycle');
+  // //主要测试钱包
+  // final TextEditingController mnemonicEdit = TextEditingController(
+  //     text:
+  //         'song convince art planet domain property load satoshi rocket west vital cycle');
 
   // //第二测试钱包
   // final TextEditingController mnemonicEdit = TextEditingController(
   //     text:
   //         'forest palm main jelly embody cigar select physical clown tape dutch profit');
-  final TextEditingController nameEdit =
-      TextEditingController(text: 'Will’sWallet');
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
-  final TextEditingController repeatPwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController nameEdit =
+  //     TextEditingController(text: 'Will’sWallet');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
+  // final TextEditingController repeatPwdEdit =
+  //     TextEditingController(text: ')#*will520');
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;

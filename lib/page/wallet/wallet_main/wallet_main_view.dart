@@ -1,5 +1,6 @@
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/generated/l10n.dart';
+import 'package:aa_wallet/page/wallet/wallet_management_widget/wallet_management_widget_view.dart';
 import 'package:aa_wallet/res.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -111,7 +112,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
               children: [
                 Obx(
                   () => Text(
-                    controller.wallet.value.name!,
+                    controller.wallet.value.name ?? '',
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -290,6 +291,11 @@ class WalletMainPage extends GetView<WalletMainLogic> {
                 ),
               ),
               const Divider(),
+              const Expanded(
+                child: WalletManagementWidgetPage(
+                  isDialog: true,
+                ),
+              ),
             ],
           ),
         );

@@ -1,5 +1,5 @@
 import 'package:aa_wallet/generated/l10n.dart';
-import 'package:aa_wallet/res.dart';
+import 'package:aa_wallet/page/wallet/wallet_management_widget/wallet_management_widget_view.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,71 +32,8 @@ class WalletManagementPage extends GetView<WalletManagementLogic> {
           ),
         ),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(
-            width: 76,
-            child: Obx(
-              () => Container(
-                color: const Color(0xFFF1F5F6),
-                child: ListView(
-                  children: [
-                    _buildItems(
-                      selectIcon: Res.ic_eth_select,
-                      icon: Res.ic_eth,
-                      btnTag: 0,
-                      onTap: () {},
-                    ),
-                    _buildItems(
-                      selectIcon: Res.ic_btc_select,
-                      icon: Res.ic_btc,
-                      btnTag: 1,
-                      onTap: () {},
-                    ),
-                    _buildItems(
-                      selectIcon: Res.ic_aaa_select,
-                      icon: Res.ic_aaa,
-                      btnTag: 2,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // Expanded(
-          //   child: ListView(
-          //     children: [],
-          //   ),
-          // )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildItems(
-      {String? selectIcon,
-      String? icon,
-      int? btnTag,
-      GestureTapCallback? onTap}) {
-    return InkWell(
-      onTap: () {
-        onTap!();
-        controller.btnTag.value = btnTag!;
-      },
-      child: Container(
-        width: 76,
-        height: 76,
-        alignment: Alignment.center,
-        color: controller.btnTag.value == btnTag
-            ? Colors.white
-            : const Color(0xFFF1F5F6),
-        child: Image.asset(
-          controller.btnTag.value == btnTag ? selectIcon! : icon!,
-          width: 32,
-          height: 32,
-        ),
+      child: const WalletManagementWidgetPage(
+        isDialog: false,
       ),
     );
   }

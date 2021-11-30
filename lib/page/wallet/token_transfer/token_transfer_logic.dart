@@ -15,14 +15,14 @@ import 'package:get/get.dart';
 
 class TokenTransferLogic extends GetxController {
   //0x201ac284b61461ca7c13aaca3999434b840c6476
-  // final TextEditingController addrEdit = TextEditingController();
-  final TextEditingController addrEdit =
-      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  final TextEditingController addrEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
 
-  // final TextEditingController pwdEdit = TextEditingController();
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController addrEdit =
+  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
   final pwdVisible = true.obs;
 
   final chooseTag = 3.obs;

@@ -1,6 +1,5 @@
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/res.dart';
-import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,8 +25,7 @@ class AddWalletPage extends GetView<AddWalletLogic> {
             title: AppS().add_wallet_eth,
             subTitle: AppS().add_wallet_eth_subtitle,
             icon: Res.ic_eth_select,
-            onTap: () =>
-                Get.toNamed(AppRoutes.chooseCreatWallet, arguments: 'ETH'),
+            onTap: () => controller.onGotoCreate(0),
           ),
           const SizedBox(
             height: 10,
@@ -36,8 +34,7 @@ class AddWalletPage extends GetView<AddWalletLogic> {
             title: AppS().add_wallet_btc,
             subTitle: AppS().add_wallet_btc_subtitle,
             icon: Res.ic_btc_select,
-            onTap: () =>
-                Get.toNamed(AppRoutes.chooseCreatWallet, arguments: 'BTC'),
+            onTap: () => controller.onGotoCreate(1),
           ),
           const SizedBox(
             height: 10,
@@ -46,8 +43,7 @@ class AddWalletPage extends GetView<AddWalletLogic> {
             title: AppS().add_wallet_aac,
             subTitle: AppS().add_wallet_aac_subtitle,
             icon: Res.ic_aaa_select,
-            onTap: () =>
-                Get.toNamed(AppRoutes.chooseCreatWallet, arguments: 'AAC'),
+            onTap: () => controller.onGotoCreate(2),
           ),
         ],
       ),
