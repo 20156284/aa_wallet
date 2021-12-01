@@ -29,7 +29,7 @@ class WalletManagementWidgetLogic extends GetxController {
       for (final wallet in dbWalletList) {
         switch (btnTag.value) {
           case 1:
-            if (wallet.protocol == 'ERP20') {
+            if (wallet.protocol == 'ERC20') {
               newList.add(wallet);
             }
             break;
