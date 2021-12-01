@@ -8,9 +8,7 @@
 import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/http/dior.dart';
 import 'package:aa_wallet/entity/token/token_network_entity.dart';
-
 import 'package:dio/dio.dart';
-
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -38,7 +36,7 @@ abstract class TokenNetwork {
     @CancelRequest() CancelToken? cancelToken,
     @SendProgress() ProgressCallback? onSendProgress,
     @ReceiveProgress() ProgressCallback? onReceiveProgress,
-    @Field('jsonrpc') String? jsonrpc,
+    @Field('jsonrpc') String? jsonRpc,
     @Field('method') String? method,
     @Field('id') int? id,
     @Field('params') List? params,

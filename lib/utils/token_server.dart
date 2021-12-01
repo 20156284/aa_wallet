@@ -5,6 +5,7 @@
 // Copyright @aa_wallet.All rights reserved.
 // ===============================================
 
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:aa_wallet/api/token/token_network.dart';
@@ -112,7 +113,7 @@ class TokenService {
       'to': coinAddress
     };
     final response = await TokenNetwork.acquire().network(
-      jsonrpc: '2.0',
+      jsonRpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
       params: [params, 'latest'],
@@ -140,7 +141,7 @@ class TokenService {
     };
 
     final response = await TokenNetwork.acquire().network(
-      jsonrpc: '2.0',
+      jsonRpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
       params: [params, 'latest'],
@@ -159,7 +160,7 @@ class TokenService {
   static Future<String> getTokenName(String address) async {
     final Map params = {'data': '0x95d89b41', 'to': address};
     final response = await TokenNetwork.acquire().network(
-      jsonrpc: '2.0',
+      jsonRpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
       params: [params, 'latest'],
@@ -204,10 +205,7 @@ class TokenService {
   }) async {
     final client = Web3Client(rpcUrl ?? Env.envConfig.aaaRpcUrl, Client());
     final formAddr = EthPrivateKey.fromHex(privateKey!);
-    final from = await formAddr.extractAddress();
     final networkId = await client.getNetworkId();
-    final nonce = await client.getTransactionCount(from,
-        atBlock: const BlockNum.current());
 
     String? transactionId = '';
 
@@ -217,7 +215,6 @@ class TokenService {
         transactionId = await client.sendTransaction(
           formAddr,
           Transaction(
-            nonce: nonce,
             to: EthereumAddress.fromHex(toAddress!),
             gasPrice: EtherAmount.inWei(BigInt.one),
             maxGas: maxGas,
@@ -226,15 +223,20 @@ class TokenService {
           chainId: networkId,
         );
       } else {
+        final gasPrice = await client.getGasPrice();
+        print(gasPrice.getInEther.toString());
+
+        // final from = await formAddr.extractAddress();
+        // final nonce = await client.getTransactionCount(from,
+        //     atBlock: const BlockNum.current());
+
         //代币转账
         transactionId = await client.sendTransaction(
           formAddr,
           Transaction(
-            nonce: nonce,
             to: EthereumAddress.fromHex(contractAddress!),
-            gasPrice: EtherAmount.inWei(BigInt.two),
+            gasPrice: EtherAmount.inWei(BigInt.parse('300000')),
             maxGas: maxGas,
-            value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
             data: hexToBytes(postData),
           ),
           chainId: networkId,
@@ -247,5 +249,47 @@ class TokenService {
       print('ex $ex');
       return null;
     }
+  }
+
+
+
+  /*
+    * 获取配置信息，交易页面右侧的token列表 - R
+    *
+    * @author Will
+    * @date 2021/12/1 10:39
+    * @param null
+    * @return function configurations(string key);
+    */
+  static Future<List> configurations(String key, String contractAddress) async {
+    final client = Web3Client(Env.envConfig.aaaRpcUrl, Client());
+
+    final String offset =
+    '20'.padLeft(64, '0'); // 偏移量固定是两个32位的字节，第一个32位是偏移量，第二个32位是长度，
+    final String len = key.length.toRadixString(16).padLeft(64, '0');
+    final String value = bytesToHex(utf8.encode(key)).padRight(64, '0');
+    final String postData = '0x1214dd58' + offset + len + value;
+
+    final Map params = {'data': postData, 'to': contractAddress};
+    final response = await TokenNetwork.acquire().network(
+      jsonRpc: '2.0',
+      method: 'eth_call',
+      id: DateTime.now().microsecondsSinceEpoch,
+      params: [params, 'latest'],
+    );
+
+    print(response.result);
+    final String res = response.result!.replaceFirst('0x', '').substring(128);
+
+    String str = '';
+    final List<int> hexList = HEX.decode(res);
+    for (var i = 0; i < hexList.length; i++) {
+      if (hexList[i] != 0 && hexList[i] != 32 && hexList[i] != 171) {
+        String s = String.fromCharCode(hexList[i]);
+        str = str + s;
+      }
+    }
+
+    return str.split(':');
   }
 }

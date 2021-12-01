@@ -15,14 +15,14 @@ import 'package:get/get.dart';
 
 class TokenTransferLogic extends GetxController {
   //0x201ac284b61461ca7c13aaca3999434b840c6476
-  final TextEditingController addrEdit = TextEditingController();
+  // final TextEditingController addrEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
 
-  // final TextEditingController addrEdit =
-  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  // final TextEditingController pwdEdit =
-  //     TextEditingController(text: ')#*will520');
+  final TextEditingController addrEdit =
+      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
   final pwdVisible = true.obs;
 
   final chooseTag = 3.obs;
@@ -39,6 +39,11 @@ class TokenTransferLogic extends GetxController {
         wallet.value = walletEntry;
       }
     }
+
+    // final List arr = await TokenService.configurations(
+    //     'gasprice', '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A');
+    // print('获取到配置合约中的gas limit:');
+    // print(arr);
   }
 
   /**
@@ -215,20 +220,29 @@ class TokenTransferLogic extends GetxController {
     // );
 
     final hexNum =
-        (BigInt.parse('1') * BigInt.from(pow(10, 18))).toRadixString(16);
+        (BigInt.parse(moneyEdit.text.trim()) * BigInt.from(pow(10, 18))).toRadixString(16);
     final String postData =
         '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
+
 
     //代币转账
     final rsp = await TokenService.sendToken(
       privateKey: privateKey,
       toAddress: addrEdit.text.trim(),
-      amount: BigInt.parse(moneyEdit.text.trim()),
       postData: postData,
       maxGas: 100000,
       contractAddress: '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A',
     );
-
+    //
     print('transaction => $rsp');
+
+  }
+
+  String addPreZero(String num) {
+    var t = (num + '').length, s = '';
+    for (var i = 0; i < 64 - t; i++) {
+      s += '0';
+    }
+    return s + num;
   }
 }
