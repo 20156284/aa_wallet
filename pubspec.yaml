@@ -33,7 +33,7 @@ dependencies:
   # https://pub.dev/packages/decimal
   decimal: ^1.5.0
   # https://pub.dev/packages/url_launcher
-  url_launcher: ^6.0.15
+  url_launcher: ^6.0.17
   # getx 状态管理框架 https://pub.dev/packages/get  搭配手脚架使用 https://github.com/jonataslaw/get_cli
   get: ^4.3.8
 

@@ -211,28 +211,28 @@ class TokenTransferLogic extends GetxController {
     final privateKey =
         await const WalletCrypt().decrypt(pwd, wallet.value.privateKey!);
 
-    // //主币种转账
+    //主币种转账
+    final rsp = await TokenService.transaction(
+      privateKey: privateKey,
+      toAddress: addrEdit.text.trim(),
+      amount: BigInt.parse(moneyEdit.text.trim()),
+      maxGas: 100000,
+    );
+
+    // final hexNum =
+    //     (BigInt.parse(moneyEdit.text.trim()) * BigInt.from(pow(10, 18))).toRadixString(16);
+    // final String postData =
+    //     '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
+    //
+    //
+    // //代币转账
     // final rsp = await TokenService.sendToken(
     //   privateKey: privateKey,
     //   toAddress: addrEdit.text.trim(),
-    //   amount: BigInt.parse(moneyEdit.text.trim()),
+    //   postData: postData,
     //   maxGas: 100000,
+    //   contractAddress: '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A',
     // );
-
-    final hexNum =
-        (BigInt.parse(moneyEdit.text.trim()) * BigInt.from(pow(10, 18))).toRadixString(16);
-    final String postData =
-        '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
-
-
-    //代币转账
-    final rsp = await TokenService.sendToken(
-      privateKey: privateKey,
-      toAddress: addrEdit.text.trim(),
-      postData: postData,
-      maxGas: 100000,
-      contractAddress: '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A',
-    );
     //
     print('transaction => $rsp');
 

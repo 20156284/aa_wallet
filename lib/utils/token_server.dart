@@ -194,7 +194,7 @@ class TokenService {
    * @param null
    * @return null
    */
-  static Future<String?> sendToken({
+  static Future<String?> transaction({
     String? privateKey,
     String? toAddress,
     BigInt? amount,
@@ -207,41 +207,39 @@ class TokenService {
     final formAddr = EthPrivateKey.fromHex(privateKey!);
     final networkId = await client.getNetworkId();
 
-    String? transactionId = '';
+    final from = await formAddr.extractAddress();
+    final nonce = await client.getTransactionCount(from,
+        atBlock: const BlockNum.pending());
 
+    final gasPrice = await client.getGasPrice();
+
+    Transaction transaction = Transaction();
     try {
       //主币转账
       if (postData == null) {
-        transactionId = await client.sendTransaction(
-          formAddr,
-          Transaction(
-            to: EthereumAddress.fromHex(toAddress!),
-            gasPrice: EtherAmount.inWei(BigInt.one),
-            maxGas: maxGas,
-            value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
-          ),
-          chainId: networkId,
+        transaction = Transaction(
+          nonce: nonce,
+          to: EthereumAddress.fromHex(toAddress!),
+          gasPrice: gasPrice,
+          maxGas: maxGas,
+          value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
         );
       } else {
-        final gasPrice = await client.getGasPrice();
-        print(gasPrice.getInEther.toString());
-
-        // final from = await formAddr.extractAddress();
-        // final nonce = await client.getTransactionCount(from,
-        //     atBlock: const BlockNum.current());
-
         //代币转账
-        transactionId = await client.sendTransaction(
-          formAddr,
-          Transaction(
-            to: EthereumAddress.fromHex(contractAddress!),
-            gasPrice: EtherAmount.inWei(BigInt.parse('300000')),
-            maxGas: maxGas,
-            data: hexToBytes(postData),
-          ),
-          chainId: networkId,
+        transaction = Transaction(
+          nonce: nonce,
+          to: EthereumAddress.fromHex(contractAddress!),
+          gasPrice: gasPrice,
+          maxGas: maxGas,
+          data: hexToBytes(postData),
         );
       }
+
+      final transactionId = await client.sendTransaction(
+        formAddr,
+        transaction,
+        chainId: networkId,
+      );
 
       print('transact started $transactionId');
       return transactionId;
@@ -250,8 +248,6 @@ class TokenService {
       return null;
     }
   }
-
-
 
   /*
     * 获取配置信息，交易页面右侧的token列表 - R
@@ -262,10 +258,8 @@ class TokenService {
     * @return function configurations(string key);
     */
   static Future<List> configurations(String key, String contractAddress) async {
-    final client = Web3Client(Env.envConfig.aaaRpcUrl, Client());
-
     final String offset =
-    '20'.padLeft(64, '0'); // 偏移量固定是两个32位的字节，第一个32位是偏移量，第二个32位是长度，
+        '20'.padLeft(64, '0'); // 偏移量固定是两个32位的字节，第一个32位是偏移量，第二个32位是长度，
     final String len = key.length.toRadixString(16).padLeft(64, '0');
     final String value = bytesToHex(utf8.encode(key)).padRight(64, '0');
     final String postData = '0x1214dd58' + offset + len + value;
