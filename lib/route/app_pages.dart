@@ -37,6 +37,8 @@ import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_binding.dart';
 import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_view.dart';
 import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_binding.dart';
 import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_view.dart';
+import 'package:aa_wallet/page/wallet/collection_address/collection_address_binding.dart';
+import 'package:aa_wallet/page/wallet/collection_address/collection_address_view.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_binding.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_view.dart';
 import 'package:aa_wallet/page/wallet/token_details/token_details_binding.dart';
@@ -188,6 +190,12 @@ class AppPages {
       name: _Paths.tokenTransfer,
       page: () => const TokenTransferPage(),
       binding: TokenTransferBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.collectionAddress,
+      page: () => const CollectionAddressPage(),
+      binding: CollectionAddressBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

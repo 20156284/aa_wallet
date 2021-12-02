@@ -1,7 +1,9 @@
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
+import 'package:aa_wallet/entity/token/transaction_records_entity.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/res.dart';
 import 'package:aa_wallet/route/app_pages.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,35 +16,38 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => CupertinoPageScaffold(
+    return CupertinoPageScaffold(
+      backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
+      navigationBar: CupertinoNavigationBar(
+        middle: Obx(() => Text(controller.tokenEntry.value.coinKey ?? '')),
         backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
-        navigationBar: CupertinoNavigationBar(
-          middle: Text(controller.tokenEntry.value.coinKey ?? ''),
-          backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
-          border: Border.all(width: 0.0, style: BorderStyle.none),
-        ),
-        child: Stack(
-          children: [
-            SmartRefresher(
+        border: Border.all(width: 0.0, style: BorderStyle.none),
+      ),
+      child: Stack(
+        children: [
+          Obx(
+            () => SmartRefresher(
               enablePullDown: true,
-              enablePullUp: true,
               header: const WaterDropHeader(),
               controller: controller.refreshCtrl,
               onRefresh: () => controller.onRefreshFun(),
-              onLoading: () => controller.onLoadingFun(),
+              // enablePullUp: true,
+              // onLoading: () => controller.onLoadingFun(),
               child: _buildChild(),
             ),
-            _buildToolBar(),
-          ],
-        ),
+          ),
+          _buildToolBar(),
+        ],
       ),
     );
   }
 
   Widget _buildChild() {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.only(
+          left: 15,
+          right: 15,
+          bottom: MediaQuery.of(Get.context!).padding.bottom + 44),
       itemBuilder: (c, i) {
         switch (i) {
           case 0:
@@ -50,10 +55,11 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
           case 1:
             return _buildState();
           default:
-            return _buildStateCell();
+            final transactionRecords = controller.transactionRecordsList[i - 2];
+            return _buildStateCell(transactionRecords);
         }
       },
-      itemCount: 3,
+      itemCount: controller.transactionRecordsList.length + 2,
     );
   }
 
@@ -109,25 +115,27 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
   }
 
   Widget _buildState() {
-    return Container(
-      margin: const EdgeInsets.only(top: 25),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildStateBtn(
-            title: AppS().token_details_state_all,
-            tag: 0,
-          ),
-          _buildStateBtn(
-            title: AppS().token_details_state_transfer_out,
-            tag: 1,
-          ),
-          _buildStateBtn(
-            title: AppS().token_details_state_transfer_in,
-            tag: 2,
-          ),
-        ],
+    return Obx(
+      () => Container(
+        margin: const EdgeInsets.only(top: 25, bottom: 15),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildStateBtn(
+              title: AppS().token_details_state_all,
+              tag: 0,
+            ),
+            _buildStateBtn(
+              title: AppS().token_details_state_transfer_out,
+              tag: 1,
+            ),
+            _buildStateBtn(
+              title: AppS().token_details_state_transfer_in,
+              tag: 2,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -140,6 +148,17 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
     return InkWell(
       onTap: () {
         controller.state.value = tag!;
+        switch (tag) {
+          case 0:
+            controller.type = null;
+            break;
+          case 1:
+            controller.type = '10';
+            break;
+          case 2:
+            controller.type = '20';
+            break;
+        }
         controller.onRefreshFun();
       },
       child: Container(
@@ -173,25 +192,29 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
   Widget _buildToolBar() {
     return Positioned(
       bottom: 0,
-      child: SafeArea(
-        child: Container(
-          width: Get.width,
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildBtn(
-                title: AppS().token_details_collection,
-                bgColor: const Color(0xFF0F6EFF),
-                onTap: () {},
-              ),
-              _buildBtn(
-                icon: Res.ic_transfer,
-                title: AppS().token_details_transfer,
-                bgColor: const Color(0xFF0548AE),
-                onTap: () => Get.toNamed(AppRoutes.tokenTransfer),
-              ),
-            ],
+      child: Container(
+        color: CupertinoTheme.of(Get.context!).scaffoldBackgroundColor,
+        child: SafeArea(
+          child: Container(
+            width: Get.width,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildBtn(
+                  title: AppS().token_details_collection,
+                  bgColor: const Color(0xFF0F6EFF),
+                  onTap: () => Get.toNamed(AppRoutes.collectionAddress),
+                ),
+                _buildBtn(
+                  icon: Res.ic_transfer,
+                  title: AppS().token_details_transfer,
+                  bgColor: const Color(0xFF0548AE),
+                  onTap: () => Get.toNamed(AppRoutes.tokenTransfer,
+                      arguments: controller.tokenEntry.value),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -244,7 +267,71 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
     );
   }
 
-  Widget _buildStateCell() {
-    return Container();
+  Widget _buildStateCell(TransactionRecordsEntity transactionRecordsEntity) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildItems(
+              title: AppS().token_transfer_cell_total,
+              subTitle: transactionRecordsEntity.number,
+              isRight: true),
+          const SizedBox(
+            height: 10,
+          ),
+          _buildItems(
+              title: AppS().token_transfer_cell_addr,
+              subTitle: transactionRecordsEntity.toAddress),
+          const SizedBox(
+            height: 10,
+          ),
+          _buildItems(
+              title: AppS().token_transfer_cell_hash,
+              subTitle: transactionRecordsEntity.txId),
+          const SizedBox(
+            height: 10,
+          ),
+          _buildItems(
+              title: AppS().token_transfer_cell_state,
+              subTitle: transactionRecordsEntity.status,
+              isRight: true),
+          const SizedBox(
+            height: 10,
+          ),
+          _buildItems(
+              title: AppS().token_transfer_cell_time,
+              subTitle: transactionRecordsEntity.createTime == null
+                  ? ''
+                  : DateUtil.formatDateMs(transactionRecordsEntity.createTime!,
+                      format: DateFormats.full),
+              isRight: true),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildItems({String? title, String? subTitle, bool? isRight}) {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title ?? ''),
+        const SizedBox(
+          width: 22,
+        ),
+        Expanded(
+          child: Text(
+            subTitle ?? '',
+            textAlign: isRight == true ? TextAlign.right : TextAlign.left,
+          ),
+        ),
+      ],
+    );
   }
 }

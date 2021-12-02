@@ -76,9 +76,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_permission_title": MessageLookupByLibrary.simpleMessage("權限提醒"),
         "app_permission_video_close":
             MessageLookupByLibrary.simpleMessage("音頻權限被您關閉"),
-        "app_save_photos": MessageLookupByLibrary.simpleMessage("保存照片"),
+        "app_save_photos": MessageLookupByLibrary.simpleMessage("保存圖片至相冊"),
         "app_save_photos_failure": MessageLookupByLibrary.simpleMessage("保存失敗"),
-        "app_save_photos_success": MessageLookupByLibrary.simpleMessage("保存成功"),
+        "app_save_photos_success":
+            MessageLookupByLibrary.simpleMessage("圖片已保存至相冊"),
         "app_tips": MessageLookupByLibrary.simpleMessage(" 溫馨提示 "),
         "app_update_version": m1,
         "app_version": m2,
@@ -102,6 +103,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("助记词丢失，无法找回，请务必备份助记词"),
         "choose_caret_wallet_title":
             MessageLookupByLibrary.simpleMessage("選擇不同身份"),
+        "collections_addr": MessageLookupByLibrary.simpleMessage("錢包地址"),
+        "collections_addr_copy": MessageLookupByLibrary.simpleMessage("複製錢包地址"),
+        "collections_addr_in_eth":
+            MessageLookupByLibrary.simpleMessage("掃二維碼，轉入ETH"),
+        "collections_addr_tips":
+            MessageLookupByLibrary.simpleMessage("該地址僅支持ETHERUM資產,請勿轉入其他公鏈資產"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("確認助記詞"),
         "confirm_mnemonic_sequence":
             MessageLookupByLibrary.simpleMessage("請按順序點擊助記詞，已確認您真確備份"),
@@ -161,6 +168,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_addr": MessageLookupByLibrary.simpleMessage("收款地址"),
         "token_transfer_addr_input":
             MessageLookupByLibrary.simpleMessage("請輸入ETH地址"),
+        "token_transfer_cell_addr":
+            MessageLookupByLibrary.simpleMessage("交易地址"),
+        "token_transfer_cell_hash":
+            MessageLookupByLibrary.simpleMessage("交易Hash"),
+        "token_transfer_cell_state":
+            MessageLookupByLibrary.simpleMessage("交易狀態"),
+        "token_transfer_cell_time":
+            MessageLookupByLibrary.simpleMessage("交易時間"),
+        "token_transfer_cell_total":
+            MessageLookupByLibrary.simpleMessage("交易數量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定義"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("礦工費"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("金額"),

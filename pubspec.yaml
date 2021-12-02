@@ -134,6 +134,8 @@ dependencies:
   flutter_html: ^2.1.5
   # 二维码扫描 https://pub.dev/packages/qr_code_scanner   没有WEB
   qr_code_scanner: ^0.6.1
+  # 二维码控件 https://pub.dev/packages/qr_flutter
+  qr_flutter: ^4.0.0
 
   ########################################################################
   ####以上的插件，尽量不要更换；因为可能core会用到。您想更换的在下面添加您使用的####
@@ -150,8 +152,14 @@ dependencies:
   hex: ^0.2.0
   # aes 加解密 https://pub.dev/packages/aes_ecb_pkcs5_flutter
   aes_ecb_pkcs5_flutter: ^0.1.2
+  # 保存图片 https://pub.dev/packages/image_gallery_saver   没有WEB
+  image_gallery_saver: ^1.7.1
 #  # bitcoin_flutter https://pub.dev/packages/bitcoin_flutter
 #  bitcoin_flutter: ^2.0.2
+  #  #app更新
+  app_upgrade:
+    git:
+      url: https://gitee.com/willzh/app_upgrade.git
 
 
 #dependency_overrides:
@@ -204,6 +212,7 @@ flutter:
     - assets/images/ic_choose_lang.png
     - assets/images/ic_collection.png
     - assets/images/ic_copy.png
+    - assets/images/ic_copy_blue.png
     - assets/images/ic_creat_wallet.png
     - assets/images/ic_edit.png
     - assets/images/ic_en_us.png
@@ -218,7 +227,9 @@ flutter:
     - assets/images/ic_private_key.png
     - assets/images/ic_profile.png
     - assets/images/ic_profile_selcet.png
+    - assets/images/ic_qr_code_bg.png
     - assets/images/ic_recover_wallet.png
+    - assets/images/ic_save.png
     - assets/images/ic_scan.png
     - assets/images/ic_tips.png
     - assets/images/ic_transfer.png

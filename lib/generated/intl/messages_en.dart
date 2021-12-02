@@ -109,6 +109,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "The mnemonic phrase is lost and cannot be retrieved, please make sure to back up the mnemonic phrase"),
         "choose_caret_wallet_title":
             MessageLookupByLibrary.simpleMessage("Choose identity"),
+        "collections_addr":
+            MessageLookupByLibrary.simpleMessage("Wallet address"),
+        "collections_addr_copy":
+            MessageLookupByLibrary.simpleMessage("Copy address"),
+        "collections_addr_in_eth": MessageLookupByLibrary.simpleMessage(
+            "Scan the QR code and transfer to ETH"),
+        "collections_addr_tips": MessageLookupByLibrary.simpleMessage(
+            "This address only supports ETHERUM assets, please do not transfer to other public chain assets"),
         "confirm_mnemonic":
             MessageLookupByLibrary.simpleMessage("Confirm Mnemonic"),
         "confirm_mnemonic_sequence": MessageLookupByLibrary.simpleMessage(
@@ -183,6 +191,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transfer Address"),
         "token_transfer_addr_input":
             MessageLookupByLibrary.simpleMessage("Please enter eth address"),
+        "token_transfer_cell_addr":
+            MessageLookupByLibrary.simpleMessage("Transfer Address"),
+        "token_transfer_cell_hash":
+            MessageLookupByLibrary.simpleMessage("Transfer Hash"),
+        "token_transfer_cell_state":
+            MessageLookupByLibrary.simpleMessage("Transfer State"),
+        "token_transfer_cell_time":
+            MessageLookupByLibrary.simpleMessage("Transfer Time"),
+        "token_transfer_cell_total":
+            MessageLookupByLibrary.simpleMessage("Transfer Total"),
         "token_transfer_customize":
             MessageLookupByLibrary.simpleMessage("Customize"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("Fee"),

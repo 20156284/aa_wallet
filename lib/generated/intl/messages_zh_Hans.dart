@@ -76,9 +76,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_permission_title": MessageLookupByLibrary.simpleMessage("权限提醒"),
         "app_permission_video_close":
             MessageLookupByLibrary.simpleMessage("音视频权限被您关闭"),
-        "app_save_photos": MessageLookupByLibrary.simpleMessage("保存照片"),
+        "app_save_photos": MessageLookupByLibrary.simpleMessage("保存图片至相册"),
         "app_save_photos_failure": MessageLookupByLibrary.simpleMessage("保存失败"),
-        "app_save_photos_success": MessageLookupByLibrary.simpleMessage("保存成功"),
+        "app_save_photos_success":
+            MessageLookupByLibrary.simpleMessage("图片已经保存至相册"),
         "app_tips": MessageLookupByLibrary.simpleMessage(" 温馨提示 "),
         "app_update_version": m1,
         "app_version": m2,
@@ -102,6 +103,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("助记词丢失，无法找回，请务必备份助记词"),
         "choose_caret_wallet_title":
             MessageLookupByLibrary.simpleMessage("选择不同身份"),
+        "collections_addr": MessageLookupByLibrary.simpleMessage("钱包地址"),
+        "collections_addr_copy": MessageLookupByLibrary.simpleMessage("复制钱包地址"),
+        "collections_addr_in_eth":
+            MessageLookupByLibrary.simpleMessage("扫二维码,转入ETH"),
+        "collections_addr_tips":
+            MessageLookupByLibrary.simpleMessage("该地址仅支持ETHERUM资产,请勿转入其他公链资产"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("确认助记词"),
         "confirm_mnemonic_sequence":
             MessageLookupByLibrary.simpleMessage("请按顺序点击助记词，以确认您正确备份"),
@@ -161,6 +168,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_addr": MessageLookupByLibrary.simpleMessage("收款地址"),
         "token_transfer_addr_input":
             MessageLookupByLibrary.simpleMessage("请输入ETH地址"),
+        "token_transfer_cell_addr":
+            MessageLookupByLibrary.simpleMessage("交易地址"),
+        "token_transfer_cell_hash":
+            MessageLookupByLibrary.simpleMessage("交易哈希"),
+        "token_transfer_cell_state":
+            MessageLookupByLibrary.simpleMessage("交易状态"),
+        "token_transfer_cell_time":
+            MessageLookupByLibrary.simpleMessage("交易时间"),
+        "token_transfer_cell_total":
+            MessageLookupByLibrary.simpleMessage("交易数量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定义"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("矿工费"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("金额"),
@@ -175,7 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),
         "wallet": MessageLookupByLibrary.simpleMessage("钱包"),
         "wallet_add_copy_success":
-            MessageLookupByLibrary.simpleMessage("地址已复制"),
+            MessageLookupByLibrary.simpleMessage("钱包地址已复制"),
         "wallet_assets": MessageLookupByLibrary.simpleMessage("资产"),
         "wallet_choose": MessageLookupByLibrary.simpleMessage("选择钱包"),
         "wallet_create_import": MessageLookupByLibrary.simpleMessage("创建/导入"),

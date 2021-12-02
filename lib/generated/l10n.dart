@@ -1140,6 +1140,56 @@ class AppS {
     );
   }
 
+  /// `Transfer Total`
+  String get token_transfer_cell_total {
+    return Intl.message(
+      'Transfer Total',
+      name: 'token_transfer_cell_total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Address`
+  String get token_transfer_cell_addr {
+    return Intl.message(
+      'Transfer Address',
+      name: 'token_transfer_cell_addr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Hash`
+  String get token_transfer_cell_hash {
+    return Intl.message(
+      'Transfer Hash',
+      name: 'token_transfer_cell_hash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer State`
+  String get token_transfer_cell_state {
+    return Intl.message(
+      'Transfer State',
+      name: 'token_transfer_cell_state',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Time`
+  String get token_transfer_cell_time {
+    return Intl.message(
+      'Transfer Time',
+      name: 'token_transfer_cell_time',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transfer Address`
   String get token_transfer_addr {
     return Intl.message(
@@ -1255,6 +1305,46 @@ class AppS {
     return Intl.message(
       'Customize',
       name: 'token_transfer_customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This address only supports ETHERUM assets, please do not transfer to other public chain assets`
+  String get collections_addr_tips {
+    return Intl.message(
+      'This address only supports ETHERUM assets, please do not transfer to other public chain assets',
+      name: 'collections_addr_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan the QR code and transfer to ETH`
+  String get collections_addr_in_eth {
+    return Intl.message(
+      'Scan the QR code and transfer to ETH',
+      name: 'collections_addr_in_eth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy address`
+  String get collections_addr_copy {
+    return Intl.message(
+      'Copy address',
+      name: 'collections_addr_copy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet address`
+  String get collections_addr {
+    return Intl.message(
+      'Wallet address',
+      name: 'collections_addr',
       desc: '',
       args: [],
     );

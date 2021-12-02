@@ -14,36 +14,37 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TokenTransferLogic extends GetxController {
-  //0x201ac284b61461ca7c13aaca3999434b840c6476
-  // final TextEditingController addrEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController addrEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
 
-  final TextEditingController addrEdit =
-      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController addrEdit =
+  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
+
+  final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
+
   final pwdVisible = true.obs;
 
+  //自定义转账
   final chooseTag = 3.obs;
+
+  //钱包ID
   final wallet = WalletEntry(id: 0).obs;
 
   @override
   void onInit() async {
     super.onInit();
 
-    final list = await WalletService.to.appDate.getAllWallets();
+    wallet.value = WalletService.to.wallet.value;
 
-    for (final walletEntry in list) {
-      if (walletEntry.is_main != null && walletEntry.is_main!) {
-        wallet.value = walletEntry;
-      }
+    final arguments = Get.arguments;
+
+    if (arguments != null && arguments is TokenEntry) {
+      tokenEntry.value = arguments;
     }
-
-    // final List arr = await TokenService.configurations(
-    //     'gasprice', '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A');
-    // print('获取到配置合约中的gas limit:');
-    // print(arr);
+    print(arguments.toString());
   }
 
   /**
@@ -189,6 +190,7 @@ class TokenTransferLogic extends GetxController {
    * @param exportType 导出类型
    */
   void dialogConfirm() async {
+
     if (pwdEdit.text.trim().isEmpty) {
       CoreKitToast.showError(AppS().creat_wallet_pwd_input);
       return;
@@ -206,43 +208,72 @@ class TokenTransferLogic extends GetxController {
     pwdVisible.value = true;
 
     String pwd = pwdEdit.text;
+
+
+    final cancelFunc = CoreKitToast.showLoading();
     //加密后的密码
     pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
     final privateKey =
         await const WalletCrypt().decrypt(pwd, wallet.value.privateKey!);
 
-    //主币种转账
-    final rsp = await TokenService.transaction(
-      privateKey: privateKey,
-      toAddress: addrEdit.text.trim(),
-      amount: BigInt.parse(moneyEdit.text.trim()),
-      maxGas: 100000,
-    );
 
-    // final hexNum =
-    //     (BigInt.parse(moneyEdit.text.trim()) * BigInt.from(pow(10, 18))).toRadixString(16);
-    // final String postData =
-    //     '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
-    //
-    //
-    // //代币转账
-    // final rsp = await TokenService.sendToken(
-    //   privateKey: privateKey,
-    //   toAddress: addrEdit.text.trim(),
-    //   postData: postData,
-    //   maxGas: 100000,
-    //   contractAddress: '0x724Cbb5c969890Adc6580d610f9086Ecc003A53A',
-    // );
-    //
-    print('transaction => $rsp');
 
-  }
+    //默认是主币转账
+    if (tokenEntry.value.contractAddress == null) {
+      // //主币种转账
+      // final rsp = await TokenService.transaction(
+      //   privateKey: privateKey,
+      //   toAddress: addrEdit.text.trim(),
+      //   amount: BigInt.parse(moneyEdit.text.trim()),
+      //   maxGas: 100000,
+      // );
+      // print('transaction => $rsp');
 
-  String addPreZero(String num) {
-    var t = (num + '').length, s = '';
-    for (var i = 0; i < 64 - t; i++) {
-      s += '0';
+      TokenService.transaction(
+        privateKey: privateKey,
+        toAddress: addrEdit.text.trim(),
+        amount: BigInt.parse(moneyEdit.text.trim()),
+        maxGas: 100000,
+      ).then((value){
+        addrEdit.text = '';
+        pwdEdit.text = '';
+        moneyEdit.text = '';
+        print('transaction => $value');
+      }).catchError((error) {
+        CoreKitToast.showError(error);
+      }).whenComplete(cancelFunc);
+    } else {
+      final hexNum =
+          (BigInt.parse(moneyEdit.text.trim()) * BigInt.from(pow(10, 18)))
+              .toRadixString(16);
+      final String postData =
+          '0xa9059cbb${addrEdit.text.trim().replaceFirst("0x", "").padLeft(64, '0')}${hexNum.padLeft(64, '0')}';
+
+      // //代币转账
+      // final rsp = await TokenService.transaction(
+      //   privateKey: privateKey,
+      //   toAddress: addrEdit.text.trim(),
+      //   postData: postData,
+      //   maxGas: 100000,
+      //   contractAddress: tokenEntry.value.contractAddress!,
+      // );
+      //
+      // print('transaction => $rsp');
+
+      TokenService.transaction(
+        privateKey: privateKey,
+        toAddress: addrEdit.text.trim(),
+        postData: postData,
+        maxGas: 100000,
+        contractAddress: tokenEntry.value.contractAddress!,
+      ).then((value){
+        addrEdit.text = '';
+        pwdEdit.text = '';
+        moneyEdit.text = '';
+        print('transaction => $value');
+      }).catchError((error) {
+        CoreKitToast.showError(error);
+      }).whenComplete(cancelFunc);
     }
-    return s + num;
   }
 }

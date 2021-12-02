@@ -33,6 +33,7 @@ abstract class AppRoutes {
   static const addToken = _Paths.addToken;
   static const tokenDetails = _Paths.tokenDetails;
   static const tokenTransfer = _Paths.tokenTransfer;
+  static const collectionAddress = _Paths.collectionAddress;
   static const updateRecord = _Paths.updateRecord;
 }
 
@@ -60,5 +61,6 @@ abstract class _Paths {
   static const String addToken = '/addToken';
   static const String tokenDetails = '/tokenDetails';
   static const String tokenTransfer = '/tokenTransfer';
+  static const String collectionAddress = '/collectionAddress';
   static const String updateRecord = '/updateRecord';
 }

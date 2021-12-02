@@ -214,39 +214,49 @@ class TokenService {
     final gasPrice = await client.getGasPrice();
 
     Transaction transaction = Transaction();
-    try {
-      //主币转账
-      if (postData == null) {
-        transaction = Transaction(
-          nonce: nonce,
-          to: EthereumAddress.fromHex(toAddress!),
-          gasPrice: gasPrice,
-          maxGas: maxGas,
-          value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
-        );
-      } else {
-        //代币转账
-        transaction = Transaction(
-          nonce: nonce,
-          to: EthereumAddress.fromHex(contractAddress!),
-          gasPrice: gasPrice,
-          maxGas: maxGas,
-          data: hexToBytes(postData),
-        );
-      }
 
-      final transactionId = await client.sendTransaction(
-        formAddr,
-        transaction,
-        chainId: networkId,
+
+    //主币转账
+    if (postData == null) {
+      transaction = Transaction(
+        nonce: nonce,
+        to: EthereumAddress.fromHex(toAddress!),
+        gasPrice: gasPrice,
+        maxGas: maxGas,
+        value: EtherAmount.fromUnitAndValue(EtherUnit.ether, amount),
       );
-
-      print('transact started $transactionId');
-      return transactionId;
-    } catch (ex) {
-      print('ex $ex');
-      return null;
+    } else {
+      //代币转账
+      transaction = Transaction(
+        nonce: nonce,
+        to: EthereumAddress.fromHex(contractAddress!),
+        gasPrice: gasPrice,
+        maxGas: maxGas,
+        data: hexToBytes(postData),
+      );
     }
+
+   return  client.sendTransaction(
+      formAddr,
+      transaction,
+      chainId: networkId,
+    );
+
+    // try {
+    //
+    //
+    //   final transactionId = await client.sendTransaction(
+    //     formAddr,
+    //     transaction,
+    //     chainId: networkId,
+    //   );
+    //
+    //   print('transact started $transactionId');
+    //   return transactionId;
+    // } catch (ex) {
+    //   print('ex $ex');
+    //   return null;
+    // }
   }
 
   /*

@@ -8,8 +8,8 @@
 import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/http/dior.dart';
 import 'package:aa_wallet/entity/token/coin_key_entity.dart';
+import 'package:aa_wallet/entity/token/transaction_records_entity.dart';
 import 'package:dio/dio.dart';
-
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -57,5 +57,17 @@ abstract class ToKenApi {
     @SendProgress() ProgressCallback? onSendProgress,
     @ReceiveProgress() ProgressCallback? onReceiveProgress,
     @Field('type') String? type,
+  });
+
+  @POST('/wallet/transactionRecords')
+  Future<List<TransactionRecordsEntity>> transactionRecords({
+    @DioOptions() Options? options,
+    @CancelRequest() CancelToken? cancelToken,
+    @SendProgress() ProgressCallback? onSendProgress,
+    @ReceiveProgress() ProgressCallback? onReceiveProgress,
+    @Field('protocol') String? protocol,
+    @Field('address') String? address,
+    @Field('type') String? type,
+    @Field('coinKey') String? coinKey,
   });
 }

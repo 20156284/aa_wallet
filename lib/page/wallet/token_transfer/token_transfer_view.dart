@@ -97,46 +97,46 @@ class TokenTransferPage extends GetView<TokenTransferLogic> {
                   filled: true,
                 ),
               ),
-              const SizedBox(
-                height: 25,
-              ),
-              Text(
-                AppS().token_transfer_fee,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Obx(
-                () => SizedBox(
-                  width: Get.width - 15 * 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      _buildBtn(
-                        title: AppS().token_transfer_slow,
-                        money: AppS().token_transfer_slow_info('000175'),
-                        btnTag: 0,
-                      ),
-                      _buildBtn(
-                        title: AppS().token_transfer_recommend,
-                        money: AppS().token_transfer_recommend_info('000175'),
-                        btnTag: 1,
-                      ),
-                      _buildBtn(
-                        title: AppS().token_transfer_quick,
-                        money: AppS().token_transfer_quick_info('000175'),
-                        btnTag: 2,
-                      ),
-                      _buildBtn(
-                        title: AppS().token_transfer_customize,
-                        btnTag: 3,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // const SizedBox(
+              //   height: 25,
+              // ),
+              // Text(
+              //   AppS().token_transfer_fee,
+              //   style: const TextStyle(fontWeight: FontWeight.bold),
+              // ),
+              // const SizedBox(
+              //   height: 16,
+              // ),
+              // Obx(
+              //   () => SizedBox(
+              //     width: Get.width - 15 * 2,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       mainAxisSize: MainAxisSize.max,
+              //       children: [
+              //         _buildBtn(
+              //           title: AppS().token_transfer_slow,
+              //           money: AppS().token_transfer_slow_info('000175'),
+              //           btnTag: 0,
+              //         ),
+              //         _buildBtn(
+              //           title: AppS().token_transfer_recommend,
+              //           money: AppS().token_transfer_recommend_info('000175'),
+              //           btnTag: 1,
+              //         ),
+              //         _buildBtn(
+              //           title: AppS().token_transfer_quick,
+              //           money: AppS().token_transfer_quick_info('000175'),
+              //           btnTag: 2,
+              //         ),
+              //         _buildBtn(
+              //           title: AppS().token_transfer_customize,
+              //           btnTag: 3,
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           Positioned(

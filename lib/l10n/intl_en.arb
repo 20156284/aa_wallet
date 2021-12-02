@@ -129,6 +129,11 @@
   "token_details_state_transfer_out":"Out",
   "token_details_state_transfer_in":"In",
   "token_details_roughly_money": "≈{money} ASDT",
+  "token_transfer_cell_total": "Transfer Total",
+  "token_transfer_cell_addr": "Transfer Address",
+  "token_transfer_cell_hash": "Transfer Hash",
+  "token_transfer_cell_state": "Transfer State",
+  "token_transfer_cell_time": "Transfer Time",
 
   "token_transfer_addr": "Transfer Address",
   "token_transfer_addr_input": "Please enter eth address",
@@ -141,5 +146,10 @@
   "token_transfer_recommend_info": "0/{money}AAA<5minute",
   "token_transfer_quick": "Quick",
   "token_transfer_quick_info": "0/{money}AAA<1minute",
-  "token_transfer_customize": "Customize"
+  "token_transfer_customize": "Customize",
+
+  "collections_addr_tips": "This address only supports ETHERUM assets, please do not transfer to other public chain assets",
+  "collections_addr_in_eth": "Scan the QR code and transfer to ETH",
+  "collections_addr_copy": "Copy address",
+  "collections_addr": "Wallet address"
 }

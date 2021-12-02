@@ -12,8 +12,8 @@
   "app_permission_open": "开启权限",
   "app_album":"从相册中选择",
   "app_camera":"拍照",
-  "app_save_photos":"保存照片",
-  "app_save_photos_success":"保存成功",
+  "app_save_photos":"保存图片至相册",
+  "app_save_photos_success":"图片已经保存至相册",
   "app_save_photos_failure":"保存失败",
   "app_copy_success":"复制成功",
   "app_i_know": "我知道了",
@@ -101,7 +101,7 @@
   "wallet_import_key_content2": "一旦泄露，可能导致资产损失",
   "wallet_import_key_copy": "复制私钥",
   "wallet_import_key_copy_success": "私钥已复制",
-  "wallet_add_copy_success":"地址已复制",
+  "wallet_add_copy_success":"钱包地址已复制",
 
   "wallet_edit_name": "钱包昵称修改",
   "wallet_edit_name_input": "请输入钱包昵称",
@@ -129,6 +129,11 @@
   "token_details_state_transfer_out":"转出",
   "token_details_state_transfer_in":"转入",
   "token_details_roughly_money": "≈{money} ASDT",
+  "token_transfer_cell_total": "交易数量",
+  "token_transfer_cell_addr": "交易地址",
+  "token_transfer_cell_hash": "交易哈希",
+  "token_transfer_cell_state": "交易状态",
+  "token_transfer_cell_time": "交易时间",
 
   "token_transfer_addr": "收款地址",
   "token_transfer_addr_input": "请输入ETH地址",
@@ -141,5 +146,10 @@
   "token_transfer_recommend_info": "0/{money}AAA<5分钟",
   "token_transfer_quick": "快",
   "token_transfer_quick_info": "0/{money}AAA<1分钟",
-  "token_transfer_customize": "自定义"
+  "token_transfer_customize": "自定义",
+
+  "collections_addr_tips": "该地址仅支持ETHERUM资产,请勿转入其他公链资产",
+  "collections_addr_in_eth": "扫二维码,转入ETH",
+  "collections_addr_copy": "复制钱包地址",
+  "collections_addr": "钱包地址"
 }

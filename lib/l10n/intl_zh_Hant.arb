@@ -12,8 +12,8 @@
   "app_permission_open": "開啟權限",
   "app_album":"從相冊選擇",
   "app_camera":"拍照",
-  "app_save_photos":"保存照片",
-  "app_save_photos_success":"保存成功",
+  "app_save_photos":"保存圖片至相冊",
+  "app_save_photos_success":"圖片已保存至相冊",
   "app_save_photos_failure":"保存失敗",
   "app_copy_success":"複製成功",
   "app_i_know": "好的",
@@ -129,6 +129,11 @@
   "token_details_state_transfer_out":"轉出",
   "token_details_state_transfer_in":"轉入",
   "token_details_roughly_money": "≈{money} ASDT",
+  "token_transfer_cell_total": "交易數量",
+  "token_transfer_cell_addr": "交易地址",
+  "token_transfer_cell_hash": "交易Hash",
+  "token_transfer_cell_state": "交易狀態",
+  "token_transfer_cell_time": "交易時間",
 
   "token_transfer_addr": "收款地址",
   "token_transfer_addr_input": "請輸入ETH地址",
@@ -141,5 +146,10 @@
   "token_transfer_recommend_info": "0/{money}AAA<5分鐘",
   "token_transfer_quick": "快",
   "token_transfer_quick_info": "0/{money}AAA<1分鐘",
-  "token_transfer_customize": "自定義"
+  "token_transfer_customize": "自定義",
+
+  "collections_addr_tips": "該地址僅支持ETHERUM資產,請勿轉入其他公鏈資產",
+  "collections_addr_in_eth": "掃二維碼，轉入ETH",
+  "collections_addr_copy": "複製錢包地址",
+  "collections_addr": "錢包地址"
 }

@@ -10,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -179,7 +178,7 @@ class WalletMainLogic extends GetxController {
   }
 
   /**
-   * 导出输入密码确认窗
+   * 复制钱包地址的弹窗
    * @author Will
    * @date 2021/11/19 15:06
    * @param exportType 导出类型
