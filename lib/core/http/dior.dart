@@ -5,10 +5,15 @@
 // Copyright @flutter_core_kit.All rights reserved.
 // ===============================================
 
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:io';
+
+import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/logger.dart';
 import 'package:aa_wallet/core/toast.dart';
+import 'package:dio/adapter.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+
 import 'dio_interceptor.dart';
 
 class Dior {
@@ -39,6 +44,26 @@ class Dior {
       dio.interceptors
           .add(LogInterceptor(requestBody: true, responseBody: true));
     }
+
+    if (!kIsWeb) {
+      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+          (client) {
+        //强制信任所有的Https 请求
+        client.badCertificateCallback =
+            (X509Certificate cert, String host, int port) {
+          return true;
+        };
+
+        if (Env.appEnv == EnvName.charlesDebug ||
+            Env.appEnv == EnvName.charlesRelease) {
+          client.findProxy = (url) {
+            // return "PROXY 192.168.0.78:8888";
+            return 'PROXY 192.168.0.83:8888';
+          };
+        }
+      };
+    }
+
     // A dio transformer especially for flutter, by which the json decoding will be in background with [compute] function.
     // dio.transformer = FlutterTransformer();
 

@@ -60,6 +60,26 @@ class Env {
     ethWss: 'wss://mainnet.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );
 
+  // 开发抓包
+  static final EnvConfig _charlesDebugConfig = EnvConfig(
+    appTitle: 'debugTitle',
+    baseUrl: 'http://test2-api.aapay.io',
+    aaaRpcUrl: 'http://159.138.134.163:8000',
+    ethRpcUrl: 'https://ropsten.infura.io/v3/4129fe30d0a340388d20e1fbd19d8039',
+    aaaWss: '',
+    ethWss: 'wss://ropsten.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
+  );
+
+  // 上线抓包
+  static final EnvConfig _charlesReleaseConfig = EnvConfig(
+    appTitle: 'releaseTitle',
+    baseUrl: 'http://test2-api.aapay.io',
+    aaaRpcUrl: 'http://119.8.104.104:8000',
+    ethRpcUrl: 'https://mainnet.infura.io/v3/4129fe30d0a340388d20e1fbd19d8039',
+    aaaWss: '',
+    ethWss: 'wss://mainnet.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
+  );
+
   static EnvConfig get envConfig => _getEnvConfig();
 
 // 根据不同环境返回对应的环境配置
@@ -69,6 +89,11 @@ class Env {
         return _debugConfig;
       case EnvName.release:
         return _releaseConfig;
+
+      case EnvName.charlesDebug:
+        return _charlesDebugConfig;
+      case EnvName.charlesRelease:
+        return _charlesReleaseConfig;
       default:
         return _debugConfig;
     }
@@ -83,4 +108,7 @@ abstract class EnvName {
   // 环境value
   static const String debug = 'Debug';
   static const String release = 'Release';
+
+  static const String charlesDebug = 'CharlesDebug';
+  static const String charlesRelease = 'CharlesRelease';
 }

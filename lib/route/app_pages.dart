@@ -45,6 +45,8 @@ import 'package:aa_wallet/page/wallet/token_details/token_details_binding.dart';
 import 'package:aa_wallet/page/wallet/token_details/token_details_view.dart';
 import 'package:aa_wallet/page/wallet/token_transfer/token_transfer_binding.dart';
 import 'package:aa_wallet/page/wallet/token_transfer/token_transfer_view.dart';
+import 'package:aa_wallet/page/wallet/wallet_assets/wallet_assets_binding.dart';
+import 'package:aa_wallet/page/wallet/wallet_assets/wallet_assets_view.dart';
 import 'package:aa_wallet/page/wallet/wallet_details/wallet_details_binding.dart';
 import 'package:aa_wallet/page/wallet/wallet_details/wallet_details_view.dart';
 import 'package:aa_wallet/page/wallet/wallet_edit_name/wallet_edit_name_binding.dart';
@@ -202,6 +204,12 @@ class AppPages {
       name: _Paths.updateRecord,
       page: () => const UpdateRecordPage(),
       binding: UpdateRecordBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.walletAssets,
+      page: () => const WalletAssetsPage(),
+      binding: WalletAssetsBinding(),
       transition: Transition.cupertino,
     ),
   ];

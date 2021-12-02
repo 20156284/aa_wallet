@@ -1,5 +1,6 @@
 import 'package:aa_wallet/const/app_theme.dart';
 import 'package:aa_wallet/generated/l10n.dart';
+import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,11 +24,11 @@ class AddTokenPage extends GetView<AddTokenLogic> {
           _buildSearchBar(),
           _buildCell(
             title: AppS().token_main_assets,
-            onTap: () {},
+            onTap: () => Get.toNamed(AppRoutes.walletAssets, arguments: true),
           ),
           _buildCell(
             title: AppS().token_user_all_assets,
-            onTap: () {},
+            onTap: () => Get.toNamed(AppRoutes.walletAssets, arguments: false),
           ),
           _buildCell(
             title: AppS().token_customize,
