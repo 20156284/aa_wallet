@@ -30,10 +30,15 @@ class WalletEditNameLogic extends GetxController {
       return;
     }
 
+    final walletService = WalletService.to;
     wallet.value = wallet.value.copyWith(name: nameEdit.text.trim());
 
-    WalletService.to.onUpdateWalletName(wallet.value).then((value) {
+    walletService.onUpdateWalletName(wallet.value).then((value) {
       if (value) {
+        if (wallet.value.is_main != null && wallet.value.is_main!) {
+          walletService.wallet.value = wallet.value;
+          walletService.wallet.refresh();
+        }
         Get.back(result: wallet.value);
       } else {
         CoreKitToast.showIconText(text: AppS().wallet_edit_tips);

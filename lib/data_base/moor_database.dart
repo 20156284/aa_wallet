@@ -113,10 +113,14 @@ class AppDatabase extends _$AppDatabase {
       );
 
   /// 更新一条数据
-  Future<bool> updateWallet(WalletEntry entry) => update(wallet).replace(entry);
+  Future<bool> updateWallet(WalletEntry entry) {
+    return update(wallet).replace(entry);
+  }
 
   /// 删除一条数据
-  Future<int> deleteWallet(WalletEntry entry) => delete(wallet).delete(entry);
+  Future<int> deleteWallet(WalletEntry entry) {
+    return delete(wallet).delete(entry);
+  }
 
   Future<List<TokenEntry>> getAllToken() => select(token).get();
 
