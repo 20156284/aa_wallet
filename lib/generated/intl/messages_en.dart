@@ -26,13 +26,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(version) => "AAToken ${version}";
 
-  static String m3(money) => "≈${money} ASDT";
+  static String m3(coin) => "Scan the QR code and transfer to ${coin}";
 
-  static String m4(money) => "0/${money}AAA<1minute";
+  static String m4(money) => "≈${money} ASDT";
 
-  static String m5(money) => "0/${money}AAA<5minute";
+  static String m5(money) => "0/${money}AAA<1minute";
 
-  static String m6(money) => "0/${money}AAA<30minute";
+  static String m6(money) => "0/${money}AAA<5minute";
+
+  static String m7(money) => "0/${money}AAA<30minute";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -42,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add Coin type"),
         "add_token_input": MessageLookupByLibrary.simpleMessage(
             "Please enter token name or token address"),
-        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAC"),
+        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAA"),
         "add_wallet_aac_subtitle":
             MessageLookupByLibrary.simpleMessage("AAcoin"),
         "add_wallet_btc": MessageLookupByLibrary.simpleMessage("BTC"),
@@ -95,9 +97,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_up_mnemonic": MessageLookupByLibrary.simpleMessage(
             "Please copy the mnemonic words in order to ensure that the backup is correct"),
         "back_up_mnemonic_confirm":
-            MessageLookupByLibrary.simpleMessage("Copy mnemonic"),
+            MessageLookupByLibrary.simpleMessage("Confirm BackUp"),
         "back_up_mnemonic_confirm_success":
             MessageLookupByLibrary.simpleMessage("Mnemonic has copy"),
+        "back_up_mnemonic_copy":
+            MessageLookupByLibrary.simpleMessage("Copy mnemonic"),
         "back_up_mnemonic_tips": MessageLookupByLibrary.simpleMessage(
             "\n1. Properly keep the mnemonic phrase to a safe place isolated from the network.\n2. Do not share and store mnemonic words in a networked environment, such as emails, photo albums, social applications, etc."),
         "back_up_mnemonic_title":
@@ -133,8 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Wallet address"),
         "collections_addr_copy":
             MessageLookupByLibrary.simpleMessage("Copy address"),
-        "collections_addr_in_eth": MessageLookupByLibrary.simpleMessage(
-            "Scan the QR code and transfer to ETH"),
+        "collections_addr_in_eth": m3,
         "collections_addr_tips": MessageLookupByLibrary.simpleMessage(
             "This address only supports ETHERUM assets, please do not transfer to other public chain assets"),
         "confirm_mnemonic":
@@ -197,7 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customize Token"),
         "token_details_collection":
             MessageLookupByLibrary.simpleMessage("Collection"),
-        "token_details_roughly_money": m3,
+        "token_details_roughly_money": m4,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("All"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("In"),
@@ -228,12 +231,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("please enter amount"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("Quick"),
-        "token_transfer_quick_info": m4,
+        "token_transfer_quick_info": m5,
         "token_transfer_recommend":
             MessageLookupByLibrary.simpleMessage("Recommend"),
-        "token_transfer_recommend_info": m5,
+        "token_transfer_recommend_info": m6,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
-        "token_transfer_slow_info": m6,
+        "token_transfer_slow_info": m7,
         "token_user_all_assets":
             MessageLookupByLibrary.simpleMessage("All Assets"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),

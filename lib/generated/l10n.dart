@@ -610,11 +610,21 @@ class AppS {
     );
   }
 
-  /// `Copy mnemonic`
+  /// `Confirm BackUp`
   String get back_up_mnemonic_confirm {
     return Intl.message(
-      'Copy mnemonic',
+      'Confirm BackUp',
       name: 'back_up_mnemonic_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy mnemonic`
+  String get back_up_mnemonic_copy {
+    return Intl.message(
+      'Copy mnemonic',
+      name: 'back_up_mnemonic_copy',
       desc: '',
       args: [],
     );
@@ -1010,10 +1020,10 @@ class AppS {
     );
   }
 
-  /// `AAC`
+  /// `AAA`
   String get add_wallet_aac {
     return Intl.message(
-      'AAC',
+      'AAA',
       name: 'add_wallet_aac',
       desc: '',
       args: [],
@@ -1330,13 +1340,13 @@ class AppS {
     );
   }
 
-  /// `Scan the QR code and transfer to ETH`
-  String get collections_addr_in_eth {
+  /// `Scan the QR code and transfer to {coin}`
+  String collections_addr_in_eth(Object coin) {
     return Intl.message(
-      'Scan the QR code and transfer to ETH',
+      'Scan the QR code and transfer to $coin',
       name: 'collections_addr_in_eth',
       desc: '',
-      args: [],
+      args: [coin],
     );
   }
 

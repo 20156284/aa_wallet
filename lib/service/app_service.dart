@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:aa_wallet/api/token/token_api.dart';
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
@@ -17,10 +18,12 @@ import 'package:aa_wallet/preference/app_user_preferences.dart';
 import 'package:aa_wallet/res.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:aa_wallet/utils/token_server.dart';
+import 'package:aa_wallet/utils/wallet_crypt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:web3dart/credentials.dart';
 
 class AppService extends GetxService {
   AppService(this.context);
@@ -88,10 +91,10 @@ class AppService extends GetxService {
       changeLanguage(const Locale('en', 'US'));
     }
 
-    //表示 第一次打开 app 没有创建过
-    if (storeApp.isFistTime == null) {
-      app.value.isFistTime = true;
-    }
+    // //表示 第一次打开 app 没有创建过
+    // if (storeApp.isFistTime == null) {
+    //   app.value.isFistTime = true;
+    // }
   }
 
   /**
@@ -157,15 +160,15 @@ class AppService extends GetxService {
    * @param cancelFunc 关闭的load
    */
   void insertWallet({
-    String? name,
-    String? password,
-    String? mnemonic,
+    required String? name,
+    required String? password,
     String? privateKey,
+    String? mnemonic,
     String? protocol,
-    String? address,
     String? rpcUrl,
-    CancelFunc? cancelFunc,
-  }) {
+  }) async {
+    final cancelFunc = CoreKitToast.showLoading();
+
     final wService = WalletService.to;
 
     bool isFist = false;
@@ -175,46 +178,64 @@ class AppService extends GetxService {
       isFist = app.value.isFistTime!;
     }
 
-    wService.appDate
-        .insertWallet(
+    //加密后的密码
+    password = await const WalletCrypt().walletPwdEncrypt(password!);
+
+    if (mnemonic != null) {
+      //通过 助记词产生 私钥
+      privateKey = TokenService.getPrivateKey(mnemonic);
+      //加密后的助记词
+      mnemonic = await const WalletCrypt().encrypt(password, mnemonic);
+    }
+
+    //通过 私钥 产生 地址.
+    final EthereumAddress publicAddress =
+        TokenService.getPublicAddress(privateKey!);
+
+    //加密后秘钥
+    privateKey = await const WalletCrypt().encrypt(password, privateKey);
+
+    final value = await wService.appDate.insertWallet(
       name: name,
       password: password,
       mnemonic: mnemonic,
       privateKey: privateKey,
       protocol: protocol,
-      address: address,
+      address: publicAddress.hexEip55,
       rpcUrl: rpcUrl,
       //第一次创建的钱包也是主钱包
       isMain: isFist,
       isFist: isFist,
-    )
+    );
+
+    final WalletEntry wallet = WalletEntry(
+      id: value,
+      name: name,
+      password: password,
+      address: publicAddress.hexEip55,
+      mnemonic: mnemonic,
+      privateKey: privateKey,
+      protocol: protocol,
+      rpcUrl: rpcUrl,
+      //第一次创建的钱包也是主钱包
+      is_main: isFist,
+      is_fist: isFist,
+    );
+    wService.wallet.value = wallet;
+
+    updateFistTime(false);
+    if (isFist) creatToken(wallet);
+
+    //创建钱包成功的时候发给后台让后添加
+    ToKenApi.acquire()
+        .walletAddAddress(
+            protocol: wService.protocol.value, address: publicAddress.hexEip55)
         .then((value) {
-      final WalletEntry wallet = WalletEntry(
-        id: value,
-        name: name,
-        password: password,
-        address: address,
-        mnemonic: mnemonic,
-        privateKey: privateKey,
-        protocol: protocol,
-        rpcUrl: rpcUrl,
-        //第一次创建的钱包也是主钱包
-        is_main: isFist,
-        is_fist: isFist,
-      );
-      wService.wallet.value = wallet;
-      //创建钱包成功的时候发给后台让后添加
-      ToKenApi.acquire().walletAddAddress(
-          protocol: wService.protocol.value, address: address);
-
-      updateFistTime(false);
-      if (isFist) creatToken(wallet);
-
       //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
       Get.offAllNamed(AppRoutes.appMain);
     }).catchError((error) {
       CoreKitToast.showError(error);
-    }).whenComplete(cancelFunc!);
+    }).whenComplete(cancelFunc);
   }
 
   /**

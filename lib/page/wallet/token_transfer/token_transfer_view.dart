@@ -1,9 +1,11 @@
 import 'package:aa_wallet/const/app_theme.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/generated/l10n.dart';
+import 'package:aa_wallet/res.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'token_transfer_logic.dart';
 
@@ -18,6 +20,19 @@ class TokenTransferPage extends GetView<TokenTransferLogic> {
         middle: Text(AppS().token_details_transfer),
         backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
         border: Border.all(width: 0.0, style: BorderStyle.none),
+        trailing: InkWell(
+          onTap: () => controller.getPermission(Permission.camera),
+          child: Container(
+            height: kMinInteractiveDimensionCupertino,
+            width: kMinInteractiveDimensionCupertino,
+            alignment: Alignment.centerRight,
+            child: Image.asset(
+              Res.ic_scan,
+              height: 24,
+              width: 24,
+            ),
+          ),
+        ),
       ),
       child: Stack(
         children: [

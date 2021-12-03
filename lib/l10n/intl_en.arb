@@ -66,7 +66,8 @@
   "back_up_mnemonic_title": "BackUp mnemonic",
   "back_up_mnemonic": "Please copy the mnemonic words in order to ensure that the backup is correct",
   "back_up_mnemonic_tips": "\n1. Properly keep the mnemonic phrase to a safe place isolated from the network.\n2. Do not share and store mnemonic words in a networked environment, such as emails, photo albums, social applications, etc.",
-  "back_up_mnemonic_confirm": "Copy mnemonic",
+  "back_up_mnemonic_confirm": "Confirm BackUp",
+  "back_up_mnemonic_copy": "Copy mnemonic",
   "back_up_mnemonic_confirm_success": "Mnemonic has copy",
 
   "confirm_mnemonic": "Confirm Mnemonic",
@@ -114,7 +115,7 @@
   "add_wallet_eth_subtitle": "Ethereum",
   "add_wallet_btc": "BTC",
   "add_wallet_btc_subtitle": "Bitcoin",
-  "add_wallet_aac": "AAC",
+  "add_wallet_aac": "AAA",
   "add_wallet_aac_subtitle": "AAcoin",
 
   "choose_caret_wallet_title": "Choose identity",
@@ -150,7 +151,7 @@
   "token_transfer_customize": "Customize",
 
   "collections_addr_tips": "This address only supports ETHERUM assets, please do not transfer to other public chain assets",
-  "collections_addr_in_eth": "Scan the QR code and transfer to ETH",
+  "collections_addr_in_eth": "Scan the QR code and transfer to {coin}",
   "collections_addr_copy": "Copy address",
   "collections_addr": "Wallet address",
 

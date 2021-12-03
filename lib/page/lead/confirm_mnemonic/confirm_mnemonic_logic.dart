@@ -4,11 +4,8 @@ import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
-import 'package:aa_wallet/utils/token_server.dart';
-import 'package:aa_wallet/utils/wallet_crypt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:web3dart/credentials.dart';
 
 class ConfirmMnemonicLogic extends GetxController {
   //传过来的助记词
@@ -140,29 +137,10 @@ class ConfirmMnemonicLogic extends GetxController {
   void onCreat(String mnemonic) async {
     final wService = WalletService.to;
 
-    final cancelFunc = CoreKitToast.showLoading();
-    //通过 助记词产生 私钥
-    String privateKey = TokenService.getPrivateKey(mnemonic);
-    //通过 私钥 产生 地址.
-    final EthereumAddress publicAddress =
-        TokenService.getPublicAddress(privateKey);
-    //把 用户的 地址 和钱包密码 钱包名称 存储起来 创建一个新的 就采用他为默认的 钱包
-    final String walletName = wService.walletName.value;
-    String pwd = wService.password.value;
-    //加密后的密码
-    pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
-    //加密后的助记词
-    mnemonic = await const WalletCrypt().encrypt(pwd, mnemonic);
-    //加密后秘钥
-    privateKey = await const WalletCrypt().encrypt(pwd, privateKey);
-
     AppService.to.insertWallet(
-      name: walletName,
-      password: pwd,
+      name: wService.walletName.value,
+      password: wService.password.value,
       mnemonic: mnemonic,
-      address: publicAddress.hexEip55,
-      privateKey: privateKey,
-      cancelFunc: cancelFunc,
       protocol: wService.protocol.value,
     );
   }

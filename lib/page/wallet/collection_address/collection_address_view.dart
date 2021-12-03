@@ -80,7 +80,8 @@ class CollectionAddressPage extends GetView<CollectionAddressLogic> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      AppS().collections_addr_in_eth,
+                      AppS().collections_addr_in_eth(
+                          controller.tokenEntry.value.coinKey ?? ''),
                       style: const TextStyle(fontSize: 14),
                     ),
                     const SizedBox(

@@ -47,16 +47,16 @@ class WalletDetailsPage extends GetView<WalletDetailsLogic> {
               arguments: controller.wallet.value,
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          _buildCell(
-            title: AppS().wallet_export_reset_pwd,
-            onTap: () => Get.toNamed(
-              AppRoutes.resetPwd,
-              arguments: controller.wallet.value,
-            ),
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
+          // _buildCell(
+          //   title: AppS().wallet_export_reset_pwd,
+          //   onTap: () => Get.toNamed(
+          //     AppRoutes.resetPwd,
+          //     arguments: controller.wallet.value,
+          //   ),
+          // ),
           SizedBox(
             height: Get.width * 202 / 375,
           ),

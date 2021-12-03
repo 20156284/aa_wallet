@@ -153,10 +153,10 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
             controller.type = null;
             break;
           case 1:
-            controller.type = '10';
+            controller.type = '20';
             break;
           case 2:
-            controller.type = '20';
+            controller.type = '10';
             break;
         }
         controller.onRefreshFun();
@@ -204,7 +204,8 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
                 _buildBtn(
                   title: AppS().token_details_collection,
                   bgColor: const Color(0xFF0F6EFF),
-                  onTap: () => Get.toNamed(AppRoutes.collectionAddress),
+                  onTap: () => Get.toNamed(AppRoutes.collectionAddress,
+                      arguments: controller.tokenEntry.value),
                 ),
                 _buildBtn(
                   icon: Res.ic_transfer,

@@ -56,7 +56,9 @@ class BackUpMnemonicPage extends GetView<BackUpMnemonicLogic> {
           ),
           CoreKitStyle.cupertinoButton(
             context,
-            title: AppS().back_up_mnemonic_confirm,
+            title: controller.isComeFrom
+                ? AppS().back_up_mnemonic_copy
+                : AppS().back_up_mnemonic_confirm,
             onPressed: () => controller.onGotoConfirm(),
           ),
         ],

@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
+import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,19 @@ import 'package:permission_handler/permission_handler.dart';
 class CollectionAddressLogic extends GetxController {
   final wallet = WalletService.to.wallet;
   final globalKey = GlobalKey();
+
+  final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
+
+  @override
+  void onInit() async {
+    super.onInit();
+
+    final arguments = Get.arguments;
+
+    if (arguments != null && arguments is TokenEntry) {
+      tokenEntry.value = arguments;
+    }
+  }
 
   void onCopyQrCode() {
     // Clipboard.setData(ClipboardData(text: inviteCode.value));

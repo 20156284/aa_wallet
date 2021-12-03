@@ -9,16 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChangePwdLogic extends GetxController {
-  // final TextEditingController oldPwdEdit = TextEditingController();
-  // final TextEditingController newPwdEdit = TextEditingController();
-  // final TextEditingController confirmPwdEdit = TextEditingController();
-
-  final TextEditingController oldPwdEdit =
-      TextEditingController(text: ')#*will520');
-  final TextEditingController newPwdEdit =
-      TextEditingController(text: ')#*will520AY');
-  final TextEditingController confirmPwdEdit =
-      TextEditingController(text: ')#*will520AY');
+  final TextEditingController oldPwdEdit = TextEditingController();
+  final TextEditingController newPwdEdit = TextEditingController();
+  final TextEditingController confirmPwdEdit = TextEditingController();
 
   final oldPwdVisible = true.obs;
   final newPwdVisible = true.obs;

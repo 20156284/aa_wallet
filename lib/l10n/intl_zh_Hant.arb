@@ -66,7 +66,8 @@
   "back_up_mnemonic_title": "备份助记词",
   "back_up_mnemonic": "请按顺序抄写助记词，确保备份正确",
   "back_up_mnemonic_tips": "\n1.拖上保管助記詞至隔離網絡的安全地方.\n2.請勿將助記詞在聯網的環境下分享和存儲，比如郵箱、相冊、社交應用等.",
-  "back_up_mnemonic_confirm": "複製助記詞",
+  "back_up_mnemonic_confirm": "已確認備份",
+  "back_up_mnemonic_copy": "複製助記詞",
   "back_up_mnemonic_confirm_success": "助記詞已複製",
 
   "confirm_mnemonic": "確認助記詞",
@@ -114,7 +115,7 @@
   "add_wallet_eth_subtitle": "Ethereum",
   "add_wallet_btc": "BTC",
   "add_wallet_btc_subtitle": "Bitcoin",
-  "add_wallet_aac": "AAC",
+  "add_wallet_aac": "AAA",
   "add_wallet_aac_subtitle": "AAcoin",
 
   "choose_caret_wallet_title": "選擇不同身份",
@@ -150,7 +151,7 @@
   "token_transfer_customize": "自定義",
 
   "collections_addr_tips": "該地址僅支持ETHERUM資產,請勿轉入其他公鏈資產",
-  "collections_addr_in_eth": "掃二維碼，轉入ETH",
+  "collections_addr_in_eth": "掃二維碼，轉入{coin}",
   "collections_addr_copy": "複製錢包地址",
   "collections_addr": "錢包地址",
 

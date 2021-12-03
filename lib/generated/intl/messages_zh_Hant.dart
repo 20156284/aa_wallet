@@ -26,13 +26,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(version) => "AAToken ${version}新版本";
 
-  static String m3(money) => "≈${money} ASDT";
+  static String m3(coin) => "掃二維碼，轉入${coin}";
 
-  static String m4(money) => "0/${money}AAA<1分鐘";
+  static String m4(money) => "≈${money} ASDT";
 
-  static String m5(money) => "0/${money}AAA<5分鐘";
+  static String m5(money) => "0/${money}AAA<1分鐘";
 
-  static String m6(money) => "0/${money}AAA<30分鐘";
+  static String m6(money) => "0/${money}AAA<5分鐘";
+
+  static String m7(money) => "0/${money}AAA<30分鐘";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -41,7 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_coin_type_title": MessageLookupByLibrary.simpleMessage("添加币种"),
         "add_token_input":
             MessageLookupByLibrary.simpleMessage("請輸入Token名稱或者合約地址"),
-        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAC"),
+        "add_wallet_aac": MessageLookupByLibrary.simpleMessage("AAA"),
         "add_wallet_aac_subtitle":
             MessageLookupByLibrary.simpleMessage("AAcoin"),
         "add_wallet_btc": MessageLookupByLibrary.simpleMessage("BTC"),
@@ -90,9 +92,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_up_mnemonic":
             MessageLookupByLibrary.simpleMessage("请按顺序抄写助记词，确保备份正确"),
         "back_up_mnemonic_confirm":
-            MessageLookupByLibrary.simpleMessage("複製助記詞"),
+            MessageLookupByLibrary.simpleMessage("已確認備份"),
         "back_up_mnemonic_confirm_success":
             MessageLookupByLibrary.simpleMessage("助記詞已複製"),
+        "back_up_mnemonic_copy": MessageLookupByLibrary.simpleMessage("複製助記詞"),
         "back_up_mnemonic_tips": MessageLookupByLibrary.simpleMessage(
             "\n1.拖上保管助記詞至隔離網絡的安全地方.\n2.請勿將助記詞在聯網的環境下分享和存儲，比如郵箱、相冊、社交應用等."),
         "back_up_mnemonic_title": MessageLookupByLibrary.simpleMessage("备份助记词"),
@@ -120,8 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("選擇不同身份"),
         "collections_addr": MessageLookupByLibrary.simpleMessage("錢包地址"),
         "collections_addr_copy": MessageLookupByLibrary.simpleMessage("複製錢包地址"),
-        "collections_addr_in_eth":
-            MessageLookupByLibrary.simpleMessage("掃二維碼，轉入ETH"),
+        "collections_addr_in_eth": m3,
         "collections_addr_tips":
             MessageLookupByLibrary.simpleMessage("該地址僅支持ETHERUM資產,請勿轉入其他公鏈資產"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("確認助記詞"),
@@ -172,7 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_add": MessageLookupByLibrary.simpleMessage("添加代幣"),
         "token_customize": MessageLookupByLibrary.simpleMessage("自定義代幣"),
         "token_details_collection": MessageLookupByLibrary.simpleMessage("收款"),
-        "token_details_roughly_money": m3,
+        "token_details_roughly_money": m4,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("全部"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("轉入"),
@@ -199,11 +201,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("請輸入轉賬金額"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
-        "token_transfer_quick_info": m4,
+        "token_transfer_quick_info": m5,
         "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推薦"),
-        "token_transfer_recommend_info": m5,
+        "token_transfer_recommend_info": m6,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "token_transfer_slow_info": m6,
+        "token_transfer_slow_info": m7,
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
         "wallet": MessageLookupByLibrary.simpleMessage("錢包"),
         "wallet_add_copy_success":

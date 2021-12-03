@@ -35,16 +35,27 @@ class TransactionRecordsEntity {
   factory TransactionRecordsEntity.fromJson(Map<String, dynamic> json) =>
       _$TransactionRecordsEntityFromJson(json);
 
+  // final String? number;
+  // final String? protocol;
+  // final String? coinKey;
+  // final int? transferType;
+  // final String? txId;
+  // final String? fromAddress;
+  // final String? toAddress;
+  // final String? status;
+  // final String? txFee;
+  // final int? createTime;
+
   final String? number;
   final String? protocol;
   final String? coinKey;
-  final int? transferType;
+  final int? createTime;
+  final String? txFee;
   final String? txId;
+  final String? transferType;
   final String? fromAddress;
   final String? toAddress;
   final String? status;
-  final String? txFee;
-  final int? createTime;
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
