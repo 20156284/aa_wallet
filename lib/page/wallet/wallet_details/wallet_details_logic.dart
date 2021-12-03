@@ -305,4 +305,14 @@ class WalletDetailsLogic extends GetxController {
       ),
     );
   }
+
+  void onChangePwd() async {
+    final date = await Get.toNamed(
+      AppRoutes.changePwd,
+      arguments: wallet.value,
+    );
+    if (date != null && date is WalletEntry) {
+      wallet.value = date;
+    }
+  }
 }

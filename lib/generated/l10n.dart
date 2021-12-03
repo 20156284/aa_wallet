@@ -460,10 +460,10 @@ class AppS {
     );
   }
 
-  /// `No less than 8 characters, it is recommended to mix letters、 numbers、 and symbols`
+  /// `No less than 8 characters, mixed letters, numbers, symbols`
   String get creat_wallet_pwd_tips {
     return Intl.message(
-      'No less than 8 characters, it is recommended to mix letters、 numbers、 and symbols',
+      'No less than 8 characters, mixed letters, numbers, symbols',
       name: 'creat_wallet_pwd_tips',
       desc: '',
       args: [],
@@ -610,11 +610,21 @@ class AppS {
     );
   }
 
-  /// `Confirm BackUp`
+  /// `Copy mnemonic`
   String get back_up_mnemonic_confirm {
     return Intl.message(
-      'Confirm BackUp',
+      'Copy mnemonic',
       name: 'back_up_mnemonic_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mnemonic has copy`
+  String get back_up_mnemonic_confirm_success {
+    return Intl.message(
+      'Mnemonic has copy',
+      name: 'back_up_mnemonic_confirm_success',
       desc: '',
       args: [],
     );
@@ -1345,6 +1355,96 @@ class AppS {
     return Intl.message(
       'Wallet address',
       name: 'collections_addr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Before Password`
+  String get change_page_now_pwd {
+    return Intl.message(
+      'Before Password',
+      name: 'change_page_now_pwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter before password`
+  String get change_page_now_pwd_input {
+    return Intl.message(
+      'Please enter before password',
+      name: 'change_page_now_pwd_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get change_page_new_pwd {
+    return Intl.message(
+      'New Password',
+      name: 'change_page_new_pwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter new password`
+  String get change_page_new_pwd_input {
+    return Intl.message(
+      'Please enter new password',
+      name: 'change_page_new_pwd_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get change_page_confirm_pwd {
+    return Intl.message(
+      'Confirm password',
+      name: 'change_page_confirm_pwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter confirm password`
+  String get change_page_confirm_pwd_input {
+    return Intl.message(
+      'Please enter confirm password',
+      name: 'change_page_confirm_pwd_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm change`
+  String get change_page_confirm {
+    return Intl.message(
+      'Confirm change',
+      name: 'change_page_confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password success`
+  String get change_page_pwd_success {
+    return Intl.message(
+      'Change password success',
+      name: 'change_page_pwd_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password fail`
+  String get change_page_pwd_fail {
+    return Intl.message(
+      'Change password fail',
+      name: 'change_page_pwd_fail',
       desc: '',
       args: [],
     );

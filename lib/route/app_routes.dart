@@ -36,6 +36,8 @@ abstract class AppRoutes {
   static const collectionAddress = _Paths.collectionAddress;
   static const updateRecord = _Paths.updateRecord;
   static const walletAssets = _Paths.walletAssets;
+  static const changePwd = _Paths.changePwd;
+  static const resetPwd = _Paths.resetPwd;
 }
 
 abstract class _Paths {
@@ -65,4 +67,6 @@ abstract class _Paths {
   static const String collectionAddress = '/collectionAddress';
   static const String updateRecord = '/updateRecord';
   static const String walletAssets = '/walletAssets';
+  static const String changePwd = '/changePwd';
+  static const String resetPwd = '/resetPwd';
 }

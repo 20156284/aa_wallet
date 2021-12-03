@@ -35,12 +35,16 @@ import 'package:aa_wallet/page/wallet/add_token/add_token_binding.dart';
 import 'package:aa_wallet/page/wallet/add_token/add_token_view.dart';
 import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_binding.dart';
 import 'package:aa_wallet/page/wallet/add_wallet/add_wallet_view.dart';
+import 'package:aa_wallet/page/wallet/change_pwd/change_pwd_binding.dart';
+import 'package:aa_wallet/page/wallet/change_pwd/change_pwd_view.dart';
 import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_binding.dart';
 import 'package:aa_wallet/page/wallet/choose_creat_wallet/choose_creat_wallet_view.dart';
 import 'package:aa_wallet/page/wallet/collection_address/collection_address_binding.dart';
 import 'package:aa_wallet/page/wallet/collection_address/collection_address_view.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_binding.dart';
 import 'package:aa_wallet/page/wallet/export_private_key/export_private_key_view.dart';
+import 'package:aa_wallet/page/wallet/reset_pwd/reset_pwd_binding.dart';
+import 'package:aa_wallet/page/wallet/reset_pwd/reset_pwd_view.dart';
 import 'package:aa_wallet/page/wallet/token_details/token_details_binding.dart';
 import 'package:aa_wallet/page/wallet/token_details/token_details_view.dart';
 import 'package:aa_wallet/page/wallet/token_transfer/token_transfer_binding.dart';
@@ -210,6 +214,18 @@ class AppPages {
       name: _Paths.walletAssets,
       page: () => const WalletAssetsPage(),
       binding: WalletAssetsBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.changePwd,
+      page: () => const ChangePwdPage(),
+      binding: ChangePwdBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.resetPwd,
+      page: () => const ResetPwdPage(),
+      binding: ResetPwdBinding(),
       transition: Transition.cupertino,
     ),
   ];

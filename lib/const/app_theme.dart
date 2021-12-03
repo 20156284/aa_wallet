@@ -104,7 +104,8 @@ class AppThemeData with Diagnosticable {
       color: Color(0xFFCCCCCC),
       darkColor: CupertinoColors.white,
     ),
-    this.inputBgColor = const Color(0xFFF9FBFF),
+    this.inputBgColor = const Color(0xFFFFFFFF),
+    this.unChooesTextColor = const Color(0xFF666666),
   });
 
   // 用于普通级段落信息引导词
@@ -146,6 +147,8 @@ class AppThemeData with Diagnosticable {
   final BoxDecoration receiveMessageBubbleDecoration;
 
   final Color chevronRightColor;
+
+  final Color unChooesTextColor;
 }
 
 class AppTextTheme extends TextTheme {

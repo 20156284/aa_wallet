@@ -90,7 +90,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_up_mnemonic":
             MessageLookupByLibrary.simpleMessage("请按顺序抄写助记词，确保备份正确"),
         "back_up_mnemonic_confirm":
-            MessageLookupByLibrary.simpleMessage("已确认备份"),
+            MessageLookupByLibrary.simpleMessage("复制助记词"),
+        "back_up_mnemonic_confirm_success":
+            MessageLookupByLibrary.simpleMessage("助记词已复制"),
         "back_up_mnemonic_tips": MessageLookupByLibrary.simpleMessage(
             "\n1.妥善保管助记词至隔离网络的安全地方.\n2.请勿将助记词在联网环境下分享和存储，比如邮件、相册、社交应用等."),
         "back_up_mnemonic_title": MessageLookupByLibrary.simpleMessage("备份助记词"),
@@ -101,6 +103,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("助记词由英文单词组成，请抄写并妥善保管"),
         "back_up_tips_content3":
             MessageLookupByLibrary.simpleMessage("助记词丢失，无法找回，请务必备份助记词"),
+        "change_page_confirm": MessageLookupByLibrary.simpleMessage("确认修改"),
+        "change_page_confirm_pwd": MessageLookupByLibrary.simpleMessage("确认密码"),
+        "change_page_confirm_pwd_input":
+            MessageLookupByLibrary.simpleMessage("请确认新密码"),
+        "change_page_new_pwd": MessageLookupByLibrary.simpleMessage("新密码"),
+        "change_page_new_pwd_input":
+            MessageLookupByLibrary.simpleMessage("请设置新密码"),
+        "change_page_now_pwd": MessageLookupByLibrary.simpleMessage("当前密码"),
+        "change_page_now_pwd_input":
+            MessageLookupByLibrary.simpleMessage("请输入当前密码"),
+        "change_page_pwd_fail": MessageLookupByLibrary.simpleMessage("修改密码失败"),
+        "change_page_pwd_success":
+            MessageLookupByLibrary.simpleMessage("修改密码成功"),
         "choose_caret_wallet_title":
             MessageLookupByLibrary.simpleMessage("选择不同身份"),
         "collections_addr": MessageLookupByLibrary.simpleMessage("钱包地址"),
@@ -130,7 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creat_wallet_pwd_repeat":
             MessageLookupByLibrary.simpleMessage("两次密码不一致"),
         "creat_wallet_pwd_tips":
-            MessageLookupByLibrary.simpleMessage("不少于8位字符，建议混合字母、数字、符号"),
+            MessageLookupByLibrary.simpleMessage("不少于8位字符，混合字母、数字、符号"),
         "creat_wallet_repeat_pwd_input":
             MessageLookupByLibrary.simpleMessage("请再次确认钱包密码"),
         "creat_wallet_tips_content": MessageLookupByLibrary.simpleMessage(

@@ -1,6 +1,7 @@
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/res.dart';
+import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,12 +42,20 @@ class WalletDetailsPage extends GetView<WalletDetailsLogic> {
           ),
           _buildCell(
             title: AppS().wallet_export_change_pwd,
+            onTap: () => Get.toNamed(
+              AppRoutes.changePwd,
+              arguments: controller.wallet.value,
+            ),
           ),
           const SizedBox(
             height: 15,
           ),
           _buildCell(
             title: AppS().wallet_export_reset_pwd,
+            onTap: () => Get.toNamed(
+              AppRoutes.resetPwd,
+              arguments: controller.wallet.value,
+            ),
           ),
           SizedBox(
             height: Get.width * 202 / 375,

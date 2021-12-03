@@ -33,7 +33,7 @@ class WalletEditNameLogic extends GetxController {
     final walletService = WalletService.to;
     wallet.value = wallet.value.copyWith(name: nameEdit.text.trim());
 
-    walletService.onUpdateWalletName(wallet.value).then((value) {
+    walletService.onUpdateWallet(wallet.value).then((value) {
       if (value) {
         if (wallet.value.is_main != null && wallet.value.is_main!) {
           walletService.wallet.value = wallet.value;

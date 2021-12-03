@@ -71,8 +71,8 @@ class WalletManagementWidgetLogic extends GetxController {
     wService.wallet.value = walletEntry;
     wService.wallet.refresh();
 
-    await wService.onUpdateWalletName(walletEntry);
-    await wService.onUpdateWalletName(beforeWallet);
+    await wService.onUpdateWallet(walletEntry);
+    await wService.onUpdateWallet(beforeWallet);
 
     // 关闭弹窗或者是返回上一级
     Get.back();

@@ -49,7 +49,7 @@
   "creat_wallet_pwd": "密码",
   "creat_wallet_pwd_input": "请输入钱包密码",
   "creat_wallet_repeat_pwd_input":"请再次确认钱包密码",
-  "creat_wallet_pwd_tips":"不少于8位字符，建议混合字母、数字、符号",
+  "creat_wallet_pwd_tips":"不少于8位字符，混合字母、数字、符号",
   "creat_wallet":"创建",
   "creat_wallet_fist":"创建您的第一个数字钱包",
   "creat_wallet_tips_content": "\n1.该密码将作为钱包的交易密码.\n2.钱包不会储存密码，也无法帮您找回，请务必妥善保管密码.",
@@ -66,7 +66,8 @@
   "back_up_mnemonic_title": "备份助记词",
   "back_up_mnemonic": "请按顺序抄写助记词，确保备份正确",
   "back_up_mnemonic_tips": "\n1.妥善保管助记词至隔离网络的安全地方.\n2.请勿将助记词在联网环境下分享和存储，比如邮件、相册、社交应用等.",
-  "back_up_mnemonic_confirm": "已确认备份",
+  "back_up_mnemonic_confirm": "复制助记词",
+  "back_up_mnemonic_confirm_success": "助记词已复制",
 
   "confirm_mnemonic": "确认助记词",
   "confirm_mnemonic_sequence": "请按顺序点击助记词，以确认您正确备份",
@@ -151,5 +152,16 @@
   "collections_addr_tips": "该地址仅支持ETHERUM资产,请勿转入其他公链资产",
   "collections_addr_in_eth": "扫二维码,转入ETH",
   "collections_addr_copy": "复制钱包地址",
-  "collections_addr": "钱包地址"
+  "collections_addr": "钱包地址",
+
+
+  "change_page_now_pwd": "当前密码",
+  "change_page_now_pwd_input": "请输入当前密码",
+  "change_page_new_pwd": "新密码",
+  "change_page_new_pwd_input": "请设置新密码",
+  "change_page_confirm_pwd": "确认密码",
+  "change_page_confirm_pwd_input": "请确认新密码",
+  "change_page_confirm": "确认修改",
+  "change_page_pwd_success": "修改密码成功",
+  "change_page_pwd_fail": "修改密码失败"
 }

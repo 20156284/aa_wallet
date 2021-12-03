@@ -6,6 +6,7 @@
 // ===============================================
 
 import 'dart:ui';
+
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
@@ -141,7 +142,7 @@ class WalletService extends GetxService {
    * @date 2021/11/30 17:59
    * @param entry 钱包对象
    */
-  Future<bool> onUpdateWalletName(WalletEntry entry) {
+  Future<bool> onUpdateWallet(WalletEntry entry) {
     return appDate.updateWallet(entry);
   }
 }

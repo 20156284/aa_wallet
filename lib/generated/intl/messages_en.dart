@@ -95,7 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_up_mnemonic": MessageLookupByLibrary.simpleMessage(
             "Please copy the mnemonic words in order to ensure that the backup is correct"),
         "back_up_mnemonic_confirm":
-            MessageLookupByLibrary.simpleMessage("Confirm BackUp"),
+            MessageLookupByLibrary.simpleMessage("Copy mnemonic"),
+        "back_up_mnemonic_confirm_success":
+            MessageLookupByLibrary.simpleMessage("Mnemonic has copy"),
         "back_up_mnemonic_tips": MessageLookupByLibrary.simpleMessage(
             "\n1. Properly keep the mnemonic phrase to a safe place isolated from the network.\n2. Do not share and store mnemonic words in a networked environment, such as emails, photo albums, social applications, etc."),
         "back_up_mnemonic_title":
@@ -107,6 +109,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "The mnemonic is composed of English words, please copy it and keep it in a safe place"),
         "back_up_tips_content3": MessageLookupByLibrary.simpleMessage(
             "The mnemonic phrase is lost and cannot be retrieved, please make sure to back up the mnemonic phrase"),
+        "change_page_confirm":
+            MessageLookupByLibrary.simpleMessage("Confirm change"),
+        "change_page_confirm_pwd":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "change_page_confirm_pwd_input": MessageLookupByLibrary.simpleMessage(
+            "Please enter confirm password"),
+        "change_page_new_pwd":
+            MessageLookupByLibrary.simpleMessage("New Password"),
+        "change_page_new_pwd_input":
+            MessageLookupByLibrary.simpleMessage("Please enter new password"),
+        "change_page_now_pwd":
+            MessageLookupByLibrary.simpleMessage("Before Password"),
+        "change_page_now_pwd_input": MessageLookupByLibrary.simpleMessage(
+            "Please enter before password"),
+        "change_page_pwd_fail":
+            MessageLookupByLibrary.simpleMessage("Change password fail"),
+        "change_page_pwd_success":
+            MessageLookupByLibrary.simpleMessage("Change password success"),
         "choose_caret_wallet_title":
             MessageLookupByLibrary.simpleMessage("Choose identity"),
         "collections_addr":
@@ -142,7 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creat_wallet_pwd_repeat": MessageLookupByLibrary.simpleMessage(
             "The passwords are inconsistent"),
         "creat_wallet_pwd_tips": MessageLookupByLibrary.simpleMessage(
-            "No less than 8 characters, it is recommended to mix letters、 numbers、 and symbols"),
+            "No less than 8 characters, mixed letters, numbers, symbols"),
         "creat_wallet_repeat_pwd_input": MessageLookupByLibrary.simpleMessage(
             "Please repeat you wallet password"),
         "creat_wallet_tips_content": MessageLookupByLibrary.simpleMessage(
