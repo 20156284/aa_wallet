@@ -5,7 +5,6 @@
 // Copyright @flutter_core_kit.All rights reserved.
 // ===============================================
 
-import 'package:aa_wallet/core/res.dart';
 import 'package:aa_wallet/core/utils/error_utils.dart';
 import 'package:aa_wallet/core/widget/toast/icon_text.dart';
 import 'package:aa_wallet/core/widget/toast/loading.dart';
@@ -188,8 +187,6 @@ class CoreKitToast {
 
   static CancelFunc showCustomDialog({
     required Widget child,
-    ValueListenable<String>? textListenable,
-    BackButtonBehavior backButtonBehavior = BackButtonBehavior.ignore,
     bool crossPage = false,
     bool clickClose = false,
   }) {

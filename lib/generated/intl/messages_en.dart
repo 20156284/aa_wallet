@@ -267,6 +267,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Export private key"),
         "wallet_export_reset_pwd":
             MessageLookupByLibrary.simpleMessage("Rest password"),
+        "wallet_has":
+            MessageLookupByLibrary.simpleMessage("Wallet address has existing"),
         "wallet_identity":
             MessageLookupByLibrary.simpleMessage("Wallet identity"),
         "wallet_import_key_content1": MessageLookupByLibrary.simpleMessage(

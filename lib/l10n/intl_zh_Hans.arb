@@ -104,6 +104,7 @@
   "wallet_import_key_copy": "复制私钥",
   "wallet_import_key_copy_success": "私钥已复制",
   "wallet_add_copy_success":"钱包地址已复制",
+  "wallet_has":"钱包已存在无需创建",
 
   "wallet_edit_name": "钱包昵称修改",
   "wallet_edit_name_input": "请输入钱包昵称",

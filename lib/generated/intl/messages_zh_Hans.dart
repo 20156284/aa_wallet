@@ -229,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet_export_private_key":
             MessageLookupByLibrary.simpleMessage("导出私钥"),
         "wallet_export_reset_pwd": MessageLookupByLibrary.simpleMessage("重置密码"),
+        "wallet_has": MessageLookupByLibrary.simpleMessage("钱包已存在无需创建"),
         "wallet_identity": MessageLookupByLibrary.simpleMessage("钱包身份"),
         "wallet_import_key_content1":
             MessageLookupByLibrary.simpleMessage("安全警告，私钥导出后请妥善保管，不要泄露"),

@@ -104,6 +104,7 @@
   "wallet_import_key_copy": "Copy private key",
   "wallet_import_key_copy_success": "Copy success",
   "wallet_add_copy_success":"Copy success",
+  "wallet_has":"Wallet address has existing",
 
   "wallet_edit_name": "Wallet nickname",
   "wallet_edit_name_input": "Please enter wallet nickname",

@@ -300,7 +300,7 @@ class WalletDetailsLogic extends GetxController {
           const SizedBox(
             height: 20,
           ),
-          Text(AppS().wallet_import_key_copy_success),
+          Text(AppS().wallet_add_copy_success),
         ],
       ),
     );

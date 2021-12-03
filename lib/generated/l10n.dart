@@ -930,6 +930,16 @@ class AppS {
     );
   }
 
+  /// `Wallet address has existing`
+  String get wallet_has {
+    return Intl.message(
+      'Wallet address has existing',
+      name: 'wallet_has',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet nickname`
   String get wallet_edit_name {
     return Intl.message(

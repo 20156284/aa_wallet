@@ -10,6 +10,7 @@ import 'dart:ui';
 
 import 'package:aa_wallet/api/token/token_api.dart';
 import 'package:aa_wallet/core/toast.dart';
+import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/entity/language_info.dart';
 import 'package:aa_wallet/generated/l10n.dart';
@@ -22,6 +23,7 @@ import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
@@ -167,7 +169,29 @@ class AppService extends GetxService {
     String? protocol,
     String? rpcUrl,
   }) async {
-    final cancelFunc = CoreKitToast.showLoading();
+    final cancelFunc = CoreKitToast.showCustomDialog(
+      child: Container(
+        width: 145,
+        height: 145,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitSquareCircle(
+              color: CupertinoTheme.of(Get.context!).primaryColor,
+              size: 50,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(AppS().creat_wallet_ing),
+          ],
+        ),
+      ),
+    );
 
     final wService = WalletService.to;
 
@@ -192,50 +216,80 @@ class AppService extends GetxService {
     final EthereumAddress publicAddress =
         TokenService.getPublicAddress(privateKey!);
 
-    //加密后秘钥
-    privateKey = await const WalletCrypt().encrypt(password, privateKey);
+    //去重 表示已經有
+    if (await duplicateRemoval(publicAddress.hexEip55)) {
+      CustomDialog.showCustomDialog(
+        Get.context!,
+        SizedBox(
+          width: 145,
+          height: 145,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                CupertinoIcons.clear_circled,
+                size: 80,
+                color: Colors.red,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(AppS().wallet_has),
+            ],
+          ),
+        ),
+        isShowCloseBtn: false,
+        isAutoClose: true,
+        closeDuration: const Duration(seconds: 3),
+        borderRadius: BorderRadius.circular(12),
+      );
+    } else {
+      //加密后秘钥
+      privateKey = await const WalletCrypt().encrypt(password, privateKey);
 
-    final value = await wService.appDate.insertWallet(
-      name: name,
-      password: password,
-      mnemonic: mnemonic,
-      privateKey: privateKey,
-      protocol: protocol,
-      address: publicAddress.hexEip55,
-      rpcUrl: rpcUrl,
-      //第一次创建的钱包也是主钱包
-      isMain: isFist,
-      isFist: isFist,
-    );
+      final value = await wService.appDate.insertWallet(
+        name: name,
+        password: password,
+        mnemonic: mnemonic,
+        privateKey: privateKey,
+        protocol: protocol,
+        address: publicAddress.hexEip55,
+        rpcUrl: rpcUrl,
+        //第一次创建的钱包也是主钱包
+        isMain: isFist,
+        isFist: isFist,
+      );
 
-    final WalletEntry wallet = WalletEntry(
-      id: value,
-      name: name,
-      password: password,
-      address: publicAddress.hexEip55,
-      mnemonic: mnemonic,
-      privateKey: privateKey,
-      protocol: protocol,
-      rpcUrl: rpcUrl,
-      //第一次创建的钱包也是主钱包
-      is_main: isFist,
-      is_fist: isFist,
-    );
-    wService.wallet.value = wallet;
+      final WalletEntry wallet = WalletEntry(
+        id: value,
+        name: name,
+        password: password,
+        address: publicAddress.hexEip55,
+        mnemonic: mnemonic,
+        privateKey: privateKey,
+        protocol: protocol,
+        rpcUrl: rpcUrl,
+        //第一次创建的钱包也是主钱包
+        is_main: isFist,
+        is_fist: isFist,
+      );
+      wService.wallet.value = wallet;
 
-    updateFistTime(false);
-    if (isFist) creatToken(wallet);
+      updateFistTime(false);
+      if (isFist) creatToken(wallet);
 
-    //创建钱包成功的时候发给后台让后添加
-    ToKenApi.acquire()
-        .walletAddAddress(
-            protocol: wService.protocol.value, address: publicAddress.hexEip55)
-        .then((value) {
-      //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-      Get.offAllNamed(AppRoutes.appMain);
-    }).catchError((error) {
-      CoreKitToast.showError(error);
-    }).whenComplete(cancelFunc);
+      //创建钱包成功的时候发给后台让后添加
+      ToKenApi.acquire()
+          .walletAddAddress(
+              protocol: wService.protocol.value,
+              address: publicAddress.hexEip55)
+          .then((value) {
+        //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
+        Get.offAllNamed(AppRoutes.appMain);
+      }).catchError((error) {
+        CoreKitToast.showError(error);
+      }).whenComplete(cancelFunc);
+    }
   }
 
   /**
@@ -308,5 +362,17 @@ class AppService extends GetxService {
     }
 
     tokenList.value = newList;
+  }
+
+  Future<bool> duplicateRemoval(String address) async {
+    bool isHasAddress = false;
+    final list = await WalletService.to.appDate.getAllWallets();
+    for (final walletEntry in list) {
+      if (walletEntry.address == address) {
+        isHasAddress = true;
+        break;
+      }
+    }
+    return isHasAddress;
   }
 }
