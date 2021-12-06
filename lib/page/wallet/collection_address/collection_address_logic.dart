@@ -19,6 +19,7 @@ class CollectionAddressLogic extends GetxController {
   final globalKey = GlobalKey();
 
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
+  final address = ''.obs;
 
   @override
   void onInit() async {
@@ -29,6 +30,8 @@ class CollectionAddressLogic extends GetxController {
     if (arguments != null && arguments is TokenEntry) {
       tokenEntry.value = arguments;
     }
+
+    address.value = wallet.value.address!;
   }
 
   void onCopyQrCode() {

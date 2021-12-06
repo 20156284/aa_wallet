@@ -16,14 +16,14 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class TokenTransferLogic extends GetxController {
-  final TextEditingController addrEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController addrEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
 
-  // final TextEditingController addrEdit =
-  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  // final TextEditingController pwdEdit =
-  //     TextEditingController(text: ')#*will520');
+  final TextEditingController addrEdit =
+      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
 
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
 
@@ -287,8 +287,9 @@ class TokenTransferLogic extends GetxController {
         if (permission == Permission.photos) {}
         if (permission == Permission.camera) {
           final String? str = await CoreQRScan.pushScan(
-              context: Get.context!,
-              borderColor: CupertinoTheme.of(Get.context!).primaryColor);
+            context: Get.context!,
+            borderColor: CupertinoTheme.of(Get.context!).primaryColor,
+          );
           addrEdit.text = str ?? '';
         }
       } else {

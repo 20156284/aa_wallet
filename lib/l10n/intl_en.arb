@@ -151,7 +151,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1minute",
   "token_transfer_customize": "Customize",
 
-  "collections_addr_tips": "This address only supports ETHERUM assets, please do not transfer to other public chain assets",
+  "collections_addr_tips": "This address only supports AACOIN assets, please do not transfer to other public chain assets",
   "collections_addr_in_eth": "Scan the QR code and transfer to {coin}",
   "collections_addr_copy": "Copy address",
   "collections_addr": "Wallet address",

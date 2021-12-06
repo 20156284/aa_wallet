@@ -97,20 +97,21 @@ class AppDatabase extends _$AppDatabase {
     String? rpcUrl,
     bool? isMain,
     bool? isFist,
-  }) =>
-      into(wallet).insert(
-        WalletCompanion(
-          name: Value(name),
-          password: Value(password),
-          privateKey: Value(privateKey),
-          protocol: Value(protocol),
-          address: Value(address),
-          mnemonic: Value(mnemonic),
-          rpcUrl: Value(rpcUrl),
-          is_main: Value(isMain),
-          is_fist: Value(isFist),
-        ),
-      );
+  }) {
+    return into(wallet).insert(
+      WalletCompanion(
+        name: Value(name),
+        password: Value(password),
+        privateKey: Value(privateKey),
+        protocol: Value(protocol),
+        address: Value(address),
+        mnemonic: Value(mnemonic),
+        rpcUrl: Value(rpcUrl),
+        is_main: Value(isMain),
+        is_fist: Value(isFist),
+      ),
+    );
+  }
 
   /// 更新一条数据
   Future<bool> updateWallet(WalletEntry entry) {

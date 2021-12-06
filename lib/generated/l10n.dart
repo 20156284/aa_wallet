@@ -1340,10 +1340,10 @@ class AppS {
     );
   }
 
-  /// `This address only supports ETHERUM assets, please do not transfer to other public chain assets`
+  /// `This address only supports AACOIN assets, please do not transfer to other public chain assets`
   String get collections_addr_tips {
     return Intl.message(
-      'This address only supports ETHERUM assets, please do not transfer to other public chain assets',
+      'This address only supports AACOIN assets, please do not transfer to other public chain assets',
       name: 'collections_addr_tips',
       desc: '',
       args: [],

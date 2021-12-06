@@ -151,7 +151,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1分鐘",
   "token_transfer_customize": "自定義",
 
-  "collections_addr_tips": "該地址僅支持ETHERUM資產,請勿轉入其他公鏈資產",
+  "collections_addr_tips": "該地址僅支持AACOIN資產,請勿轉入其他公鏈資產",
   "collections_addr_in_eth": "掃二維碼，轉入{coin}",
   "collections_addr_copy": "複製錢包地址",
   "collections_addr": "錢包地址",

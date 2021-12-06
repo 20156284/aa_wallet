@@ -4,30 +4,35 @@ import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class RecoverByMnemonicLogic extends GetxController {
-  final TextEditingController mnemonicEdit = TextEditingController();
-  final TextEditingController nameEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
-  final TextEditingController repeatPwdEdit = TextEditingController();
+  // final TextEditingController mnemonicEdit = TextEditingController();
+  // final TextEditingController nameEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController repeatPwdEdit = TextEditingController();
 
   // //主要测试钱包
   // final TextEditingController mnemonicEdit = TextEditingController(
   //     text:
   //         'song convince art planet domain property load satoshi rocket west vital cycle');
-  //
-  // // //第二测试钱包
-  // // final TextEditingController mnemonicEdit = TextEditingController(
-  // //     text:
-  // //         'forest palm main jelly embody cigar select physical clown tape dutch profit');
-  // final TextEditingController nameEdit =
-  //     TextEditingController(text: 'Will’sWallet');
-  // final TextEditingController pwdEdit =
-  //     TextEditingController(text: ')#*will520');
-  // final TextEditingController repeatPwdEdit =
-  //     TextEditingController(text: ')#*will520');
+
+  // //第二测试钱包
+  // final TextEditingController mnemonicEdit = TextEditingController(
+  //     text:
+  //         'forest palm main jelly embody cigar select physical clown tape dutch profit');
+
+  // //第三测试钱包
+  final TextEditingController mnemonicEdit = TextEditingController(
+      text:
+          'credit rural oval choose lonely advice clarify scale key frown either muscle');
+
+  final TextEditingController nameEdit =
+      TextEditingController(text: 'Will’sWallet');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
+  final TextEditingController repeatPwdEdit =
+      TextEditingController(text: ')#*will520');
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;
@@ -100,36 +105,11 @@ class RecoverByMnemonicLogic extends GetxController {
    * @param mnemonics 助记词
    */
   void onRecover(String mnemonic) async {
-    final cancelFunc = CoreKitToast.showCustomDialog(
-      child: Container(
-        width: 145,
-        height: 145,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SpinKitSquareCircle(
-              color: CupertinoTheme.of(Get.context!).primaryColor,
-              size: 50,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(AppS().creat_wallet_ing),
-          ],
-        ),
-      ),
-    );
-
     AppService.to.insertWallet(
       name: nameEdit.text,
       password: pwdEdit.text,
       mnemonic: mnemonic,
       protocol: WalletService.to.protocol.value,
-      cancelFunc: cancelFunc,
     );
   }
 }

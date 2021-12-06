@@ -21,9 +21,9 @@ import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
@@ -39,12 +39,15 @@ class AppService extends GetxService {
   final haveBackUpMnemonic = false.obs;
 
   final tokenList = <TokenEntry>[].obs;
+  List<WalletEntry> dbWalletList = <WalletEntry>[];
 
   @override
   void onInit() async {
     super.onInit();
     _onLoadLanguage();
     onReadConfig();
+
+    dbWalletList = await WalletService.to.appDate.getAllWallets();
 
     //监听 app 设置的 的变化
     ever(app, handleAppChanged);
@@ -159,16 +162,57 @@ class AppService extends GetxService {
    * @param protocol 币区块
    * @param address 钱包地址
    * @param rpcUrl 调用的是那个rpc
-   * @param cancelFunc 关闭的load
    */
-  void insertWallet(
-      {required String? name,
-      required String? password,
-      String? privateKey,
-      String? mnemonic,
-      String? protocol,
-      String? rpcUrl,
-      CancelFunc? cancelFunc}) async {
+  void insertWallet({
+    required String? name,
+    required String? password,
+    String? privateKey,
+    String? mnemonic,
+    String? protocol,
+    String? rpcUrl,
+  }) async {
+    CustomDialog.showCustomDialog(
+      Get.context!,
+      Container(
+        width: 145,
+        height: 145,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitSquareCircle(
+              color: CupertinoTheme.of(Get.context!).primaryColor,
+              size: 50,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(AppS().creat_wallet_ing),
+          ],
+        ),
+      ),
+      isShowCloseBtn: false,
+      borderRadius: BorderRadius.circular(12),
+    );
+
+    insert(
+      name: name,
+      password: password,
+      privateKey: privateKey,
+      mnemonic: mnemonic,
+      protocol: protocol,
+      rpcUrl: rpcUrl,
+    );
+  }
+
+  void insert({
+    required String? name,
+    required String? password,
+    String? privateKey,
+    String? mnemonic,
+    String? protocol,
+    String? rpcUrl,
+  }) async {
     final wService = WalletService.to;
 
     bool isFist = false;
@@ -193,7 +237,8 @@ class AppService extends GetxService {
         TokenService.getPublicAddress(privateKey!);
 
     //去重 表示已經有
-    if (await duplicateRemoval(publicAddress.hexEip55)) {
+    if (duplicateRemoval(publicAddress.hexEip55)) {
+      Get.back();
       CustomDialog.showCustomDialog(
         Get.context!,
         SizedBox(
@@ -264,7 +309,7 @@ class AppService extends GetxService {
         Get.offAllNamed(AppRoutes.appMain);
       }).catchError((error) {
         CoreKitToast.showError(error);
-      }).whenComplete(cancelFunc!);
+      }).whenComplete(() => Get.back());
     }
   }
 
@@ -340,10 +385,9 @@ class AppService extends GetxService {
     tokenList.value = newList;
   }
 
-  Future<bool> duplicateRemoval(String address) async {
+  bool duplicateRemoval(String address) {
     bool isHasAddress = false;
-    final list = await WalletService.to.appDate.getAllWallets();
-    for (final walletEntry in list) {
+    for (final walletEntry in dbWalletList) {
       if (walletEntry.address == address) {
         isHasAddress = true;
         break;

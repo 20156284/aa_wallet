@@ -125,7 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "collections_addr_copy": MessageLookupByLibrary.simpleMessage("复制钱包地址"),
         "collections_addr_in_eth": m3,
         "collections_addr_tips":
-            MessageLookupByLibrary.simpleMessage("该地址仅支持ETHERUM资产,请勿转入其他公链资产"),
+            MessageLookupByLibrary.simpleMessage("该地址仅支持AACOIN资产,请勿转入其他公链资产"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("确认助记词"),
         "confirm_mnemonic_sequence":
             MessageLookupByLibrary.simpleMessage("请按顺序点击助记词，以确认您正确备份"),

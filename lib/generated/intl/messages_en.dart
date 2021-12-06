@@ -139,7 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Copy address"),
         "collections_addr_in_eth": m3,
         "collections_addr_tips": MessageLookupByLibrary.simpleMessage(
-            "This address only supports ETHERUM assets, please do not transfer to other public chain assets"),
+            "This address only supports AACOIN assets, please do not transfer to other public chain assets"),
         "confirm_mnemonic":
             MessageLookupByLibrary.simpleMessage("Confirm Mnemonic"),
         "confirm_mnemonic_sequence": MessageLookupByLibrary.simpleMessage(

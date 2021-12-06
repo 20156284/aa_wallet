@@ -87,16 +87,7 @@ class CollectionAddressPage extends GetView<CollectionAddressLogic> {
                     const SizedBox(
                       height: 28,
                     ),
-                    QrImage(
-                      padding: const EdgeInsets.all(25),
-                      data: controller.wallet.value.address ?? '',
-                      size: Get.width * 229 / 375,
-                      embeddedImage: const AssetImage(Res.ic_qr_code_bg),
-                      embeddedImageStyle: QrEmbeddedImageStyle(
-                        size:
-                            Size(Get.width * 229 / 375, Get.width * 229 / 375),
-                      ),
-                    ),
+                    _buildQrCode(),
                     const SizedBox(
                       height: 28,
                     ),
@@ -193,6 +184,19 @@ class CollectionAddressPage extends GetView<CollectionAddressLogic> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildQrCode() {
+    final qrCode = controller.address.value;
+    return QrImage(
+      padding: const EdgeInsets.all(25),
+      data: qrCode,
+      size: Get.width * 229 / 375,
+      embeddedImage: const AssetImage(Res.ic_qr_code_bg),
+      embeddedImageStyle: QrEmbeddedImageStyle(
+        size: Size(Get.width * 229 / 375, Get.width * 229 / 375),
       ),
     );
   }

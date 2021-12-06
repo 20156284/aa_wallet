@@ -80,12 +80,12 @@ class MyApp extends StatelessWidget {
           AppS.delegate,
         ],
         initialBinding: BindingsBuilder(() {
+          //钱包状态管理
+          Get.put(WalletService());
           //app 配置的问题 比如说 APP语言 用户设置 主题都放到这个服务里面去
           Get.put(AppService(context));
           //启动屏服务 启动动画
           Get.put(SplashService());
-          //钱包状态管理
-          Get.put(WalletService());
           //用户授权信息状态管理
           Get.put(AuthService());
         }),

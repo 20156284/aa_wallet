@@ -6,7 +6,6 @@ import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'wallet_main_logic.dart';
@@ -30,19 +29,6 @@ class WalletMainPage extends GetView<WalletMainLogic> {
             alignment: Alignment.centerLeft,
             child: Image.asset(
               Res.ic_choose,
-              height: 24,
-              width: 24,
-            ),
-          ),
-        ),
-        trailing: InkWell(
-          onTap: () => controller.getPermission(Permission.camera),
-          child: Container(
-            height: kMinInteractiveDimensionCupertino,
-            width: kMinInteractiveDimensionCupertino,
-            alignment: Alignment.centerRight,
-            child: Image.asset(
-              Res.ic_scan,
               height: 24,
               width: 24,
             ),
