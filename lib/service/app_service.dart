@@ -21,9 +21,9 @@ import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:web3dart/credentials.dart';
 
@@ -161,38 +161,14 @@ class AppService extends GetxService {
    * @param rpcUrl 调用的是那个rpc
    * @param cancelFunc 关闭的load
    */
-  void insertWallet({
-    required String? name,
-    required String? password,
-    String? privateKey,
-    String? mnemonic,
-    String? protocol,
-    String? rpcUrl,
-  }) async {
-    final cancelFunc = CoreKitToast.showCustomDialog(
-      child: Container(
-        width: 145,
-        height: 145,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SpinKitSquareCircle(
-              color: CupertinoTheme.of(Get.context!).primaryColor,
-              size: 50,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(AppS().creat_wallet_ing),
-          ],
-        ),
-      ),
-    );
-
+  void insertWallet(
+      {required String? name,
+      required String? password,
+      String? privateKey,
+      String? mnemonic,
+      String? protocol,
+      String? rpcUrl,
+      CancelFunc? cancelFunc}) async {
     final wService = WalletService.to;
 
     bool isFist = false;
@@ -288,7 +264,7 @@ class AppService extends GetxService {
         Get.offAllNamed(AppRoutes.appMain);
       }).catchError((error) {
         CoreKitToast.showError(error);
-      }).whenComplete(cancelFunc);
+      }).whenComplete(cancelFunc!);
     }
   }
 

@@ -5,6 +5,8 @@ import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class ConfirmMnemonicLogic extends GetxController {
@@ -135,6 +137,30 @@ class ConfirmMnemonicLogic extends GetxController {
    * @param mnemonics 助记词
    */
   void onCreat(String mnemonic) async {
+    final cancelFunc = CoreKitToast.showCustomDialog(
+      child: Container(
+        width: 145,
+        height: 145,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitSquareCircle(
+              color: CupertinoTheme.of(Get.context!).primaryColor,
+              size: 50,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(AppS().creat_wallet_ing),
+          ],
+        ),
+      ),
+    );
+
     final wService = WalletService.to;
 
     AppService.to.insertWallet(
@@ -142,6 +168,7 @@ class ConfirmMnemonicLogic extends GetxController {
       password: wService.password.value,
       mnemonic: mnemonic,
       protocol: wService.protocol.value,
+      cancelFunc: cancelFunc,
     );
   }
 }

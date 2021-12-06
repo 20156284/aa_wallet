@@ -30,12 +30,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
-  # https://pub.dev/packages/decimal
-  decimal: ^1.5.0
+#  # https://pub.dev/packages/decimal
+#  decimal: ^1.5.0
   # https://pub.dev/packages/url_launcher
   url_launcher: ^6.0.17
   # getx 状态管理框架 https://pub.dev/packages/get  搭配手脚架使用 https://github.com/jonataslaw/get_cli
-  get: ^4.3.8
+  get: ^4.5.1
 
   # 复制粘贴 https://pub.dev/packages/clipboard
   clipboard: ^0.1.3
@@ -48,7 +48,7 @@ dependencies:
   # json映射 https://pub.flutter-io.cn/packages/json_serializable
   json_serializable: ^6.1.1
   # json映射 https://pub.flutter-io.cn/packages/json_annotation
-  json_annotation: ^4.3.0
+  json_annotation: ^4.4.0
   # 手机权限 https://pub.dev/packages/permission_handler
   permission_handler: ^8.3.0
   # 状态管理 https://pub.dev/packages/provider
@@ -66,7 +66,7 @@ dependencies:
 
   # Network
   # dio网络请求框架 https://pub.dev/packages/dio
-  dio: ^4.0.3
+  dio: ^4.0.4
   # dio网络转换 https://pub.dev/packages/dio_flutter_transformer
   #  dio_flutter_transformer: ^3.0.2
   # 映射dio返回 https://pub.dev/packages/retrofit
@@ -115,7 +115,7 @@ dependencies:
   # 时间选择器 https://pub.dev/packages/flutter_picker
   flutter_picker: ^2.0.2
   # 拓展的image控件 https://pub.dev/packages/image
-  image: ^3.0.8
+  image: ^3.1.0
   # 图片裁剪 https://pub.dev/packages/image_cropper
   image_cropper: ^1.4.1
   # 获取系统信息类 https://pub.dev/packages/package_info_plus
@@ -125,13 +125,13 @@ dependencies:
   # 文件路径 https://pub.dev/packages/path_provider
   path_provider: ^2.0.7
   # 启动图片 https://pub.dev/packages/flutter_native_splash
-  flutter_native_splash: ^1.3.1
+  flutter_native_splash: ^1.3.2
   # app icon 生成图片 https://pub.dev/packages/flutter_launcher_icons
   flutter_launcher_icons: ^0.9.2
   # 本地缓存 https://pub.dev/packages/shared_preferences
   shared_preferences: ^2.0.9
   # html解读 https://pub.dev/packages/flutter_html
-  flutter_html: ^2.1.5
+  flutter_html: ^2.2.0
   # 二维码扫描 https://pub.dev/packages/qr_code_scanner   没有WEB
   qr_code_scanner: ^0.6.1
   # 二维码控件 https://pub.dev/packages/qr_flutter
@@ -164,8 +164,9 @@ dependencies:
       url: https://gitee.com/willzh/app_upgrade.git
 
 
-#dependency_overrides:
-#  async: ^2.8.2
+dependency_overrides:
+  # https://pub.dev/packages/decimal
+  decimal: 1.5.0
 
 
 dev_dependencies:
