@@ -1,4 +1,5 @@
 import 'package:aa_wallet/const/app_theme.dart';
+import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,10 +31,10 @@ class AddTokenPage extends GetView<AddTokenLogic> {
             title: AppS().token_user_all_assets,
             onTap: () => Get.toNamed(AppRoutes.walletAssets, arguments: false),
           ),
-          _buildCell(
-            title: AppS().token_customize,
-            onTap: () {},
-          ),
+          // _buildCell(
+          //   title: AppS().token_customize,
+          //   onTap: () => CoreKitToast.showIconText(text: AppS().app_build_now),
+          // ),
         ],
       ),
     );

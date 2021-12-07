@@ -2,7 +2,6 @@ import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/route/app_pages.dart';
-import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,42 +21,33 @@ class WalletMainLogic extends GetxController {
   final showAddress = ''.obs;
 
   late Worker worker;
-  late Worker tokenWorker;
 
   @override
   void onInit() async {
     super.onInit();
 
-    dbTokenList = await WalletService.to.appDate.getAllToken();
+    final walletService = WalletService.to;
 
-    wallet.value = WalletService.to.wallet.value;
-    getToken(wallet.value);
+    final List<WalletEntry> walletList =
+        await walletService.appDate.getAllWallets();
+
+    for (final walletEntry in walletList) {
+      if (walletEntry.is_main!) {
+        wallet.value = walletEntry;
+        break;
+      }
+    }
+    onShow();
 
     //监听钱包的变化
-    worker = ever(WalletService.to.wallet, handleWalletChanged);
-    //监听token的变化
-    tokenWorker = ever(AppService.to.tokenList, handleTokenChanged);
-    onShow();
+    worker = ever(walletService.wallet, handleWalletChanged);
   }
 
   @override
   void onClose() {
     //释放当前页面的监听事件
     worker.dispose();
-    tokenWorker.dispose();
     super.onClose();
-  }
-
-  /**
-   * 监听Token变换的事件
-   * @author Will
-   * @date 2021/11/18 15:05
-   * @param _wallet 钱包实体类
-   */
-  void handleTokenChanged(_token) async {
-    dbTokenList = await WalletService.to.appDate.getAllToken();
-    //主要是通过刷新去获取新的代币余额
-    onRefreshFun();
   }
 
   /**
@@ -79,10 +69,9 @@ class WalletMainLogic extends GetxController {
    * @date 2021/11/20 15:55
    */
   void onShow() {
-    showAddress.value = TokenService.formattingAddress(wallet.value.address!);
+    showAddress.value =
+        TokenService.formattingAddress(wallet.value.address ?? '');
   }
-
-  void onChoose() {}
 
   /**
    * 跳转详情
@@ -147,25 +136,13 @@ class WalletMainLogic extends GetxController {
     Get.toNamed(AppRoutes.addToken);
   }
 
-  /**
-   * 获取代币
-   * @author Will
-   * @date 2021/11/25 17:10
-   */
-  void getToken(WalletEntry walletEntry) async {
-    final newList = <TokenEntry>[];
-    for (final tokenEntry in dbTokenList) {
-      if (tokenEntry.protocol == walletEntry.protocol) {
-        newList.add(tokenEntry);
-      }
-    }
-    tokenList.value = newList;
-  }
-
   void onRefreshFun() async {
+    dbTokenList = await WalletService.to.appDate.getAllToken();
+
     final newList = <TokenEntry>[];
     for (final tokenEntry in dbTokenList) {
       TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
+      //只去查询 当前 主币下 代币的余额
       if (tokenEntry.protocol == wallet.value.protocol) {
         if (tokenEntry.contractAddress == null) {
           //这个是主币 所以 获取主币的余额
@@ -185,6 +162,7 @@ class WalletMainLogic extends GetxController {
     }
 
     tokenList.value = newList;
+    tokenList.refresh();
 
     refreshCtrl.refreshCompleted();
   }

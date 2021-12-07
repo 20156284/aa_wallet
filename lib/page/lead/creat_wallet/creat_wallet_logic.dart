@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreatWalletLogic extends GetxController {
-  final TextEditingController nameEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
-  final TextEditingController repeatPwdEdit = TextEditingController();
+  final nameEdit = TextEditingController();
+  final pwdEdit = TextEditingController();
+  final repeatPwdEdit = TextEditingController();
 
   // final TextEditingController nameEdit =
   //     TextEditingController(text: 'Will\'s Wallet');
@@ -24,6 +24,12 @@ class CreatWalletLogic extends GetxController {
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    nameEdit.text = WalletService.to.walletName.value;
+  }
 
   /**
    * 检查输入是否合法再执行
@@ -57,10 +63,6 @@ class CreatWalletLogic extends GetxController {
     }
 
     WalletService.to.password.value = pwdEdit.text;
-    if (nameEdit.text.trim().isNotEmpty) {
-      WalletService.to.walletName.value = nameEdit.text;
-    }
-
     //这里先使用默认的创建的
     // WalletService.to.protocol.value = 'ARC20';
 

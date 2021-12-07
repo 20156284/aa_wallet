@@ -137,6 +137,7 @@ class CoreKitToast {
     Duration duration = CoreKitConst.toastDuration,
     VoidCallback? onClose,
   }) {
+    BotToast.removeAll();
     return showWidget(
       IconTextWidget(
         icon: icon,
@@ -190,6 +191,7 @@ class CoreKitToast {
     bool crossPage = false,
     bool clickClose = false,
   }) {
+    BotToast.removeAll();
     return BotToast.showCustomLoading(
       toastBuilder: (_) => SafeArea(
         child: Align(

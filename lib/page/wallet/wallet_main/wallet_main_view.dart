@@ -77,6 +77,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
   }
 
   Widget _buildWalletMain() {
+    debugPrint(controller.wallet.value.name);
     return Container(
       width: Get.width - 15 * 2,
       height: Get.width * 108 / 375,

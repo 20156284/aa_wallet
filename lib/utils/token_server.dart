@@ -11,6 +11,7 @@ import 'dart:math';
 import 'package:aa_wallet/api/token/token_network.dart';
 import 'package:aa_wallet/const/app_policies.dart';
 import 'package:aa_wallet/const/env_config.dart';
+import 'package:aa_wallet/core/utils/core_utils.dart';
 import 'package:bip32/bip32.dart' as bip32;
 import 'package:bip39/bip39.dart' as bip39;
 import 'package:hex/hex.dart';
@@ -46,7 +47,7 @@ class TokenService {
     final root = bip32.BIP32.fromSeed(seed);
     final child1 = root.derivePath("m/44'/60'/0'/0/0");
     final privateKey = bytesToHex(child1.privateKey!.toList());
-    print('private: $privateKey');
+    print('privateKey: $privateKey');
     return privateKey;
   }
 
@@ -87,6 +88,7 @@ class TokenService {
    * @return 返回格式化后的地址
    */
   static String formattingAddress(String addr) {
+    if (CoreUtil.isEmptyString(addr)) return '';
     final front = addr.substring(0, 8);
     final behind = addr.substring(addr.length - 8, addr.length);
     return front + '****' + behind;
@@ -215,7 +217,6 @@ class TokenService {
 
     Transaction transaction = Transaction();
 
-
     //主币转账
     if (postData == null) {
       transaction = Transaction(
@@ -236,7 +237,7 @@ class TokenService {
       );
     }
 
-   return  client.sendTransaction(
+    return client.sendTransaction(
       formAddr,
       transaction,
       chainId: networkId,

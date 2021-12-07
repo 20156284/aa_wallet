@@ -16,14 +16,14 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class TokenTransferLogic extends GetxController {
-  // final TextEditingController addrEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController addrEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
 
-  final TextEditingController addrEdit =
-      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  final TextEditingController pwdEdit =
-      TextEditingController(text: ')#*will520');
+  // final TextEditingController addrEdit =
+  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  // final TextEditingController pwdEdit =
+  //     TextEditingController(text: ')#*will520');
 
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
 
@@ -208,12 +208,15 @@ class TokenTransferLogic extends GetxController {
     pwdVisible.value = true;
 
     String pwd = pwdEdit.text;
+    debugPrint('pwd =>$pwd');
 
     final cancelFunc = CoreKitToast.showLoading();
     //加密后的密码
     pwd = await const WalletCrypt().walletPwdEncrypt(pwd);
+    debugPrint('pwd =>$pwd');
     final privateKey =
         await const WalletCrypt().decrypt(pwd, wallet.value.privateKey!);
+    debugPrint('privateKey =>$privateKey');
 
     //默认是主币转账
     if (tokenEntry.value.contractAddress == null) {
@@ -237,6 +240,7 @@ class TokenTransferLogic extends GetxController {
         moneyEdit.text = '';
         print('transaction => $value');
       }).catchError((error) {
+        debugPrint(error.toString());
         CoreKitToast.showError(error);
       }).whenComplete(cancelFunc);
     } else {
@@ -269,6 +273,7 @@ class TokenTransferLogic extends GetxController {
         moneyEdit.text = '';
         print('transaction => $value');
       }).catchError((error) {
+        debugPrint(error.toString());
         CoreKitToast.showError(error);
       }).whenComplete(cancelFunc);
     }

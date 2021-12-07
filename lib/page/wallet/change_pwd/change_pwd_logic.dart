@@ -137,7 +137,7 @@ class ChangePwdLogic extends GetxController {
         newPwdEdit.text = '';
         confirmPwdEdit.text = '';
 
-        //主錢包的話發送箭筒
+        //主錢包的話發送监听
         if (wallet.is_main != null && wallet.is_main!) {
           WalletService.to.wallet.value = wallet;
         }

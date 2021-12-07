@@ -28,9 +28,17 @@ class WalletService extends GetxService {
   final password = ''.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    onReadWallet();
+
+    final List<WalletEntry> walletList = await appDate.getAllWallets();
+
+    for (final walletEntry in walletList) {
+      if (walletEntry.is_main!) {
+        wallet.value = walletEntry;
+        break;
+      }
+    }
   }
 
   /**
@@ -38,7 +46,7 @@ class WalletService extends GetxService {
    * @author Will
    * @date 2021/11/17 14:15
    */
-  void onReadWallet() async {
+  Future<void> onReadWallet() async {
     final List<WalletEntry> walletList = await appDate.getAllWallets();
 
     for (final walletEntry in walletList) {

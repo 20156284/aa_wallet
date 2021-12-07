@@ -38,16 +38,11 @@ class AppService extends GetxService {
   final langList = <LanguageInfo>[].obs;
   final haveBackUpMnemonic = false.obs;
 
-  final tokenList = <TokenEntry>[].obs;
-  List<WalletEntry> dbWalletList = <WalletEntry>[];
-
   @override
   void onInit() async {
     super.onInit();
     _onLoadLanguage();
     onReadConfig();
-
-    dbWalletList = await WalletService.to.appDate.getAllWallets();
 
     //监听 app 设置的 的变化
     ever(app, handleAppChanged);
@@ -237,14 +232,19 @@ class AppService extends GetxService {
       isFist = app.value.isFistTime!;
     }
 
+    debugPrint('password =>$password');
     //加密后的密码
     password = await const WalletCrypt().walletPwdEncrypt(password!);
+    debugPrint('encrypt password =>$password');
 
     if (mnemonic != null) {
+      debugPrint('mnemonic=>$mnemonic');
       //通过 助记词产生 私钥
       privateKey = TokenService.getPrivateKey(mnemonic);
+      debugPrint('privateKey =>$privateKey');
       //加密后的助记词
       mnemonic = await const WalletCrypt().encrypt(password, mnemonic);
+      debugPrint('encrypt mnemonic =>$mnemonic');
     }
 
     //通过 私钥 产生 地址.
@@ -252,7 +252,7 @@ class AppService extends GetxService {
         TokenService.getPublicAddress(privateKey!);
 
     //去重 表示已經有
-    if (duplicateRemoval(publicAddress.hexEip55)) {
+    if (await duplicateRemoval(publicAddress.hexEip55)) {
       CustomDialog.showCustomDialog(
         Get.context!,
         SizedBox(
@@ -281,6 +281,10 @@ class AppService extends GetxService {
     } else {
       //加密后秘钥
       privateKey = await const WalletCrypt().encrypt(password, privateKey);
+      debugPrint('encrypt privateKey =>$privateKey');
+
+      //更新之前的旧钱包
+      await onReadWallet();
 
       final value = await wService.appDate.insertWallet(
         name: name,
@@ -290,8 +294,8 @@ class AppService extends GetxService {
         protocol: protocol,
         address: publicAddress.hexEip55,
         rpcUrl: rpcUrl,
-        //第一次创建的钱包也是主钱包
-        isMain: isFist,
+        //所有创建的钱包 都变成主钱包
+        isMain: true,
         isFist: isFist,
       );
 
@@ -304,13 +308,16 @@ class AppService extends GetxService {
         privateKey: privateKey,
         protocol: protocol,
         rpcUrl: rpcUrl,
-        //第一次创建的钱包也是主钱包
-        is_main: isFist,
+        //所有创建的钱包 都变成主钱包
+        is_main: true,
         is_fist: isFist,
       );
+
+      //不管是不是主要钱包 都给他做成 主要钱包
       wService.wallet.value = wallet;
 
       updateFistTime(false);
+
       if (isFist) creatToken(wallet);
 
       //创建钱包成功的时候发给后台让后添加
@@ -378,29 +385,18 @@ class AppService extends GetxService {
         );
       }
     }
-
-    getToken(wallet);
   }
 
-  /**
-   * 获取代币
+  /*
+   * 去重是否已创建过该钱包地址
    * @author Will
-   * @date 2021/11/25 17:10
+   * @date 2021/12/7 17:06
+   * @param address 钱包地址
+   * @return 返回是否
    */
-  void getToken(WalletEntry walletEntry) async {
-    final list = await WalletService.to.appDate.getAllToken();
-    final newList = <TokenEntry>[];
-    for (final tokenEntry in list) {
-      if (tokenEntry.protocol == walletEntry.protocol) {
-        newList.add(tokenEntry);
-      }
-    }
-
-    tokenList.value = newList;
-  }
-
-  bool duplicateRemoval(String address) {
+  Future<bool> duplicateRemoval(String address) async {
     bool isHasAddress = false;
+    final dbWalletList = await WalletService.to.appDate.getAllWallets();
     for (final walletEntry in dbWalletList) {
       if (walletEntry.address == address) {
         isHasAddress = true;
@@ -408,5 +404,25 @@ class AppService extends GetxService {
       }
     }
     return isHasAddress;
+  }
+
+  /**
+   * 让其他钱包都变成非主要钱包
+   * @author Will
+   * @date 2021/11/17 14:15
+   */
+  Future<void> onReadWallet() async {
+    final dbWalletList = await WalletService.to.appDate.getAllWallets();
+
+    //本地钱包为空 不执行下面操作
+    if (dbWalletList.isEmpty) return;
+
+    for (WalletEntry walletEntry in dbWalletList) {
+      if (walletEntry.is_main!) {
+        walletEntry = walletEntry.copyWith(is_main: false);
+        WalletService.to.appDate.updateWallet(walletEntry);
+        break;
+      }
+    }
   }
 }

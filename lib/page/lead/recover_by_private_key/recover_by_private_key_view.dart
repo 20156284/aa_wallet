@@ -1,6 +1,7 @@
 import 'package:aa_wallet/const/app_theme.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/generated/l10n.dart';
+import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -102,6 +103,9 @@ class RecoverByPrivateKeyPage extends GetView<RecoverByPrivateKeyLogic> {
               fillColor: AppTheme.of(context).inputBgColor,
               filled: true,
             ),
+            onChanged: (val) {
+              WalletService.to.walletName.value = val;
+            },
           ),
           const SizedBox(
             height: 33,
