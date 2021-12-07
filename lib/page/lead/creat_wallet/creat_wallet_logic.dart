@@ -31,10 +31,10 @@ class CreatWalletLogic extends GetxController {
    * @date 2021/11/17 09:50
    */
   void onCheck() {
-    if (nameEdit.text.trim().isEmpty) {
-      CoreKitToast.showError(AppS().creat_wallet_name_input);
-      return;
-    }
+    // if (nameEdit.text.trim().isEmpty) {
+    //   CoreKitToast.showError(AppS().creat_wallet_name_input);
+    //   return;
+    // }
     if (pwdEdit.text.trim().isEmpty) {
       CoreKitToast.showError(AppS().creat_wallet_pwd_input);
       return;
@@ -57,7 +57,10 @@ class CreatWalletLogic extends GetxController {
     }
 
     WalletService.to.password.value = pwdEdit.text;
-    WalletService.to.walletName.value = nameEdit.text;
+    if (nameEdit.text.trim().isNotEmpty) {
+      WalletService.to.walletName.value = nameEdit.text;
+    }
+
     //这里先使用默认的创建的
     // WalletService.to.protocol.value = 'ARC20';
 

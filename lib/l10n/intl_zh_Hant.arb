@@ -139,7 +139,7 @@
   "token_transfer_cell_time": "交易時間",
 
   "token_transfer_addr": "收款地址",
-  "token_transfer_addr_input": "請輸入ETH地址",
+  "token_transfer_addr_input": "請輸入aacoin地址",
   "token_transfer_money":"金額",
   "token_transfer_money_input": "請輸入轉賬金額",
   "token_transfer_fee": "礦工費",

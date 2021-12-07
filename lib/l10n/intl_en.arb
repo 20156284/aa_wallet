@@ -139,7 +139,7 @@
   "token_transfer_cell_time": "Transfer Time",
 
   "token_transfer_addr": "Transfer Address",
-  "token_transfer_addr_input": "Please enter eth address",
+  "token_transfer_addr_input": "Please enter aacoin address",
   "token_transfer_money":"Amount",
   "token_transfer_money_input": "please enter amount",
   "token_transfer_fee": "Fee",

@@ -29,8 +29,7 @@ class CoreQRScan {
     //扫描区虚幻的颜色
     Color overlayColor = const Color.fromRGBO(0, 0, 0, 80),
   }) async {
-    final String? result = await Navigator.push(
-      context,
+    final String? result = await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) {
         return QRScan(
           borderColor: borderColor,
@@ -98,102 +97,16 @@ class _QRScanState extends State<QRScan> {
     return Scaffold(
       body: Stack(
         children: [
-          _buildQrView(context),
+          _buildQrView(),
           const SafeArea(
             child: CupertinoNavigationBarBackButton(),
           ),
         ],
       ),
     );
-    // return Scaffold(
-    //   body: Column(
-    //     children: <Widget>[
-    //       Expanded(flex: 4, child: _buildQrView(context)),
-    //       Expanded(
-    //         flex: 1,
-    //         child: FittedBox(
-    //           fit: BoxFit.contain,
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //             children: <Widget>[
-    //               if (result != null)
-    //                 Text(
-    //                     'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-    //               else
-    //                 Text('Scan a code'),
-    //               Row(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 crossAxisAlignment: CrossAxisAlignment.center,
-    //                 children: <Widget>[
-    //                   Container(
-    //                     margin: EdgeInsets.all(8),
-    //                     child: ElevatedButton(
-    //                         onPressed: () async {
-    //                           await controller?.toggleFlash();
-    //                           setState(() {});
-    //                         },
-    //                         child: FutureBuilder(
-    //                           future: controller?.getFlashStatus(),
-    //                           builder: (context, snapshot) {
-    //                             return Text('Flash: ${snapshot.data}');
-    //                           },
-    //                         )),
-    //                   ),
-    //                   Container(
-    //                     margin: EdgeInsets.all(8),
-    //                     child: ElevatedButton(
-    //                         onPressed: () async {
-    //                           await controller?.flipCamera();
-    //                           setState(() {});
-    //                         },
-    //                         child: FutureBuilder(
-    //                           future: controller?.getCameraInfo(),
-    //                           builder: (context, snapshot) {
-    //                             if (snapshot.data != null) {
-    //                               return Text(
-    //                                   'Camera facing ${describeEnum(snapshot.data!)}');
-    //                             } else {
-    //                               return Text('loading');
-    //                             }
-    //                           },
-    //                         )),
-    //                   )
-    //                 ],
-    //               ),
-    //               Row(
-    //                 mainAxisAlignment: MainAxisAlignment.center,
-    //                 crossAxisAlignment: CrossAxisAlignment.center,
-    //                 children: <Widget>[
-    //                   Container(
-    //                     margin: EdgeInsets.all(8),
-    //                     child: ElevatedButton(
-    //                       onPressed: () async {
-    //                         await controller?.pauseCamera();
-    //                       },
-    //                       child: Text('pause', style: TextStyle(fontSize: 20)),
-    //                     ),
-    //                   ),
-    //                   Container(
-    //                     margin: EdgeInsets.all(8),
-    //                     child: ElevatedButton(
-    //                       onPressed: () async {
-    //                         await controller?.resumeCamera();
-    //                       },
-    //                       child: Text('resume', style: TextStyle(fontSize: 20)),
-    //                     ),
-    //                   )
-    //                 ],
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       )
-    //     ],
-    //   ),
-    // );
   }
 
-  Widget _buildQrView(BuildContext context) {
+  Widget _buildQrView() {
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
@@ -208,26 +121,16 @@ class _QRScanState extends State<QRScan> {
   }
 
   void _onQRViewCreated(QRViewController controller) async {
-    setState(() {
-      this.controller = controller;
-    });
-    //  controller.scannedDataStream.listen((scanData) {
-    //   setState(() {
-    //     debugPrint(scanData.code);
-    //     result = scanData;
-    //   });
+    // setState(() {
+    //   this.controller = controller;
     // });
 
-    result = await controller.scannedDataStream.first;
-    if (result != null)
-      WidgetsBinding.instance!
-          .addPostFrameCallback((_) => Navigator.of(context).pop(result!.code));
+    this.controller = controller;
 
-    // await for (var value in controller.scannedDataStream) {
-    //   debugPrint(value.code);
-    //   result= value;
-    // }
-    // debugPrint(result!.code);
+    result = await controller.scannedDataStream.first;
+    if (result != null) Navigator.of(context).pop(result!.code);
+    // WidgetsBinding.instance!
+    //     .addPostFrameCallback((_) => Navigator.of(context).pop(result!.code));
   }
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {

@@ -30,15 +30,15 @@ class AddWalletPage extends GetView<AddWalletLogic> {
           const SizedBox(
             height: 10,
           ),
-          _buildCell(
-            title: AppS().add_wallet_btc,
-            subTitle: AppS().add_wallet_btc_subtitle,
-            icon: Res.ic_btc_select,
-            onTap: () => controller.onGotoCreate(1),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+          // _buildCell(
+          //   title: AppS().add_wallet_btc,
+          //   subTitle: AppS().add_wallet_btc_subtitle,
+          //   icon: Res.ic_btc_select,
+          //   onTap: () => controller.onGotoCreate(1),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           _buildCell(
             title: AppS().add_wallet_aac,
             subTitle: AppS().add_wallet_aac_subtitle,

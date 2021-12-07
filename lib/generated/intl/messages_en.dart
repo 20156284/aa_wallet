@@ -213,7 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_addr":
             MessageLookupByLibrary.simpleMessage("Transfer Address"),
         "token_transfer_addr_input":
-            MessageLookupByLibrary.simpleMessage("Please enter eth address"),
+            MessageLookupByLibrary.simpleMessage("Please enter aacoin address"),
         "token_transfer_cell_addr":
             MessageLookupByLibrary.simpleMessage("Transfer Address"),
         "token_transfer_cell_hash":

@@ -21,7 +21,7 @@ class TokenTransferPage extends GetView<TokenTransferLogic> {
         backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
         border: Border.all(width: 0.0, style: BorderStyle.none),
         trailing: InkWell(
-          onTap: () => controller.getPermission(Permission.camera),
+          onTap: () => controller.getPermission(Permission.camera, context),
           child: Container(
             height: kMinInteractiveDimensionCupertino,
             width: kMinInteractiveDimensionCupertino,

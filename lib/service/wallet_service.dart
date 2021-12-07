@@ -24,7 +24,7 @@ class WalletService extends GetxService {
   //当前App默认的钱包
   final wallet = WalletEntry(id: 0).obs;
 
-  final walletName = ''.obs;
+  final walletName = 'AAC'.obs;
   final password = ''.obs;
 
   @override

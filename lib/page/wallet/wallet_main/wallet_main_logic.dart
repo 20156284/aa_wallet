@@ -1,5 +1,4 @@
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
-import 'package:aa_wallet/core/widget/qr_scan.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/route/app_pages.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class WalletMainLogic extends GetxController {
@@ -25,6 +23,7 @@ class WalletMainLogic extends GetxController {
 
   late Worker worker;
   late Worker tokenWorker;
+
   @override
   void onInit() async {
     super.onInit();
@@ -84,67 +83,6 @@ class WalletMainLogic extends GetxController {
   }
 
   void onChoose() {}
-
-  /**
-   * 使用照片之前先获取手机手机权限问题
-   * @author Will
-   * @date 2021/11/17 17:08
-   * @param permission 调用那个权限
-   */
-  void getPermission(Permission permission) async {
-    await permission.request().then((value) async {
-      String content = '';
-      if (value.index == 1) {
-        if (permission == Permission.photos) {}
-        if (permission == Permission.camera) {
-          final String? str = await CoreQRScan.pushScan(
-              context: Get.context!,
-              borderColor: CupertinoTheme.of(Get.context!).primaryColor);
-          debugPrint(str);
-        }
-      } else {
-        if (permission == Permission.photos) {
-          content = AppS().app_permission_photos_close;
-        }
-        if (permission == Permission.camera) {
-          content = AppS().app_permission_camera_close;
-        }
-
-        _showCupertinoAlertDialog(content);
-      }
-    });
-  }
-
-  /**
-   * 如果没有权限的时候 弹出权限问题的弹窗
-   * @author Will
-   * @date 2021/11/17 17:08
-   * @param content 显示被屏蔽的内容
-   */
-  void _showCupertinoAlertDialog(String content) {
-    Get.dialog(
-      CupertinoAlertDialog(
-        title: Text(AppS().app_permission_title),
-        content: Text(content),
-        actions: [
-          CupertinoDialogAction(
-            child: Text(AppS().app_permission_open),
-            onPressed: () async {
-              await openAppSettings(); //打开设置页面
-              Get.back();
-            },
-          ),
-          CupertinoDialogAction(
-            child: Text(AppS().app_cancel),
-            isDestructiveAction: true,
-            onPressed: () {
-              Get.back();
-            },
-          ),
-        ],
-      ),
-    );
-  }
 
   /**
    * 跳转详情

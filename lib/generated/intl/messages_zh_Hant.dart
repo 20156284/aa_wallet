@@ -184,7 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_main_assets": MessageLookupByLibrary.simpleMessage("首頁資產管理"),
         "token_transfer_addr": MessageLookupByLibrary.simpleMessage("收款地址"),
         "token_transfer_addr_input":
-            MessageLookupByLibrary.simpleMessage("請輸入ETH地址"),
+            MessageLookupByLibrary.simpleMessage("請輸入aacoin地址"),
         "token_transfer_cell_addr":
             MessageLookupByLibrary.simpleMessage("交易地址"),
         "token_transfer_cell_hash":

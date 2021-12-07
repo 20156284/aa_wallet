@@ -280,15 +280,15 @@ class TokenTransferLogic extends GetxController {
    * @date 2021/11/17 17:08
    * @param permission 调用那个权限
    */
-  void getPermission(Permission permission) async {
+  void getPermission(Permission permission, BuildContext context) async {
     await permission.request().then((value) async {
       String content = '';
       if (value.index == 1) {
         if (permission == Permission.photos) {}
         if (permission == Permission.camera) {
           final String? str = await CoreQRScan.pushScan(
-            context: Get.context!,
-            borderColor: CupertinoTheme.of(Get.context!).primaryColor,
+            context: context,
+            borderColor: CupertinoTheme.of(context).primaryColor,
           );
           addrEdit.text = str ?? '';
         }

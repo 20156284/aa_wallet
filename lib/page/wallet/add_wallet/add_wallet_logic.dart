@@ -7,12 +7,15 @@ class AddWalletLogic extends GetxController {
     final wallet = WalletService.to;
     switch (btnTag) {
       case 0:
+        wallet.walletName.value = 'ETH';
         wallet.protocol.value = 'ERC20';
         break;
       case 1:
+        wallet.walletName.value = 'BTC';
         wallet.protocol.value = 'TRC20';
         break;
       case 2:
+        wallet.walletName.value = 'AAC';
         wallet.protocol.value = 'ARC20';
         break;
     }

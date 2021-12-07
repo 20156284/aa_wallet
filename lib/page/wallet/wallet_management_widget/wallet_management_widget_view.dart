@@ -50,11 +50,11 @@ class _WalletManagementWidgetPageState
                     icon: Res.ic_eth,
                     btnTag: 1,
                   ),
-                  _buildItems(
-                    selectIcon: Res.ic_btc_select,
-                    icon: Res.ic_btc,
-                    btnTag: 2,
-                  ),
+                  // _buildItems(
+                  //   selectIcon: Res.ic_btc_select,
+                  //   icon: Res.ic_btc,
+                  //   btnTag: 2,
+                  // ),
                   _buildItems(
                     selectIcon: Res.ic_aaa_select,
                     icon: Res.ic_aaa,

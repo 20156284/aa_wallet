@@ -1230,10 +1230,10 @@ class AppS {
     );
   }
 
-  /// `Please enter eth address`
+  /// `Please enter aacoin address`
   String get token_transfer_addr_input {
     return Intl.message(
-      'Please enter eth address',
+      'Please enter aacoin address',
       name: 'token_transfer_addr_input',
       desc: '',
       args: [],
