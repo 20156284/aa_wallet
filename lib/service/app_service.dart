@@ -195,16 +195,31 @@ class AppService extends GetxService {
       borderRadius: BorderRadius.circular(12),
     );
 
-    insert(
-      name: name,
-      password: password,
-      privateKey: privateKey,
-      mnemonic: mnemonic,
-      protocol: protocol,
-      rpcUrl: rpcUrl,
-    );
+    //延迟 100 毫秒执行主要是先让上面的 load 显示出来再执行 插入操作
+    Future.delayed(const Duration(milliseconds: 100), () {
+      insert(
+        name: name,
+        password: password,
+        privateKey: privateKey,
+        mnemonic: mnemonic,
+        protocol: protocol,
+        rpcUrl: rpcUrl,
+      );
+    });
   }
 
+  /**
+   * 插入数据
+   * @author Will
+   * @date 2021/11/25 17:07
+   * @param name 钱包名称
+   * @param password 密码
+   * @param mnemonic 助记词
+   * @param privateKey 私钥
+   * @param protocol 币区块
+   * @param address 钱包地址
+   * @param rpcUrl 调用的是那个rpc
+   */
   void insert({
     required String? name,
     required String? password,
@@ -238,7 +253,6 @@ class AppService extends GetxService {
 
     //去重 表示已經有
     if (duplicateRemoval(publicAddress.hexEip55)) {
-      Get.back();
       CustomDialog.showCustomDialog(
         Get.context!,
         SizedBox(
