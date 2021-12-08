@@ -146,7 +146,9 @@
   "token_transfer_addr_input": "Please enter aacoin address",
   "token_transfer_money":"Amount",
   "token_transfer_money_input": "please enter amount",
+  "token_transfer_money_aa":"AAA Amount:{amount}",
   "token_transfer_fee": "Fee",
+  "token_transfer_fee_aa": "Fee:{fee}",
   "token_transfer_slow": "Slow",
   "token_transfer_slow_info": "0/{money}AAA<30minute",
   "token_transfer_recommend": "Recommend",
@@ -154,6 +156,7 @@
   "token_transfer_quick": "Quick",
   "token_transfer_quick_info": "0/{money}AAA<1minute",
   "token_transfer_customize": "Customize",
+  "token_transfer_fee_err": "Insufficient expenses",
 
   "collections_addr_tips": "This address only supports AACOIN assets, please do not transfer to other public chain assets",
   "collections_addr_in_eth": "Scan the QR code and transfer to {coin}",

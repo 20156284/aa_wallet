@@ -131,6 +131,7 @@ class WalletMainLogic extends GetxController {
           final balance = await TokenService.getBalance(
             wallet.value.address!,
           );
+          WalletService.to.aaaAmount.value = num.parse(balance);
           newTokenEntry = tokenEntry.copyWith(balance: balance);
         } else {
           //这个是代币的 获取小数点

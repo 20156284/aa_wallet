@@ -30,11 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(money) => "≈${money} ASDT";
 
-  static String m5(money) => "0/${money}AAA<1minute";
+  static String m5(fee) => "Fee:${fee}";
 
-  static String m6(money) => "0/${money}AAA<5minute";
+  static String m6(amount) => "AAA Amount:${amount}";
 
-  static String m7(money) => "0/${money}AAA<30minute";
+  static String m7(money) => "0/${money}AAA<1minute";
+
+  static String m8(money) => "0/${money}AAA<5minute";
+
+  static String m9(money) => "0/${money}AAA<30minute";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -234,16 +238,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_customize":
             MessageLookupByLibrary.simpleMessage("Customize"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("Fee"),
+        "token_transfer_fee_aa": m5,
+        "token_transfer_fee_err":
+            MessageLookupByLibrary.simpleMessage("Insufficient expenses"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("Amount"),
+        "token_transfer_money_aa": m6,
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("please enter amount"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("Quick"),
-        "token_transfer_quick_info": m5,
+        "token_transfer_quick_info": m7,
         "token_transfer_recommend":
             MessageLookupByLibrary.simpleMessage("Recommend"),
-        "token_transfer_recommend_info": m6,
+        "token_transfer_recommend_info": m8,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
-        "token_transfer_slow_info": m7,
+        "token_transfer_slow_info": m9,
         "token_user_all_assets":
             MessageLookupByLibrary.simpleMessage("All Assets"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),

@@ -112,6 +112,27 @@ class TokenTransferPage extends GetView<TokenTransferLogic> {
                   filled: true,
                 ),
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              Obx(
+                () => Text(
+                  AppS().token_transfer_money_aa(
+                      controller.aaaAmount.value.toString()),
+                  style: const TextStyle(
+                      fontSize: 12, color: CupertinoColors.systemGrey),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Obx(
+                () => Text(
+                  AppS().token_transfer_fee_aa(controller.fee.value.toString()),
+                  style: const TextStyle(
+                      fontSize: 12, color: CupertinoColors.systemGrey),
+                ),
+              ),
               // const SizedBox(
               //   height: 25,
               // ),

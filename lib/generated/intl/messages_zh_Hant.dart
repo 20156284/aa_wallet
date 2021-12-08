@@ -30,11 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(money) => "≈${money} ASDT";
 
-  static String m5(money) => "0/${money}AAA<1分鐘";
+  static String m5(fee) => "手續費:${fee}";
 
-  static String m6(money) => "0/${money}AAA<5分鐘";
+  static String m6(amount) => "AAA 數量:${amount}";
 
-  static String m7(money) => "0/${money}AAA<30分鐘";
+  static String m7(money) => "0/${money}AAA<1分鐘";
+
+  static String m8(money) => "0/${money}AAA<5分鐘";
+
+  static String m9(money) => "0/${money}AAA<30分鐘";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -190,7 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_main_assets": MessageLookupByLibrary.simpleMessage("首頁資產管理"),
         "token_transfer_addr": MessageLookupByLibrary.simpleMessage("收款地址"),
         "token_transfer_addr_input":
-            MessageLookupByLibrary.simpleMessage("請輸入aacoin地址"),
+            MessageLookupByLibrary.simpleMessage("請輸入AACoin地址"),
         "token_transfer_cell_addr":
             MessageLookupByLibrary.simpleMessage("交易地址"),
         "token_transfer_cell_hash":
@@ -203,15 +207,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("交易數量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定義"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("礦工費"),
-        "token_transfer_money": MessageLookupByLibrary.simpleMessage("金額"),
+        "token_transfer_fee_aa": m5,
+        "token_transfer_fee_err": MessageLookupByLibrary.simpleMessage("手續費不足"),
+        "token_transfer_money": MessageLookupByLibrary.simpleMessage("數量"),
+        "token_transfer_money_aa": m6,
         "token_transfer_money_input":
-            MessageLookupByLibrary.simpleMessage("請輸入轉賬金額"),
+            MessageLookupByLibrary.simpleMessage("請輸入轉賬數量"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
-        "token_transfer_quick_info": m5,
+        "token_transfer_quick_info": m7,
         "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推薦"),
-        "token_transfer_recommend_info": m6,
+        "token_transfer_recommend_info": m8,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "token_transfer_slow_info": m7,
+        "token_transfer_slow_info": m9,
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
         "wallet": MessageLookupByLibrary.simpleMessage("錢包"),
         "wallet_add_copy_success":

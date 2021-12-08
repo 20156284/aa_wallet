@@ -143,10 +143,12 @@
   "token_transfer_cell_time": "交易時間",
 
   "token_transfer_addr": "收款地址",
-  "token_transfer_addr_input": "請輸入aacoin地址",
-  "token_transfer_money":"金額",
-  "token_transfer_money_input": "請輸入轉賬金額",
+  "token_transfer_addr_input": "請輸入AACoin地址",
+  "token_transfer_money":"數量",
+  "token_transfer_money_aa":"AAA 數量:{amount}",
+  "token_transfer_money_input": "請輸入轉賬數量",
   "token_transfer_fee": "礦工費",
+  "token_transfer_fee_aa": "手續費:{fee}",
   "token_transfer_slow": "慢",
   "token_transfer_slow_info": "0/{money}AAA<30分鐘",
   "token_transfer_recommend": "推薦",
@@ -154,6 +156,7 @@
   "token_transfer_quick": "快",
   "token_transfer_quick_info": "0/{money}AAA<1分鐘",
   "token_transfer_customize": "自定義",
+  "token_transfer_fee_err": "手續費不足",
 
   "collections_addr_tips": "該地址僅支持AACOIN資產,請勿轉入其他公鏈資產",
   "collections_addr_in_eth": "掃二維碼，轉入{coin}",

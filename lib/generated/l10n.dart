@@ -1300,6 +1300,16 @@ class AppS {
     );
   }
 
+  /// `AAA Amount:{amount}`
+  String token_transfer_money_aa(Object amount) {
+    return Intl.message(
+      'AAA Amount:$amount',
+      name: 'token_transfer_money_aa',
+      desc: '',
+      args: [amount],
+    );
+  }
+
   /// `Fee`
   String get token_transfer_fee {
     return Intl.message(
@@ -1307,6 +1317,16 @@ class AppS {
       name: 'token_transfer_fee',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Fee:{fee}`
+  String token_transfer_fee_aa(Object fee) {
+    return Intl.message(
+      'Fee:$fee',
+      name: 'token_transfer_fee_aa',
+      desc: '',
+      args: [fee],
     );
   }
 
@@ -1375,6 +1395,16 @@ class AppS {
     return Intl.message(
       'Customize',
       name: 'token_transfer_customize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient expenses`
+  String get token_transfer_fee_err {
+    return Intl.message(
+      'Insufficient expenses',
+      name: 'token_transfer_fee_err',
       desc: '',
       args: [],
     );

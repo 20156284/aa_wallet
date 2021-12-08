@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:aa_wallet/const/app_policies.dart';
 import 'package:aa_wallet/const/app_theme.dart';
+import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
@@ -10,20 +12,22 @@ import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:web3dart/web3dart.dart';
 
 class TokenTransferLogic extends GetxController {
-  final TextEditingController addrEdit = TextEditingController();
-  final TextEditingController pwdEdit = TextEditingController();
+  // final TextEditingController addrEdit = TextEditingController();
+  // final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
 
-  // final TextEditingController addrEdit =
-  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  // final TextEditingController pwdEdit =
-  //     TextEditingController(text: ')#*will520');
+  final TextEditingController addrEdit =
+      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  final TextEditingController pwdEdit = TextEditingController(text: 'Aa123456');
 
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
 
@@ -34,6 +38,12 @@ class TokenTransferLogic extends GetxController {
 
   //钱包ID
   final wallet = WalletEntry(id: 0).obs;
+
+  //当前代币价格
+  final aaaAmount = num.parse('0').obs;
+
+  //当前代币价格
+  final fee = num.parse('0').obs;
 
   @override
   void onInit() async {
@@ -46,6 +56,15 @@ class TokenTransferLogic extends GetxController {
     if (arguments != null && arguments is TokenEntry) {
       tokenEntry.value = arguments;
     }
+
+    aaaAmount.value = WalletService.to.aaaAmount.value;
+
+    final client = Web3Client(Env.envConfig.aaaRpcUrl, Client());
+    final gasPrice = await client.getGasPrice();
+    final maxGasGasPrice =
+        NumUtil.multiply(AppPolicies.maxGas, gasPrice.getInWei.toInt());
+
+    fee.value = NumUtil.divide(maxGasGasPrice, pow(10, 18));
   }
 
   /**
@@ -202,6 +221,11 @@ class TokenTransferLogic extends GetxController {
       return;
     }
 
+    if (aaaAmount.value < fee.value) {
+      CoreKitToast.showError(AppS().token_transfer_fee_err);
+      return;
+    }
+
     //关闭弹窗
     Get.back();
     //关闭显示密码功能
@@ -233,7 +257,7 @@ class TokenTransferLogic extends GetxController {
         privateKey: privateKey,
         toAddress: addrEdit.text.trim(),
         amount: BigInt.parse(moneyEdit.text.trim()),
-        maxGas: 100000,
+        maxGas: AppPolicies.maxGas,
       ).then((value) {
         addrEdit.text = '';
         pwdEdit.text = '';
@@ -265,7 +289,7 @@ class TokenTransferLogic extends GetxController {
         privateKey: privateKey,
         toAddress: addrEdit.text.trim(),
         postData: postData,
-        maxGas: 100000,
+        maxGas: AppPolicies.maxGas,
         contractAddress: tokenEntry.value.contractAddress!,
       ).then((value) {
         addrEdit.text = '';

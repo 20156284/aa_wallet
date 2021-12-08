@@ -41,4 +41,6 @@ class AppPolicies {
     'orderFlags(bytes32 od_hash)': '0x76356e86',
     'configurations(string key)': '0x1214dd58',
   };
+
+  static const int maxGas = 100000;
 }

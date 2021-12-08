@@ -26,6 +26,8 @@ class WalletService extends GetxService {
   final appDate = AppDatabase();
   //当前App默认的钱包
   final wallet = WalletEntry(id: 0).obs;
+  //当前代币价格
+  final aaaAmount = num.parse('0').obs;
 
   final password = ''.obs;
 

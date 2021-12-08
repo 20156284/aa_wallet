@@ -30,11 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(money) => "≈${money} ASDT";
 
-  static String m5(money) => "0/${money}AAA<1分钟";
+  static String m5(fee) => "手续费:${fee}";
 
-  static String m6(money) => "0/${money}AAA<5分钟";
+  static String m6(amount) => "AAA数量:${amount}";
 
-  static String m7(money) => "0/${money}AAA<30分钟";
+  static String m7(money) => "0/${money}AAA<1分钟";
+
+  static String m8(money) => "0/${money}AAA<5分钟";
+
+  static String m9(money) => "0/${money}AAA<30分钟";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -203,15 +207,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("交易数量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定义"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("矿工费"),
-        "token_transfer_money": MessageLookupByLibrary.simpleMessage("金额"),
+        "token_transfer_fee_aa": m5,
+        "token_transfer_fee_err": MessageLookupByLibrary.simpleMessage("手续费不足"),
+        "token_transfer_money": MessageLookupByLibrary.simpleMessage("数量"),
+        "token_transfer_money_aa": m6,
         "token_transfer_money_input":
-            MessageLookupByLibrary.simpleMessage("请输入转账金额"),
+            MessageLookupByLibrary.simpleMessage("请输入转账数量"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
-        "token_transfer_quick_info": m5,
+        "token_transfer_quick_info": m7,
         "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推荐"),
-        "token_transfer_recommend_info": m6,
+        "token_transfer_recommend_info": m8,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "token_transfer_slow_info": m7,
+        "token_transfer_slow_info": m9,
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),
         "wallet": MessageLookupByLibrary.simpleMessage("钱包"),
         "wallet_add_copy_success":

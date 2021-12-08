@@ -335,6 +335,7 @@ class AppService extends GetxService {
         Get.offAllNamed(AppRoutes.appMain);
       } else {
         Get.back();
+
         CustomDialog.showCustomDialog(
           Get.context!,
           SizedBox(
