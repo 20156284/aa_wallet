@@ -77,7 +77,6 @@ class WalletMainPage extends GetView<WalletMainLogic> {
   }
 
   Widget _buildWalletMain() {
-    debugPrint(controller.wallet.value.name);
     return Container(
       width: Get.width - 15 * 2,
       height: Get.width * 108 / 375,
@@ -91,7 +90,11 @@ class WalletMainPage extends GetView<WalletMainLogic> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () => controller.onShowDetails(),
+            onTap: () {
+              print(controller.wallet.value.toString());
+              Get.toNamed(AppRoutes.walletDetails,
+                  arguments: controller.wallet.value);
+            },
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -14,17 +14,17 @@ class RecoverByPrivateKeyLogic extends GetxController {
   // final TextEditingController repeatPwdEdit = TextEditingController();
 
   //
-  // //  第一测试 密要 匹配  song convince art planet domain property load satoshi rocket west vital cycle 私钥
-  // final TextEditingController privateEdit = TextEditingController(
-  //     text: '17caf803d03ae2cb64c9aebe79563477a9b40215212e360b718724c1c124e600');
+  //  第一测试 密要 匹配  song convince art planet domain property load satoshi rocket west vital cycle 私钥
+  final TextEditingController privateEdit = TextEditingController(
+      text: '17caf803d03ae2cb64c9aebe79563477a9b40215212e360b718724c1c124e600');
 
   //// 第一测试 密要 匹配  forest palm main jelly embody cigar select physical clown tape dutch profit 私钥
   // final TextEditingController privateEdit = TextEditingController(
   //     text: '479cd64cc4dc834aaf90f23b795f0c4084745726cf6a514d4cd8158c74625b63');
 
-  // 第四测试 密要 匹配  credit rural oval choose lonely advice clarify scale key frown either muscle 私钥
-  final TextEditingController privateEdit = TextEditingController(
-      text: '924918af316fb4c63b2f778ab8bd29c99ceecf276d326abe479ede0e8a97d785');
+  // // 第四测试 密要 匹配  credit rural oval choose lonely advice clarify scale key frown either muscle 私钥
+  // final TextEditingController privateEdit = TextEditingController(
+  //     text: '924918af316fb4c63b2f778ab8bd29c99ceecf276d326abe479ede0e8a97d785');
 
   // final TextEditingController nameEdit =
   //     TextEditingController(text: 'Will’sWallet');
@@ -49,6 +49,10 @@ class RecoverByPrivateKeyLogic extends GetxController {
   void onCheck() {
     if (privateEdit.text.trim().isEmpty) {
       CoreKitToast.showError(AppS().recover_import_private_key);
+      return;
+    }
+    if (privateEdit.text.trim().length != 64) {
+      CoreKitToast.showError(AppS().recover_import_private_key_tips);
       return;
     }
     // if (nameEdit.text.trim().isEmpty) {

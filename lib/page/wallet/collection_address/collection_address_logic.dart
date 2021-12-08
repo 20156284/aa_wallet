@@ -60,7 +60,10 @@ class CollectionAddressLogic extends GetxController {
         CustomDialog.showCustomDialog(
           Get.context!,
           onTipsDialogWidget(
-            icon: const Icon(CupertinoIcons.check_mark_circled, size: 80),
+            icon: const Icon(
+              CupertinoIcons.check_mark_circled,
+              size: 80,
+            ),
             title: AppS().app_save_photos_success,
           ),
           isShowCloseBtn: false,

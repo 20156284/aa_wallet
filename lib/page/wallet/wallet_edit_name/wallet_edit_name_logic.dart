@@ -25,10 +25,10 @@ class WalletEditNameLogic extends GetxController {
       return;
     }
 
-    if (nameEdit.text.trim().length < 6 || nameEdit.text.trim().length > 16) {
-      CoreKitToast.showIconText(text: AppS().wallet_edit_tips);
-      return;
-    }
+    // if (nameEdit.text.trim().length < 6 || nameEdit.text.trim().length > 16) {
+    //   CoreKitToast.showIconText(text: AppS().wallet_edit_tips);
+    //   return;
+    // }
 
     final walletService = WalletService.to;
     wallet.value = wallet.value.copyWith(name: nameEdit.text.trim());
@@ -37,7 +37,6 @@ class WalletEditNameLogic extends GetxController {
       if (value) {
         if (wallet.value.is_main != null && wallet.value.is_main!) {
           walletService.wallet.value = wallet.value;
-          walletService.wallet.refresh();
         }
         Get.back(result: wallet.value);
       } else {

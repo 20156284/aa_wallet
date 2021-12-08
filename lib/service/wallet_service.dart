@@ -11,7 +11,9 @@ import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
+import 'package:aa_wallet/preference/app_user_preferences.dart';
 import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/app_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,12 +21,12 @@ class WalletService extends GetxService {
   static WalletService get to => Get.find();
 
   final protocol = 'ARC20'.obs;
+  final walletName = 'AAC'.obs;
 
   final appDate = AppDatabase();
   //当前App默认的钱包
   final wallet = WalletEntry(id: 0).obs;
 
-  final walletName = 'AAC'.obs;
   final password = ''.obs;
 
   @override
@@ -135,6 +137,23 @@ class WalletService extends GetxService {
     if (del != null) {}
     final List<WalletEntry> walletList = await appDate.getAllWallets();
     if (walletList.isEmpty) {
+      AppService.to.app.update((val) {
+        val!.languageInfo = AppService.to.app.value.languageInfo;
+        val.isFistTime = null;
+      });
+      AppService.to.app.refresh();
+
+      //通常 使用获取用户信息之后 存入数据库 让数据永远保存最新的一份
+      AppUserPreferences.getInstance()
+          .then((v) => v.setApp(AppService.to.app.value));
+      protocol.value = 'ARC20';
+      walletName.value = 'AAC';
+
+      final List<TokenEntry> list = await appDate.getAllToken();
+      list.forEach((tokenEntry) async {
+        await appDate.deleteToken(tokenEntry);
+      });
+
       Get.offAllNamed(AppRoutes.lead);
     } else {
       final WalletEntry walletEntry = walletList.first.copyWith(is_main: true);

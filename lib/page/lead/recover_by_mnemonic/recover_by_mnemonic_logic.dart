@@ -53,6 +53,10 @@ class RecoverByMnemonicLogic extends GetxController {
       CoreKitToast.showError(AppS().recover_import_mnemonic);
       return;
     }
+    if (mnemonicEdit.text.split(' ').length != 12) {
+      CoreKitToast.showError(AppS().recover_import_mnemonic_tips);
+      return;
+    }
     // if (nameEdit.text.trim().isEmpty) {
     //   CoreKitToast.showError(AppS().creat_wallet_name_input);
     //   return;

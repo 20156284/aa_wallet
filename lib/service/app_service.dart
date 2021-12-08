@@ -253,6 +253,7 @@ class AppService extends GetxService {
 
     //去重 表示已經有
     if (await duplicateRemoval(publicAddress.hexEip55)) {
+      Get.back();
       CustomDialog.showCustomDialog(
         Get.context!,
         SizedBox(
@@ -318,19 +319,48 @@ class AppService extends GetxService {
 
       updateFistTime(false);
 
-      if (isFist) creatToken(wallet);
-
       //创建钱包成功的时候发给后台让后添加
       ToKenApi.acquire()
           .walletAddAddress(
               protocol: wService.protocol.value,
               address: publicAddress.hexEip55)
-          .then((value) {
+          .catchError((error) {
+        Get.back();
+        CoreKitToast.showError(error);
+      });
+
+      if (isFist) {
+        await creatToken(wallet);
         //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
         Get.offAllNamed(AppRoutes.appMain);
-      }).catchError((error) {
-        CoreKitToast.showError(error);
-      }).whenComplete(() => Get.back());
+      } else {
+        Get.back();
+        CustomDialog.showCustomDialog(
+          Get.context!,
+          SizedBox(
+            width: 145,
+            height: 145,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  CupertinoIcons.check_mark_circled,
+                  size: 80,
+                  color: Colors.green,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(AppS().creat_wallet_finish),
+              ],
+            ),
+          ),
+          isShowCloseBtn: false,
+          isAutoClose: true,
+          closeDuration: const Duration(seconds: 3),
+          borderRadius: BorderRadius.circular(12),
+        );
+      }
     }
   }
 
@@ -341,7 +371,7 @@ class AppService extends GetxService {
    * @param wallet 所在的主钱包
    * @return null
    */
-  void creatToken(WalletEntry wallet) async {
+  Future<void> creatToken(WalletEntry wallet) async {
     //获取代币地址
     final wService = WalletService.to;
     //如果 主钱包 没有 或者是第一次 找回的 都给主动添加 主币

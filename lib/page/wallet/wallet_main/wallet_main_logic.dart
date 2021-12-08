@@ -5,7 +5,6 @@ import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -28,10 +27,7 @@ class WalletMainLogic extends GetxController {
 
     final walletService = WalletService.to;
 
-    final List<WalletEntry> walletList =
-        await walletService.appDate.getAllWallets();
-
-    for (final walletEntry in walletList) {
+    for (final walletEntry in await walletService.appDate.getAllWallets()) {
       if (walletEntry.is_main!) {
         wallet.value = walletEntry;
         break;
@@ -56,8 +52,8 @@ class WalletMainLogic extends GetxController {
    * @date 2021/11/18 15:05
    * @param _wallet 钱包实体类
    */
-  void handleWalletChanged(_wallet) async {
-    wallet.value = WalletService.to.wallet.value;
+  void handleWalletChanged(WalletEntry _wallet) async {
+    wallet.value = _wallet;
     wallet.refresh();
     onShow();
     onRefreshFun();
@@ -71,20 +67,6 @@ class WalletMainLogic extends GetxController {
   void onShow() {
     showAddress.value =
         TokenService.formattingAddress(wallet.value.address ?? '');
-  }
-
-  /**
-   * 跳转详情
-   * @author Will
-   * @date 2021/11/17 17:10
-   */
-  void onShowDetails() async {
-    final data =
-        await Get.toNamed(AppRoutes.walletDetails, arguments: wallet.value);
-    if (data != null && data is WalletEntry) {
-      wallet.value = data;
-      wallet.refresh();
-    }
   }
 
   /**
@@ -146,7 +128,9 @@ class WalletMainLogic extends GetxController {
       if (tokenEntry.protocol == wallet.value.protocol) {
         if (tokenEntry.contractAddress == null) {
           //这个是主币 所以 获取主币的余额
-          final balance = await TokenService.getBalance(wallet.value.address!);
+          final balance = await TokenService.getBalance(
+            wallet.value.address!,
+          );
           newTokenEntry = tokenEntry.copyWith(balance: balance);
         } else {
           //这个是代币的 获取小数点

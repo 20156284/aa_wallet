@@ -159,6 +159,8 @@ dependencies:
   image_gallery_saver: ^1.7.1
 #  # bitcoin_flutter https://pub.dev/packages/bitcoin_flutter
 #  bitcoin_flutter: ^2.0.2
+  # 滑动删除 https://pub.dev/packages/flutter_slidable
+  flutter_slidable: ^1.1.0
   #  #app更新
   app_upgrade:
     git:

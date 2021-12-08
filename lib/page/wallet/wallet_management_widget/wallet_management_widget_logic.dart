@@ -66,10 +66,10 @@ class WalletManagementWidgetLogic extends GetxController {
     //更新新的钱包 作为一个主要钱包
     walletEntry = walletEntry.copyWith(is_main: true);
 
-    wService.wallet.value = walletEntry;
-
     await wService.onUpdateWallet(walletEntry);
     await wService.onUpdateWallet(beforeWallet);
+
+    wService.wallet.value = walletEntry;
 
     // 关闭弹窗或者是返回上一级
     Get.back();

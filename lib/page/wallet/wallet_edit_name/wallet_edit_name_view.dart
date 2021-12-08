@@ -61,16 +61,16 @@ class WalletEditNamePage extends GetView<WalletEditNameLogic> {
               filled: true,
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(
-            AppS().wallet_edit_tips,
-            style: const TextStyle(
-              color: Color(0xFF999999),
-              fontSize: 13,
-            ),
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
+          // Text(
+          //   AppS().wallet_edit_tips,
+          //   style: const TextStyle(
+          //     color: Color(0xFF999999),
+          //     fontSize: 13,
+          //   ),
+          // ),
           const SizedBox(
             height: 74,
           ),

@@ -36,7 +36,7 @@ class Wallet extends Table {
   //是否选择为主钱包
   BoolColumn get is_main => boolean().nullable()();
 
-  //是否第一次默认的创建 因为默认创建的话 会天机 aa的所有代币
+  //是否第一次默认的创建 因为默认创建的话 会添加 aa的所有代币
   //其他不需要 当然相对应的删除 也就没有
   //包括回复钱包的时候 也会默认给他创建aa的代币
   BoolColumn get is_fist => boolean().nullable()();

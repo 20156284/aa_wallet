@@ -23,6 +23,7 @@
   "app_img_upload": "正在上傳第{num}張...",
   "app_tips": " 溫馨提示 ",
   "app_version": "AAToken {version}新版本",
+  "app_del": "刪除",
 
 
   "wallet": "錢包",
@@ -55,6 +56,7 @@
   "creat_wallet_tips_content": "\n1.該密碼將作為錢包的交易密碼.\n2.錢包不會存儲密碼，也無法幫您找回，請務必妥善保管密碼.",
   "creat_wallet_pwd_repeat": "兩次密碼不一致",
   "creat_wallet_ing": "創建錢包中...",
+  "creat_wallet_finish": "創建錢包完成",
 
   "back_up_tips": "備份提示",
   "back_up_tips_content1": "獲取助記詞等於擁有錢包資產所有權",
@@ -85,7 +87,9 @@
   "recover_wallet_private_key": "私鑰",
   "recover_wallet_import_private_key": "明文私鑰字符",
   "recover_import_mnemonic": "請輸入助記單詞，並使用空格分隔",
+  "recover_import_mnemonic_tips": "助記詞應該為12個單詞",
   "recover_import_private_key": "請輸入明文私鑰",
+  "recover_import_private_key_tips": "標準秘鑰長度是64位",
 
 
   "wallet_details_title": "錢包詳情",

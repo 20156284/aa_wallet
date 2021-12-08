@@ -60,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "app_copy_success": MessageLookupByLibrary.simpleMessage("复制成功"),
+        "app_del": MessageLookupByLibrary.simpleMessage("删除"),
         "app_i_know": MessageLookupByLibrary.simpleMessage("我知道了"),
         "app_img_upload": m0,
         "app_name": MessageLookupByLibrary.simpleMessage("AAToken"),
@@ -135,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creat_wallet_content": MessageLookupByLibrary.simpleMessage("第一次使用钱包"),
         "creat_wallet_details":
             MessageLookupByLibrary.simpleMessage("您将会拥有身份下的多链钱包,比如ETH、AAC"),
+        "creat_wallet_finish": MessageLookupByLibrary.simpleMessage("创建钱完成"),
         "creat_wallet_fist":
             MessageLookupByLibrary.simpleMessage("创建您的第一个数字钱包"),
         "creat_wallet_ing": MessageLookupByLibrary.simpleMessage("创建钱包中..."),
@@ -160,8 +162,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("钱包管理"),
         "recover_import_mnemonic":
             MessageLookupByLibrary.simpleMessage("请输入助记单词，并且使用空格分隔"),
+        "recover_import_mnemonic_tips":
+            MessageLookupByLibrary.simpleMessage("助记词应该为12个单词"),
         "recover_import_private_key":
             MessageLookupByLibrary.simpleMessage("请输入明文私钥"),
+        "recover_import_private_key_tips":
+            MessageLookupByLibrary.simpleMessage("标准秘钥长度是64位"),
         "recover_wallet_content": MessageLookupByLibrary.simpleMessage("已拥有钱包"),
         "recover_wallet_import_mnemonic":
             MessageLookupByLibrary.simpleMessage("导入助记词"),

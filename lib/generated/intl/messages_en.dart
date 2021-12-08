@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "app_copy_success":
             MessageLookupByLibrary.simpleMessage("copy success"),
+        "app_del": MessageLookupByLibrary.simpleMessage("Delete"),
         "app_i_know": MessageLookupByLibrary.simpleMessage("I know"),
         "app_img_upload": m0,
         "app_name": MessageLookupByLibrary.simpleMessage("AAToken"),
@@ -151,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("use wallet by fist time"),
         "creat_wallet_details": MessageLookupByLibrary.simpleMessage(
             "you will have a multi-chain wallet under your identity,for example ETH、AAC"),
+        "creat_wallet_finish":
+            MessageLookupByLibrary.simpleMessage("Creat wallet finish"),
         "creat_wallet_fist": MessageLookupByLibrary.simpleMessage(
             "Create your first digital wallet"),
         "creat_wallet_ing":
@@ -181,8 +184,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Wallet Management"),
         "recover_import_mnemonic": MessageLookupByLibrary.simpleMessage(
             "Please enter the mnemonic words separated by spaces"),
+        "recover_import_mnemonic_tips": MessageLookupByLibrary.simpleMessage(
+            "The mnemonic phrase should be 12 words"),
         "recover_import_private_key": MessageLookupByLibrary.simpleMessage(
             "Please enter the plaintext private key"),
+        "recover_import_private_key_tips": MessageLookupByLibrary.simpleMessage(
+            "The standard key length is 64 bits"),
         "recover_wallet_content":
             MessageLookupByLibrary.simpleMessage("already have a wallet"),
         "recover_wallet_import_mnemonic":

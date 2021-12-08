@@ -23,6 +23,7 @@
   "app_img_upload": "uploading {num}...",
   "app_tips": "Tips",
   "app_version": "AAToken {version}",
+  "app_del": "Delete",
 
 
   "wallet": "Wallet",
@@ -55,6 +56,7 @@
   "creat_wallet_tips_content": "\n1.The password will be used as the transaction password of the wallet.\n2. The wallet will not store the password, nor can it help you retrieve it. Please be sure to keep the password properly.",
   "creat_wallet_pwd_repeat": "The passwords are inconsistent",
   "creat_wallet_ing": "Creat wallet now...",
+  "creat_wallet_finish": "Creat wallet finish",
 
   "back_up_tips": "BackUp Tips",
   "back_up_tips_content1": "Obtaining the mnemonic phrase is equivalent to owning the wallet asset ownership",
@@ -85,7 +87,9 @@
   "recover_wallet_private_key": "Private key",
   "recover_wallet_import_private_key": "import private key",
   "recover_import_mnemonic": "Please enter the mnemonic words separated by spaces",
+  "recover_import_mnemonic_tips": "The mnemonic phrase should be 12 words",
   "recover_import_private_key": "Please enter the plaintext private key",
+  "recover_import_private_key_tips": "The standard key length is 64 bits",
 
 
   "wallet_details_title": "Wallet Detail",

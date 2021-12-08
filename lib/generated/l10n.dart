@@ -290,6 +290,16 @@ class AppS {
     );
   }
 
+  /// `Delete`
+  String get app_del {
+    return Intl.message(
+      'Delete',
+      name: 'app_del',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet`
   String get wallet {
     return Intl.message(
@@ -515,6 +525,16 @@ class AppS {
     return Intl.message(
       'Creat wallet now...',
       name: 'creat_wallet_ing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creat wallet finish`
+  String get creat_wallet_finish {
+    return Intl.message(
+      'Creat wallet finish',
+      name: 'creat_wallet_finish',
       desc: '',
       args: [],
     );
@@ -760,11 +780,31 @@ class AppS {
     );
   }
 
+  /// `The mnemonic phrase should be 12 words`
+  String get recover_import_mnemonic_tips {
+    return Intl.message(
+      'The mnemonic phrase should be 12 words',
+      name: 'recover_import_mnemonic_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter the plaintext private key`
   String get recover_import_private_key {
     return Intl.message(
       'Please enter the plaintext private key',
       name: 'recover_import_private_key',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The standard key length is 64 bits`
+  String get recover_import_private_key_tips {
+    return Intl.message(
+      'The standard key length is 64 bits',
+      name: 'recover_import_private_key_tips',
       desc: '',
       args: [],
     );
