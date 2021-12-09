@@ -140,7 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creat_wallet_content": MessageLookupByLibrary.simpleMessage("第一次使用钱包"),
         "creat_wallet_details":
             MessageLookupByLibrary.simpleMessage("您将会拥有身份下的多链钱包,比如ETH、AAC"),
-        "creat_wallet_finish": MessageLookupByLibrary.simpleMessage("创建钱完成"),
+        "creat_wallet_finish": MessageLookupByLibrary.simpleMessage("创建钱包完成"),
         "creat_wallet_fist":
             MessageLookupByLibrary.simpleMessage("创建您的第一个数字钱包"),
         "creat_wallet_ing": MessageLookupByLibrary.simpleMessage("创建钱包中..."),

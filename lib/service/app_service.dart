@@ -6,13 +6,17 @@
 // ===============================================
 
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:aa_wallet/api/sys/sys_api.dart';
 import 'package:aa_wallet/api/token/token_api.dart';
 import 'package:aa_wallet/core/toast.dart';
+import 'package:aa_wallet/core/utils/core_utils.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/entity/language_info.dart';
+import 'package:aa_wallet/entity/sys/version_entity.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/preference/app_preferences.dart';
 import 'package:aa_wallet/preference/app_user_preferences.dart';
@@ -21,10 +25,12 @@ import 'package:aa_wallet/route/app_pages.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:aa_wallet/utils/wallet_crypt.dart';
+import 'package:app_upgrade/app_upgrade.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:web3dart/credentials.dart';
 
 class AppService extends GetxService {
@@ -41,11 +47,14 @@ class AppService extends GetxService {
   @override
   void onInit() async {
     super.onInit();
+
     _onLoadLanguage();
     onReadConfig();
 
     //监听 app 设置的 的变化
     ever(app, handleAppChanged);
+
+    checkAppUpdate();
   }
 
   /**
@@ -455,5 +464,52 @@ class AppService extends GetxService {
         break;
       }
     }
+  }
+
+  Future<AppUpgradeInfo> checkAppInfo(
+      VersionEntity entity, List<String> contents) async {
+    //这里一般访问网络接口，将返回的数据解析成如下格式
+    // return Future.delayed(const Duration(seconds: 0), () {
+    //
+    // });
+
+    return AppUpgradeInfo(
+      title: AppS().app_update_version(entity.versionNo ?? ''),
+      contents: contents,
+      force: entity.isUpdates == 'S',
+      apkDownloadUrl: entity.downloadAddress ?? '',
+    );
+  }
+
+  void checkAppUpdate() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    SysApi.acquire()
+        .getVersion(
+      type: Platform.operatingSystem,
+    )
+        .then((value) {
+      if (value != null) {
+        final bool isUpdate = CoreUtil.versionCheck(
+            localVersion: packageInfo.buildNumber,
+            serverVersion: value.versionNo);
+        if (isUpdate) {
+          List<String> contents = <String>[];
+          try {
+            contents = value.content!.replaceAll('<br>', '').split('\r\n');
+          } catch (e) {
+            contents = <String>[value.content!];
+          }
+
+          AppUpgrade.appUpgrade(
+            Get.context!,
+            checkAppInfo(value, contents),
+            okBackgroundColors: [
+              const Color(0xFF44AFFF),
+              const Color(0xFF0091FF),
+            ],
+          );
+        }
+      }
+    });
   }
 }

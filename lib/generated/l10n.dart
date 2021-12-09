@@ -160,60 +160,60 @@ class AppS {
     );
   }
 
-  /// `form album`
+  /// `Form album`
   String get app_album {
     return Intl.message(
-      'form album',
+      'Form album',
       name: 'app_album',
       desc: '',
       args: [],
     );
   }
 
-  /// `take photo`
+  /// `Take photo`
   String get app_camera {
     return Intl.message(
-      'take photo',
+      'Take photo',
       name: 'app_camera',
       desc: '',
       args: [],
     );
   }
 
-  /// `save photo`
+  /// `Save photo`
   String get app_save_photos {
     return Intl.message(
-      'save photo',
+      'Save photo',
       name: 'app_save_photos',
       desc: '',
       args: [],
     );
   }
 
-  /// `save photo success`
+  /// `Save photo success`
   String get app_save_photos_success {
     return Intl.message(
-      'save photo success',
+      'Save photo success',
       name: 'app_save_photos_success',
       desc: '',
       args: [],
     );
   }
 
-  /// `save photo fail`
+  /// `Save photo fail`
   String get app_save_photos_failure {
     return Intl.message(
-      'save photo fail',
+      'Save photo fail',
       name: 'app_save_photos_failure',
       desc: '',
       args: [],
     );
   }
 
-  /// `copy success`
+  /// `Copy success`
   String get app_copy_success {
     return Intl.message(
-      'copy success',
+      'Copy success',
       name: 'app_copy_success',
       desc: '',
       args: [],
@@ -230,10 +230,10 @@ class AppS {
     );
   }
 
-  /// `find new version V{version}`
+  /// `Find new version V{version}`
   String app_update_version(Object version) {
     return Intl.message(
-      'find new version V$version',
+      'Find new version V$version',
       name: 'app_update_version',
       desc: '',
       args: [version],

@@ -48,11 +48,7 @@ class ConfirmMnemonicPage extends GetView<ConfirmMnemonicLogic> {
           const SizedBox(
             height: 25,
           ),
-          CoreKitStyle.cupertinoButton(
-            context,
-            title: AppS().back_up_mnemonic_confirm,
-            onPressed: () => controller.onCheckMnemonics(),
-          ),
+          Obx(() => _buildBtn()),
         ],
       ),
     );
@@ -80,30 +76,6 @@ class ConfirmMnemonicPage extends GetView<ConfirmMnemonicLogic> {
               ),
             ),
     );
-    // return ValueListenableBuilder<List<String>?>(
-    //   valueListenable: controller.mnemonicsList,
-    //   builder: (context, value, child) {
-    //     child = Container();
-    //     if (value!.isNotEmpty) {
-    //       child = Wrap(
-    //         children: [
-    //           for (int i = 0; i < value.length; i++) _buildMnemonicItems(i)
-    //         ],
-    //       );
-    //     }
-    //     return Container(
-    //       decoration: BoxDecoration(
-    //         color: AppTheme.of(Get.context!).inputBgColor,
-    //         border: Border.all(
-    //           color: CupertinoTheme.of(Get.context!).primaryContrastingColor,
-    //           width: 1,
-    //         ),
-    //         borderRadius: BorderRadius.circular(5),
-    //       ),
-    //       child: child,
-    //     );
-    //   },
-    // );
   }
 
   Widget _buildMnemonicItems(int index) {
@@ -163,21 +135,6 @@ class ConfirmMnemonicPage extends GetView<ConfirmMnemonicLogic> {
               ],
             ),
     );
-    // return ValueListenableBuilder<List<String>?>(
-    //   valueListenable: controller.randomList,
-    //   builder: (context, value, child) {
-    //     if (value != null) {
-    //       return Wrap(
-    //         spacing: 7.5,
-    //         runSpacing: 7.5,
-    //         children: [
-    //           for (int i = 0; i < value.length; i++) _buildMnemonicRandom(i)
-    //         ],
-    //       );
-    //     }
-    //     return Container();
-    //   },
-    // );
   }
 
   Widget _buildMnemonicRandom(int index) {
@@ -196,5 +153,48 @@ class ConfirmMnemonicPage extends GetView<ConfirmMnemonicLogic> {
         child: Text(title),
       ),
     );
+  }
+
+  Widget _buildBtn() {
+    if (controller.chooseList.isEmpty) {
+      return CoreKitStyle.cupertinoButton(
+        Get.context!,
+        title: AppS().back_up_mnemonic_confirm,
+        onPressed: () => controller.onCheckMnemonics(),
+      );
+    } else {
+      final width = Get.width - 15 * 2;
+      return Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CoreKitStyle.cupertinoButton(
+            Get.context!,
+            width: (width - 15) / 3 * 2,
+            title: AppS().back_up_mnemonic_confirm,
+            onPressed: () => controller.onCheckMnemonics(),
+          ),
+          InkWell(
+            onTap: () => controller.onDelChoose(),
+            child: Container(
+              height: 44,
+              width: (width - 15) / 3,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                border: Border.all(
+                  color: CupertinoTheme.of(Get.context!).primaryColor,
+                  width: 1.0,
+                ),
+              ),
+              alignment: Alignment.center,
+              child: const Icon(
+                CupertinoIcons.delete_left,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
   }
 }

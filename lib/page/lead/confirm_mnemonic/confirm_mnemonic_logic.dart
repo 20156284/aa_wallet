@@ -18,6 +18,9 @@ class ConfirmMnemonicLogic extends GetxController {
   //打乱的助记词
   final randomList = <String>[].obs;
 
+  //选择过的助记词记录下标
+  final clickRandomIndexList = <int>[].obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -38,6 +41,7 @@ class ConfirmMnemonicLogic extends GetxController {
       mnemonicsList.value = list;
       randomList.value = shuffle(list) as List<String>;
       chooseList.value = <String>[];
+      clickRandomIndexList.value = <int>[];
     }
   }
 
@@ -96,6 +100,7 @@ class ConfirmMnemonicLogic extends GetxController {
   void onRemove(int index, String title) {
     randomList.removeAt(index);
     chooseList.add(title);
+    clickRandomIndexList.add(index);
 
     //一下操作比较奇葩 有时间找找这个奇葩的BUG 移除随机数 然后 特定数都会 有问题
     final mnemonics = Get.arguments;
@@ -111,6 +116,11 @@ class ConfirmMnemonicLogic extends GetxController {
    * @date 2021/11/16 17:06
    */
   void onCheckMnemonics() {
+    if (chooseList.isEmpty) {
+      CoreKitToast.showError(AppS().confirm_mnemonic_sequence);
+      return;
+    }
+
     String userChoose = '';
     for (final String element in chooseList) {
       userChoose += element + ' ';
@@ -144,5 +154,11 @@ class ConfirmMnemonicLogic extends GetxController {
       mnemonic: mnemonic,
       protocol: wService.protocol.value,
     );
+  }
+
+  void onDelChoose() {
+    randomList.insert(clickRandomIndexList.last, chooseList.last);
+    chooseList.removeLast();
+    clickRandomIndexList.removeLast();
   }
 }

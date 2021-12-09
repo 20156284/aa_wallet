@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(num) => "uploading ${num}...";
 
-  static String m1(version) => "find new version V${version}";
+  static String m1(version) => "Find new version V${version}";
 
   static String m2(version) => "AAToken ${version}";
 
@@ -59,13 +59,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_wallet_eth": MessageLookupByLibrary.simpleMessage("ETH"),
         "add_wallet_eth_subtitle":
             MessageLookupByLibrary.simpleMessage("Ethereum"),
-        "app_album": MessageLookupByLibrary.simpleMessage("form album"),
+        "app_album": MessageLookupByLibrary.simpleMessage("Form album"),
         "app_build_now": MessageLookupByLibrary.simpleMessage("coming soon"),
-        "app_camera": MessageLookupByLibrary.simpleMessage("take photo"),
+        "app_camera": MessageLookupByLibrary.simpleMessage("Take photo"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("cancel"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("confirm"),
         "app_copy_success":
-            MessageLookupByLibrary.simpleMessage("copy success"),
+            MessageLookupByLibrary.simpleMessage("Copy success"),
         "app_del": MessageLookupByLibrary.simpleMessage("Delete"),
         "app_i_know": MessageLookupByLibrary.simpleMessage("I know"),
         "app_img_upload": m0,
@@ -87,11 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("permission tips"),
         "app_permission_video_close":
             MessageLookupByLibrary.simpleMessage("video permission is close"),
-        "app_save_photos": MessageLookupByLibrary.simpleMessage("save photo"),
+        "app_save_photos": MessageLookupByLibrary.simpleMessage("Save photo"),
         "app_save_photos_failure":
-            MessageLookupByLibrary.simpleMessage("save photo fail"),
+            MessageLookupByLibrary.simpleMessage("Save photo fail"),
         "app_save_photos_success":
-            MessageLookupByLibrary.simpleMessage("save photo success"),
+            MessageLookupByLibrary.simpleMessage("Save photo success"),
         "app_tips": MessageLookupByLibrary.simpleMessage("Tips"),
         "app_update_version": m1,
         "app_version": m2,

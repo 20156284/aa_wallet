@@ -282,7 +282,8 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
         children: [
           _buildItems(
             title: AppS().token_transfer_cell_total,
-            subTitle: transactionRecordsEntity.number,
+            subTitle: transactionRecordsEntity.number! +
+                controller.tokenEntry.value.coinKey!,
             isRight: true,
           ),
           const SizedBox(
