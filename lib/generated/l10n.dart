@@ -310,6 +310,16 @@ class AppS {
     );
   }
 
+  /// `Update now`
+  String get app_update_now {
+    return Intl.message(
+      'Update now',
+      name: 'app_update_now',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet`
   String get wallet {
     return Intl.message(

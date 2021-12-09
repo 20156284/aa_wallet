@@ -25,6 +25,7 @@
   "app_version": "version:{version}",
   "app_build": "build:{build}",
   "app_del": "Delete",
+  "app_update_now": "Update now",
 
 
   "wallet": "Wallet",

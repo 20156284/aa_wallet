@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_save_photos_success":
             MessageLookupByLibrary.simpleMessage("圖片已保存至相冊"),
         "app_tips": MessageLookupByLibrary.simpleMessage(" 溫馨提示 "),
+        "app_update_now": MessageLookupByLibrary.simpleMessage("立即更新"),
         "app_update_version": m2,
         "app_version": m3,
         "back_up_do_not_screen_capture1":

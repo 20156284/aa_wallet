@@ -25,6 +25,7 @@
   "app_version": "version:{version}",
   "app_build": "build:{build}",
   "app_del": "刪除",
+  "app_update_now": "立即更新",
 
 
   "wallet": "錢包",

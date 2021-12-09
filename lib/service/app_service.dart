@@ -506,6 +506,7 @@ class AppService extends GetxService {
               const Color(0xFF44AFFF),
               const Color(0xFF0091FF),
             ],
+            okText: AppS().app_update_now,
           );
         }
       }

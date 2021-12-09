@@ -96,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_save_photos_success":
             MessageLookupByLibrary.simpleMessage("Save photo success"),
         "app_tips": MessageLookupByLibrary.simpleMessage("Tips"),
+        "app_update_now": MessageLookupByLibrary.simpleMessage("Update now"),
         "app_update_version": m2,
         "app_version": m3,
         "back_up_do_not_screen_capture1": MessageLookupByLibrary.simpleMessage(

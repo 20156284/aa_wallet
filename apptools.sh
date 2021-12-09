@@ -10,6 +10,7 @@ commands=(
 "$FLUTTER_HOME/flutter build web --web-renderer html"
 "$FLUTTER_HOME/flutter run --release --dart-define=APP_ENV=Release"
 "$FLUTTER_HOME/flutter run --release --dart-define=APP_ENV=Debug"
+"$FLUTTER_HOME/flutter build ios --dart-define=APP_ENV=Release"
 )
 
 echo Your DART_HOME: $DART_HOME
