@@ -21,13 +21,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:web3dart/web3dart.dart';
 
 class TokenTransferLogic extends GetxController {
-  // final TextEditingController addrEdit = TextEditingController();
-  // final TextEditingController pwdEdit = TextEditingController();
+  final TextEditingController addrEdit = TextEditingController();
+  final TextEditingController pwdEdit = TextEditingController();
   final TextEditingController moneyEdit = TextEditingController();
 
-  final TextEditingController addrEdit =
-      TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
-  final TextEditingController pwdEdit = TextEditingController(text: 'Aa123456');
+  // final TextEditingController addrEdit =
+  //     TextEditingController(text: '0x201ac284b61461ca7c13aaca3999434b840c6476');
+  // final TextEditingController pwdEdit = TextEditingController(text: 'Aa123456');
 
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
 
@@ -263,6 +263,7 @@ class TokenTransferLogic extends GetxController {
         pwdEdit.text = '';
         moneyEdit.text = '';
         print('transaction => $value');
+        CoreKitToast.showIconText(text: AppS().token_transfer_success);
       }).catchError((error) {
         debugPrint(error.toString());
         CoreKitToast.showError(error);
@@ -296,6 +297,7 @@ class TokenTransferLogic extends GetxController {
         pwdEdit.text = '';
         moneyEdit.text = '';
         print('transaction => $value');
+        CoreKitToast.showIconText(text: AppS().token_transfer_success);
       }).catchError((error) {
         debugPrint(error.toString());
         CoreKitToast.showError(error);

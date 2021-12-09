@@ -1260,6 +1260,16 @@ class AppS {
     );
   }
 
+  /// `Transfer Fee`
+  String get token_transfer_cell_fee {
+    return Intl.message(
+      'Transfer Fee',
+      name: 'token_transfer_cell_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Transfer Address`
   String get token_transfer_addr {
     return Intl.message(
@@ -1405,6 +1415,16 @@ class AppS {
     return Intl.message(
       'Insufficient expenses',
       name: 'token_transfer_fee_err',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Has been packaged to be on the chain`
+  String get token_transfer_success {
+    return Intl.message(
+      'Has been packaged to be on the chain',
+      name: 'token_transfer_success',
       desc: '',
       args: [],
     );

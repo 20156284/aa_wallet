@@ -21,7 +21,7 @@ class WalletService extends GetxService {
   static WalletService get to => Get.find();
 
   final protocol = 'ARC20'.obs;
-  final walletName = 'AAC'.obs;
+  final walletName = 'AAA'.obs;
 
   final appDate = AppDatabase();
   //当前App默认的钱包
@@ -149,7 +149,7 @@ class WalletService extends GetxService {
       AppUserPreferences.getInstance()
           .then((v) => v.setApp(AppService.to.app.value));
       protocol.value = 'ARC20';
-      walletName.value = 'AAC';
+      walletName.value = 'AAA';
 
       final List<TokenEntry> list = await appDate.getAllToken();
       list.forEach((tokenEntry) async {

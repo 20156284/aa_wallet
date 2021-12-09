@@ -13,10 +13,10 @@ class RecoverByMnemonicLogic extends GetxController {
   // final TextEditingController pwdEdit = TextEditingController();
   // final TextEditingController repeatPwdEdit = TextEditingController();
 
-  //主要测试钱包
-  // final TextEditingController mnemonicEdit = TextEditingController(
-  //     text:
-  //         'song convince art planet domain property load satoshi rocket west vital cycle');
+//  主要测试钱包
+  final TextEditingController mnemonicEdit = TextEditingController(
+      text:
+          'song convince art planet domain property load satoshi rocket west vital cycle');
 
   // //第二测试钱包
   // final TextEditingController mnemonicEdit = TextEditingController(
@@ -24,15 +24,16 @@ class RecoverByMnemonicLogic extends GetxController {
   //         'forest palm main jelly embody cigar select physical clown tape dutch profit');
 
   //第三测试钱包
-  final TextEditingController mnemonicEdit = TextEditingController(
-      text:
-          'credit rural oval choose lonely advice clarify scale key frown either muscle');
+  // final TextEditingController mnemonicEdit = TextEditingController(
+  //     text:
+  //         'credit rural oval choose lonely advice clarify scale key frown either muscle');
 
   // final TextEditingController nameEdit =
   //     TextEditingController(text: 'Will’sWallet');
-  final TextEditingController pwdEdit = TextEditingController(text: 'Aa123456');
+  final TextEditingController pwdEdit =
+      TextEditingController(text: ')#*will520');
   final TextEditingController repeatPwdEdit =
-      TextEditingController(text: 'Aa123456');
+      TextEditingController(text: ')#*will520');
 
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;

@@ -189,7 +189,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
                   child: Text(
                     title ?? '',
                     style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.bold),
+                        fontSize: 17, fontWeight: FontWeight.w500),
                   ),
                 ),
                 Column(
@@ -199,7 +199,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
                     Text(
                       balance ?? '',
                       style: const TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.bold),
+                          fontSize: 17, fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(
                       height: 5,

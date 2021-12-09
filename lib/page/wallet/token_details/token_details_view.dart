@@ -202,6 +202,7 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildBtn(
+                  icon: Res.ic_collection,
                   title: AppS().token_details_collection,
                   bgColor: const Color(0xFF0F6EFF),
                   onTap: () => Get.toNamed(AppRoutes.collectionAddress,
@@ -280,38 +281,51 @@ class TokenDetailsPage extends GetView<TokenDetailsLogic> {
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildItems(
-              title: AppS().token_transfer_cell_total,
-              subTitle: transactionRecordsEntity.number,
-              isRight: true),
+            title: AppS().token_transfer_cell_total,
+            subTitle: transactionRecordsEntity.number,
+            isRight: true,
+          ),
           const SizedBox(
             height: 10,
           ),
           _buildItems(
-              title: AppS().token_transfer_cell_addr,
-              subTitle: transactionRecordsEntity.toAddress),
+            title: AppS().token_transfer_cell_addr,
+            subTitle: transactionRecordsEntity.toAddress,
+          ),
           const SizedBox(
             height: 10,
           ),
           _buildItems(
-              title: AppS().token_transfer_cell_hash,
-              subTitle: transactionRecordsEntity.txId),
+            title: AppS().token_transfer_cell_hash,
+            subTitle: transactionRecordsEntity.txId,
+          ),
           const SizedBox(
             height: 10,
           ),
           _buildItems(
-              title: AppS().token_transfer_cell_state,
-              subTitle: transactionRecordsEntity.status,
-              isRight: true),
+            title: AppS().token_transfer_cell_state,
+            subTitle: transactionRecordsEntity.status,
+            isRight: true,
+          ),
           const SizedBox(
             height: 10,
           ),
           _buildItems(
-              title: AppS().token_transfer_cell_time,
-              subTitle: transactionRecordsEntity.createTime == null
-                  ? ''
-                  : DateUtil.formatDateMs(transactionRecordsEntity.createTime!,
-                      format: DateFormats.full),
-              isRight: true),
+            title: AppS().token_transfer_cell_time,
+            subTitle: transactionRecordsEntity.createTime == null
+                ? ''
+                : DateUtil.formatDateMs(transactionRecordsEntity.createTime!,
+                    format: DateFormats.full),
+            isRight: true,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          _buildItems(
+            title: AppS().token_transfer_cell_fee,
+            subTitle: transactionRecordsEntity.txFee,
+            isRight: true,
+          ),
         ],
       ),
     );

@@ -227,6 +227,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter aacoin address"),
         "token_transfer_cell_addr":
             MessageLookupByLibrary.simpleMessage("Transfer Address"),
+        "token_transfer_cell_fee":
+            MessageLookupByLibrary.simpleMessage("Transfer Fee"),
         "token_transfer_cell_hash":
             MessageLookupByLibrary.simpleMessage("Transfer Hash"),
         "token_transfer_cell_state":
@@ -252,6 +254,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_recommend_info": m8,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
         "token_transfer_slow_info": m9,
+        "token_transfer_success": MessageLookupByLibrary.simpleMessage(
+            "Has been packaged to be on the chain"),
         "token_user_all_assets":
             MessageLookupByLibrary.simpleMessage("All Assets"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),

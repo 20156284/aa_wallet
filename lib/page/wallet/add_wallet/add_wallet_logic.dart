@@ -15,7 +15,7 @@ class AddWalletLogic extends GetxController {
         wallet.protocol.value = 'TRC20';
         break;
       case 2:
-        wallet.walletName.value = 'AAC';
+        wallet.walletName.value = 'AAA';
         wallet.protocol.value = 'ARC20';
         break;
     }

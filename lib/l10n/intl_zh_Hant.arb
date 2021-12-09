@@ -141,6 +141,7 @@
   "token_transfer_cell_hash": "交易Hash",
   "token_transfer_cell_state": "交易狀態",
   "token_transfer_cell_time": "交易時間",
+  "token_transfer_cell_fee": "交易費用",
 
   "token_transfer_addr": "收款地址",
   "token_transfer_addr_input": "請輸入AACoin地址",
@@ -157,6 +158,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1分鐘",
   "token_transfer_customize": "自定義",
   "token_transfer_fee_err": "手續費不足",
+  "token_transfer_success": "已打包待上鏈",
 
   "collections_addr_tips": "該地址僅支持AACOIN資產,請勿轉入其他公鏈資產",
   "collections_addr_in_eth": "掃二維碼，轉入{coin}",

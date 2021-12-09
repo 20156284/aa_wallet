@@ -197,6 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("请输入AACoin地址"),
         "token_transfer_cell_addr":
             MessageLookupByLibrary.simpleMessage("交易地址"),
+        "token_transfer_cell_fee": MessageLookupByLibrary.simpleMessage("交易费用"),
         "token_transfer_cell_hash":
             MessageLookupByLibrary.simpleMessage("交易哈希"),
         "token_transfer_cell_state":
@@ -219,6 +220,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_recommend_info": m8,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
         "token_transfer_slow_info": m9,
+        "token_transfer_success":
+            MessageLookupByLibrary.simpleMessage("已打包待上链"),
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),
         "wallet": MessageLookupByLibrary.simpleMessage("钱包"),
         "wallet_add_copy_success":
