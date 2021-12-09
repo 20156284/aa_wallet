@@ -21,15 +21,15 @@ class AddWalletPage extends GetView<AddWalletLogic> {
       child: ListView(
         padding: const EdgeInsets.only(top: 20),
         children: [
-          _buildCell(
-            title: AppS().add_wallet_eth,
-            subTitle: AppS().add_wallet_eth_subtitle,
-            icon: Res.ic_eth_select,
-            onTap: () => controller.onGotoCreate(0),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
+          // _buildCell(
+          //   title: AppS().add_wallet_eth,
+          //   subTitle: AppS().add_wallet_eth_subtitle,
+          //   icon: Res.ic_eth_select,
+          //   onTap: () => controller.onGotoCreate(0),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
           // _buildCell(
           //   title: AppS().add_wallet_btc,
           //   subTitle: AppS().add_wallet_btc_subtitle,

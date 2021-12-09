@@ -1,5 +1,4 @@
 import 'package:aa_wallet/const/app_theme.dart';
-import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/route/app_pages.dart';
 import 'package:flutter/cupertino.dart';

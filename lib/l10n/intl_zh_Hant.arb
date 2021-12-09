@@ -22,7 +22,8 @@
   "app_no_date":"暫無記錄",
   "app_img_upload": "正在上傳第{num}張...",
   "app_tips": " 溫馨提示 ",
-  "app_version": "AAToken {version}新版本",
+  "app_version": "version:{version}",
+  "app_build": "build:{build}",
   "app_del": "刪除",
 
 
@@ -158,6 +159,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1分鐘",
   "token_transfer_customize": "自定義",
   "token_transfer_fee_err": "手續費不足",
+  "token_transfer_no_more": "餘額不足",
   "token_transfer_success": "已打包待上鏈",
 
   "collections_addr_tips": "該地址僅支持AACOIN資產,請勿轉入其他公鏈資產",

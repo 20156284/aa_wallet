@@ -280,13 +280,23 @@ class AppS {
     );
   }
 
-  /// `AAToken {version}`
+  /// `version:{version}`
   String app_version(Object version) {
     return Intl.message(
-      'AAToken $version',
+      'version:$version',
       name: 'app_version',
       desc: '',
       args: [version],
+    );
+  }
+
+  /// `build:{build}`
+  String app_build(Object build) {
+    return Intl.message(
+      'build:$build',
+      name: 'app_build',
+      desc: '',
+      args: [build],
     );
   }
 
@@ -1415,6 +1425,16 @@ class AppS {
     return Intl.message(
       'Insufficient expenses',
       name: 'token_transfer_fee_err',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient balance`
+  String get token_transfer_no_more {
+    return Intl.message(
+      'Insufficient balance',
+      name: 'token_transfer_no_more',
       desc: '',
       args: [],
     );

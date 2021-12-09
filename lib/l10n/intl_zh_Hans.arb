@@ -22,7 +22,8 @@
   "app_no_date":"暂无记录",
   "app_img_upload": "正在上传第{num}张...",
   "app_tips": " 温馨提示 ",
-  "app_version": "AAToken {version}新版本",
+  "app_version": "version:{version}",
+  "app_build": "build:{build}",
   "app_del": "删除",
 
 
@@ -158,6 +159,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1分钟",
   "token_transfer_customize": "自定义",
   "token_transfer_fee_err": "手续费不足",
+  "token_transfer_no_more": "余额不足",
   "token_transfer_success": "已打包待上链",
 
   "collections_addr_tips": "该地址仅支持AACOIN资产,请勿转入其他公链资产",

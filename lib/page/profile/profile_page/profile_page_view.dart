@@ -35,6 +35,7 @@ class ProfilePage extends GetView<ProfilePageLogic> {
           _buildCell(
             title: AppS().profile_update_record,
             icon: Res.ic_update_record,
+            subTitle: _buildVersion(),
             onTap: () => Get.toNamed(AppRoutes.updateRecord),
           ),
           const SizedBox(
@@ -50,8 +51,43 @@ class ProfilePage extends GetView<ProfilePageLogic> {
     );
   }
 
-  Widget _buildCell(
-      {required String? title, String? icon, GestureTapCallback? onTap}) {
+  Widget _buildVersion() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Obx(
+              () => Text(
+                AppS().app_version(controller.version.value),
+                style: const TextStyle(
+                    fontSize: 12, color: CupertinoColors.systemGrey),
+              ),
+            ),
+            Obx(
+              () => Text(
+                AppS().app_build(controller.buildNumber.value),
+                style: const TextStyle(
+                    fontSize: 12, color: CupertinoColors.systemGrey),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCell({
+    required String? title,
+    Widget? subTitle,
+    String? icon,
+    GestureTapCallback? onTap,
+  }) {
     return InkWell(
       onTap: () {
         if (onTap != null) onTap();
@@ -80,6 +116,7 @@ class ProfilePage extends GetView<ProfilePageLogic> {
                     const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
             ),
+            if (subTitle != null) subTitle,
             const Icon(
               Icons.arrow_forward_ios_rounded,
               size: 18,

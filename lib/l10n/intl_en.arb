@@ -22,7 +22,8 @@
   "app_no_date":"no date",
   "app_img_upload": "uploading {num}...",
   "app_tips": "Tips",
-  "app_version": "AAToken {version}",
+  "app_version": "version:{version}",
+  "app_build": "build:{build}",
   "app_del": "Delete",
 
 
@@ -158,6 +159,7 @@
   "token_transfer_quick_info": "0/{money}AAA<1minute",
   "token_transfer_customize": "Customize",
   "token_transfer_fee_err": "Insufficient expenses",
+  "token_transfer_no_more": "Insufficient balance",
   "token_transfer_success": "Has been packaged to be on the chain",
 
   "collections_addr_tips": "This address only supports AACOIN assets, please do not transfer to other public chain assets",

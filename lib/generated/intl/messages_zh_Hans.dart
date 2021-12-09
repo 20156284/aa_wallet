@@ -20,25 +20,27 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_Hans';
 
-  static String m0(num) => "正在上传第${num}张...";
+  static String m0(build) => "build:${build}";
 
-  static String m1(version) => "发现新版本${version}";
+  static String m1(num) => "正在上传第${num}张...";
 
-  static String m2(version) => "AAToken ${version}新版本";
+  static String m2(version) => "发现新版本${version}";
 
-  static String m3(coin) => "扫二维码,转入${coin}";
+  static String m3(version) => "version:${version}";
 
-  static String m4(money) => "≈${money} ASDT";
+  static String m4(coin) => "扫二维码,转入${coin}";
 
-  static String m5(fee) => "手续费:${fee}";
+  static String m5(money) => "≈${money} ASDT";
 
-  static String m6(amount) => "AAA数量:${amount}";
+  static String m6(fee) => "手续费:${fee}";
 
-  static String m7(money) => "0/${money}AAA<1分钟";
+  static String m7(amount) => "AAA数量:${amount}";
 
-  static String m8(money) => "0/${money}AAA<5分钟";
+  static String m8(money) => "0/${money}AAA<1分钟";
 
-  static String m9(money) => "0/${money}AAA<30分钟";
+  static String m9(money) => "0/${money}AAA<5分钟";
+
+  static String m10(money) => "0/${money}AAA<30分钟";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_wallet_eth_subtitle":
             MessageLookupByLibrary.simpleMessage("Ethereum"),
         "app_album": MessageLookupByLibrary.simpleMessage("从相册中选择"),
+        "app_build": m0,
         "app_build_now": MessageLookupByLibrary.simpleMessage("敬请期待"),
         "app_camera": MessageLookupByLibrary.simpleMessage("拍照"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("取消"),
@@ -66,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_copy_success": MessageLookupByLibrary.simpleMessage("复制成功"),
         "app_del": MessageLookupByLibrary.simpleMessage("删除"),
         "app_i_know": MessageLookupByLibrary.simpleMessage("我知道了"),
-        "app_img_upload": m0,
+        "app_img_upload": m1,
         "app_name": MessageLookupByLibrary.simpleMessage("AAToken"),
         "app_no_date": MessageLookupByLibrary.simpleMessage("暂无记录"),
         "app_permission_camera_close":
@@ -88,8 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_save_photos_success":
             MessageLookupByLibrary.simpleMessage("图片已经保存至相册"),
         "app_tips": MessageLookupByLibrary.simpleMessage(" 温馨提示 "),
-        "app_update_version": m1,
-        "app_version": m2,
+        "app_update_version": m2,
+        "app_version": m3,
         "back_up_do_not_screen_capture1":
             MessageLookupByLibrary.simpleMessage("请勿截屏"),
         "back_up_do_not_screen_capture2": MessageLookupByLibrary.simpleMessage(
@@ -128,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("选择不同身份"),
         "collections_addr": MessageLookupByLibrary.simpleMessage("钱包地址"),
         "collections_addr_copy": MessageLookupByLibrary.simpleMessage("复制钱包地址"),
-        "collections_addr_in_eth": m3,
+        "collections_addr_in_eth": m4,
         "collections_addr_tips":
             MessageLookupByLibrary.simpleMessage("该地址仅支持AACOIN资产,请勿转入其他公链资产"),
         "confirm_mnemonic": MessageLookupByLibrary.simpleMessage("确认助记词"),
@@ -184,7 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_add": MessageLookupByLibrary.simpleMessage("添加代币"),
         "token_customize": MessageLookupByLibrary.simpleMessage("自定义代币"),
         "token_details_collection": MessageLookupByLibrary.simpleMessage("收款"),
-        "token_details_roughly_money": m4,
+        "token_details_roughly_money": m5,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("全部"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("转入"),
@@ -208,18 +211,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("交易数量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定义"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("矿工费"),
-        "token_transfer_fee_aa": m5,
+        "token_transfer_fee_aa": m6,
         "token_transfer_fee_err": MessageLookupByLibrary.simpleMessage("手续费不足"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("数量"),
-        "token_transfer_money_aa": m6,
+        "token_transfer_money_aa": m7,
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("请输入转账数量"),
+        "token_transfer_no_more": MessageLookupByLibrary.simpleMessage("余额不足"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
-        "token_transfer_quick_info": m7,
+        "token_transfer_quick_info": m8,
         "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推荐"),
-        "token_transfer_recommend_info": m8,
+        "token_transfer_recommend_info": m9,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "token_transfer_slow_info": m9,
+        "token_transfer_slow_info": m10,
         "token_transfer_success":
             MessageLookupByLibrary.simpleMessage("已打包待上链"),
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有资产"),

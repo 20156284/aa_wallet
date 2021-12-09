@@ -11,6 +11,7 @@ import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/core_kit.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/app_service.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -47,6 +48,8 @@ class AuthService extends GetxService {
       //没用户数据 跳转 引导页面
       Get.offAllNamed(AppRoutes.lead);
     }
+    //檢測更新
+    AppService.to.checkAppUpdate();
     // Get.offAllNamed(AppRoutes.coinType);
   }
 

@@ -53,8 +53,6 @@ class AppService extends GetxService {
 
     //监听 app 设置的 的变化
     ever(app, handleAppChanged);
-
-    checkAppUpdate();
   }
 
   /**
@@ -490,8 +488,9 @@ class AppService extends GetxService {
         .then((value) {
       if (value != null) {
         final bool isUpdate = CoreUtil.versionCheck(
-            localVersion: packageInfo.buildNumber,
-            serverVersion: value.versionNo);
+          localVersion: packageInfo.version,
+          serverVersion: value.versionNo,
+        );
         if (isUpdate) {
           List<String> contents = <String>[];
           try {

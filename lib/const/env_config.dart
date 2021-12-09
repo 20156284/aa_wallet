@@ -73,9 +73,9 @@ class Env {
   // 上线抓包
   static final EnvConfig _charlesReleaseConfig = EnvConfig(
     appTitle: 'releaseTitle',
-    baseUrl: 'http://test2-api.aapay.io',
-    aaaRpcUrl: 'http://119.8.104.104:8000',
-    ethRpcUrl: 'https://mainnet.infura.io/v3/4129fe30d0a340388d20e1fbd19d8039',
+    baseUrl: 'https://aatoken.aachain.org',
+    aaaRpcUrl: 'http://rpc.aachain.org',
+    ethRpcUrl: 'http://eth.aachain.org',
     aaaWss: '',
     ethWss: 'wss://mainnet.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );

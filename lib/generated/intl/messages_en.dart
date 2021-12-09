@@ -20,25 +20,27 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(num) => "uploading ${num}...";
+  static String m0(build) => "build:${build}";
 
-  static String m1(version) => "Find new version V${version}";
+  static String m1(num) => "uploading ${num}...";
 
-  static String m2(version) => "AAToken ${version}";
+  static String m2(version) => "Find new version V${version}";
 
-  static String m3(coin) => "Scan the QR code and transfer to ${coin}";
+  static String m3(version) => "version:${version}";
 
-  static String m4(money) => "≈${money} ASDT";
+  static String m4(coin) => "Scan the QR code and transfer to ${coin}";
 
-  static String m5(fee) => "Fee:${fee}";
+  static String m5(money) => "≈${money} ASDT";
 
-  static String m6(amount) => "AAA Amount:${amount}";
+  static String m6(fee) => "Fee:${fee}";
 
-  static String m7(money) => "0/${money}AAA<1minute";
+  static String m7(amount) => "AAA Amount:${amount}";
 
-  static String m8(money) => "0/${money}AAA<5minute";
+  static String m8(money) => "0/${money}AAA<1minute";
 
-  static String m9(money) => "0/${money}AAA<30minute";
+  static String m9(money) => "0/${money}AAA<5minute";
+
+  static String m10(money) => "0/${money}AAA<30minute";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -60,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_wallet_eth_subtitle":
             MessageLookupByLibrary.simpleMessage("Ethereum"),
         "app_album": MessageLookupByLibrary.simpleMessage("Form album"),
+        "app_build": m0,
         "app_build_now": MessageLookupByLibrary.simpleMessage("coming soon"),
         "app_camera": MessageLookupByLibrary.simpleMessage("Take photo"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("cancel"),
@@ -68,7 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Copy success"),
         "app_del": MessageLookupByLibrary.simpleMessage("Delete"),
         "app_i_know": MessageLookupByLibrary.simpleMessage("I know"),
-        "app_img_upload": m0,
+        "app_img_upload": m1,
         "app_name": MessageLookupByLibrary.simpleMessage("AAToken"),
         "app_no_date": MessageLookupByLibrary.simpleMessage("no date"),
         "app_permission_camera_close":
@@ -93,8 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_save_photos_success":
             MessageLookupByLibrary.simpleMessage("Save photo success"),
         "app_tips": MessageLookupByLibrary.simpleMessage("Tips"),
-        "app_update_version": m1,
-        "app_version": m2,
+        "app_update_version": m2,
+        "app_version": m3,
         "back_up_do_not_screen_capture1": MessageLookupByLibrary.simpleMessage(
             "Please don\'t capture screen"),
         "back_up_do_not_screen_capture2": MessageLookupByLibrary.simpleMessage(
@@ -142,7 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Wallet address"),
         "collections_addr_copy":
             MessageLookupByLibrary.simpleMessage("Copy address"),
-        "collections_addr_in_eth": m3,
+        "collections_addr_in_eth": m4,
         "collections_addr_tips": MessageLookupByLibrary.simpleMessage(
             "This address only supports AACOIN assets, please do not transfer to other public chain assets"),
         "confirm_mnemonic":
@@ -211,7 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customize Token"),
         "token_details_collection":
             MessageLookupByLibrary.simpleMessage("Collection"),
-        "token_details_roughly_money": m4,
+        "token_details_roughly_money": m5,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("All"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("In"),
@@ -240,20 +243,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_customize":
             MessageLookupByLibrary.simpleMessage("Customize"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("Fee"),
-        "token_transfer_fee_aa": m5,
+        "token_transfer_fee_aa": m6,
         "token_transfer_fee_err":
             MessageLookupByLibrary.simpleMessage("Insufficient expenses"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("Amount"),
-        "token_transfer_money_aa": m6,
+        "token_transfer_money_aa": m7,
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("please enter amount"),
+        "token_transfer_no_more":
+            MessageLookupByLibrary.simpleMessage("Insufficient balance"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("Quick"),
-        "token_transfer_quick_info": m7,
+        "token_transfer_quick_info": m8,
         "token_transfer_recommend":
             MessageLookupByLibrary.simpleMessage("Recommend"),
-        "token_transfer_recommend_info": m8,
+        "token_transfer_recommend_info": m9,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
-        "token_transfer_slow_info": m9,
+        "token_transfer_slow_info": m10,
         "token_transfer_success": MessageLookupByLibrary.simpleMessage(
             "Has been packaged to be on the chain"),
         "token_user_all_assets":

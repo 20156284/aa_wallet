@@ -221,6 +221,12 @@ class TokenTransferLogic extends GetxController {
       return;
     }
 
+    if (double.parse(moneyEdit.text.trim()) >
+        double.parse(tokenEntry.value.balance ?? '0')) {
+      CoreKitToast.showError(AppS().token_transfer_no_more);
+      return;
+    }
+
     if (aaaAmount.value < fee.value) {
       CoreKitToast.showError(AppS().token_transfer_fee_err);
       return;
