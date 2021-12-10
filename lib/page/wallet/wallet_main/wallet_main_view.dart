@@ -1,3 +1,4 @@
+import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
@@ -331,6 +332,7 @@ class _WalletMainPageState extends State<WalletMainPage> {
   }
 
   void onRefreshFun() async {
+    final cancelFunc = CoreKitToast.showLoading();
     logic.dbTokenList = await WalletService.to.appDate.getAllToken();
 
     final newList = <TokenEntry>[];
@@ -343,15 +345,19 @@ class _WalletMainPageState extends State<WalletMainPage> {
           //这个是主币 所以 获取主币的余额
           final balance = await TokenService.getBalance(
             logic.wallet.value.address!,
+            rpcUrl: logic.wallet.value.rpcUrl,
           );
           WalletService.to.aaaAmount.value = num.parse(balance);
           newTokenEntry = tokenEntry.copyWith(balance: balance);
         } else {
           //这个是代币的 获取小数点
-          final int decimals =
-              await TokenService.getDecimals(tokenEntry.contractAddress!);
+          final int decimals = await TokenService.getDecimals(
+            tokenEntry.contractAddress!,
+            rpcUrl: logic.wallet.value.rpcUrl,
+          );
           final balance = await TokenService.getTokenBalance(decimals,
-              logic.wallet.value.address!, tokenEntry.contractAddress!);
+              logic.wallet.value.address!, tokenEntry.contractAddress!,
+              rpcUrl: logic.wallet.value.rpcUrl);
           newTokenEntry =
               tokenEntry.copyWith(balance: balance, decimals: decimals);
         }
@@ -363,6 +369,8 @@ class _WalletMainPageState extends State<WalletMainPage> {
     logic.tokenList.refresh();
 
     refreshCtrl.refreshCompleted();
+
+    cancelFunc();
   }
 
   @override

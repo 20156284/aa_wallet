@@ -336,9 +336,7 @@ class AppService extends GetxService {
         CoreKitToast.showError(error);
       });
 
-      if (isFist) {
-        await creatToken(wallet);
-      }
+      await creatToken(wallet);
 
       //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
       Get.offNamed(AppRoutes.appMain);
@@ -359,18 +357,53 @@ class AppService extends GetxService {
   Future<void> creatToken(WalletEntry wallet) async {
     //获取代币地址
     final wService = WalletService.to;
-    //如果 主钱包 没有 或者是第一次 找回的 都给主动添加 主币
-    if ((await wService.appDate.getAllWallets()).length == 1) {
-      //创建钱包成功的时候发给后台让后添加
-      final list = await ToKenApi.acquire()
-          .walletGetCoinKey(type: '1')
-          .catchError((error) {
-        CoreKitToast.showError(error);
-      });
 
+    final allWallet = await wService.appDate.getAllWallets();
+
+    //创建钱包成功的时候发给后台让后添加
+    final coinList = await ToKenApi.acquire()
+        .walletGetCoinKey(type: '1')
+        .catchError((error) {
+      CoreKitToast.showError(error);
+    });
+
+    //所有主币都 可以添加自己 主要代币
+    for (final coinKeyEntity in coinList) {
+      if (coinKeyEntity.protocol == wService.protocol.value) {
+        //把获取到的主币 插入数据库 主键是当前这个钱包
+        wService.appDate.insertToken(
+          wallet_id: wallet.id,
+          contractAddress: coinKeyEntity.contractAddress,
+          imageUrl: coinKeyEntity.imageUrl,
+          protocol: coinKeyEntity.protocol,
+          coinKey: coinKeyEntity.coinKey,
+        );
+      }
+    }
+
+    //获取 后台支持的 当前 主币下的 代币
+    final list = await ToKenApi.acquire()
+        .walletGetCoinKey(type: '2')
+        .catchError((error) {
+      CoreKitToast.showError(error);
+    });
+
+    //相对来说 上面是一个钱包的存在 0 表示初始化 如果 大于1 的情况下表示下面已经添加过相对应的钱包 不给添加相对应的代币
+    int hasWall = 0;
+
+    //查找本地缓存是不是 有当前钱包纯在 不存在的情况下 插入 相对应的代币
+    for (final dbWallet in allWallet) {
+      //查找相对应的钱包存在 过
+      if (dbWallet.protocol == wallet.protocol) {
+        hasWall++;
+        if (hasWall > 1) break;
+      }
+    }
+
+    //等于 1的情况下表示只有相对应该主币下钱包只有一个 添加 他旗下的默认支持的代币
+    if (hasWall == 1) {
       for (final coinKeyEntity in list) {
         if (coinKeyEntity.protocol == wService.protocol.value) {
-          //把获取到的主币 插入数据库 主键是当前这个钱包
           wService.appDate.insertToken(
             wallet_id: wallet.id,
             contractAddress: coinKeyEntity.contractAddress,
@@ -379,25 +412,6 @@ class AppService extends GetxService {
             coinKey: coinKeyEntity.coinKey,
           );
         }
-      }
-    }
-
-    //创建钱包成功的时候发给后台让后添加
-    final list = await ToKenApi.acquire()
-        .walletGetCoinKey(type: '2')
-        .catchError((error) {
-      CoreKitToast.showError(error);
-    });
-
-    for (final coinKeyEntity in list) {
-      if (coinKeyEntity.protocol == wService.protocol.value) {
-        wService.appDate.insertToken(
-          wallet_id: wallet.id,
-          contractAddress: coinKeyEntity.contractAddress,
-          imageUrl: coinKeyEntity.imageUrl,
-          protocol: coinKeyEntity.protocol,
-          coinKey: coinKeyEntity.coinKey,
-        );
       }
     }
   }

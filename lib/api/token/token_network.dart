@@ -20,8 +20,9 @@ abstract class TokenNetwork {
 
   //static final _cache = <String, TokenNetwork>{};
 
-  static TokenNetwork acquire() {
-    return TokenNetwork(Dior.appDio, baseUrl: Env.envConfig.aaaRpcUrl);
+  static TokenNetwork acquire({String? baseUrl}) {
+    return TokenNetwork(Dior.appDio,
+        baseUrl: baseUrl ?? Env.envConfig.aaaRpcUrl);
   }
 
   //factory TokenNetwork(Dio dio, {String? baseUrl}) {

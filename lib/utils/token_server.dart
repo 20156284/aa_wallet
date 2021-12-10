@@ -108,18 +108,22 @@ class TokenService {
    * @return 代币的余额
    */
   static Future<String> getTokenBalance(
-      num decimals, String walletAddress, String coinAddress) async {
+      num decimals, String walletAddress, String coinAddress,
+      {String? rpcUrl}) async {
     final Map params = {
       'data': AppPolicies.funcHashes['getTokenBalance()']! +
           walletAddress.replaceFirst('0x', '').padLeft(64, '0'),
       'to': coinAddress
     };
-    final response = await TokenNetwork.acquire().network(
+    final response = await TokenNetwork.acquire(baseUrl: rpcUrl).network(
       jsonRpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
       params: [params, 'latest'],
     );
+    if (response.result!.length == 2) {
+      return '0';
+    }
     final double balance =
         BigInt.parse(response.result!) / BigInt.from(pow(10, decimals));
     if (balance == 0.0) {
@@ -136,18 +140,22 @@ class TokenService {
    * @param 代币地址
    * @return 返回几位
    */
-  static Future<int> getDecimals(String address) async {
+  static Future<int> getDecimals(String address, {String? rpcUrl}) async {
     final Map params = {
       'data': AppPolicies.funcHashes['getDecimals()'],
       'to': address
     };
 
-    final response = await TokenNetwork.acquire().network(
+    final response = await TokenNetwork.acquire(baseUrl: rpcUrl).network(
       jsonRpc: '2.0',
       method: 'eth_call',
       id: DateTime.now().microsecondsSinceEpoch,
       params: [params, 'latest'],
     );
+
+    if (response.result!.length == 2) {
+      return 18;
+    }
 
     return int.parse(response.result!.replaceFirst('0x', ''), radix: 16);
   }

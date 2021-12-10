@@ -45,7 +45,7 @@ class Env {
     appTitle: 'debugTitle',
     baseUrl: 'http://test2-api.aapay.io',
     aaaRpcUrl: 'http://159.138.134.163:8000',
-    ethRpcUrl: 'https://ropsten.infura.io/v3/4129fe30d0a340388d20e1fbd19d8039',
+    ethRpcUrl: 'http://eth.aachain.org',
     aaaWss: '',
     ethWss: 'wss://ropsten.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );
