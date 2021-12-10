@@ -8,7 +8,7 @@ class WalletAssetsLogic extends GetxController {
   final dbWalletList = <WalletEntry>[].obs;
 
   //刷新控件
-  late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
+  final refreshCtrl = RefreshController(initialRefresh: true);
 
   @override
   void onInit() async {

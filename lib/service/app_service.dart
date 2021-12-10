@@ -338,42 +338,19 @@ class AppService extends GetxService {
 
       if (isFist) {
         await creatToken(wallet);
-        //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-        Get.offAllNamed(AppRoutes.appMain);
-      } else {
-        Get.back();
-
-        CustomDialog.showCustomDialog(
-          Get.context!,
-          SizedBox(
-            width: 145,
-            height: 145,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  CupertinoIcons.check_mark_circled,
-                  size: 80,
-                  color: Colors.green,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(AppS().creat_wallet_finish),
-              ],
-            ),
-          ),
-          isShowCloseBtn: false,
-          isAutoClose: true,
-          closeDuration: const Duration(seconds: 3),
-          borderRadius: BorderRadius.circular(12),
-        );
       }
+
+      //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
+      Get.offNamed(AppRoutes.appMain);
+
+      //回复初始值
+      wService.protocol.value = 'ARC20';
+      wService.walletName.value = 'AAA';
     }
   }
 
   /**
-   * 倘若第一次创建 或者回复的时候 默认给创建其他代币
+   * 倘若第一次创建 或者回复的时候 默认给创建其 AAA 下的所有代币
    * @author Will
    * @date 2021/11/25 12:21
    * @param wallet 所在的主钱包

@@ -10,7 +10,7 @@ class TokenDetailsLogic extends GetxController {
   final tokenEntry = TokenEntry(id: 0, wallet_id: 0).obs;
 
   //刷新控件
-  late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
+  final refreshCtrl = RefreshController(initialRefresh: true);
 
   final state = 0.obs;
   String? type;

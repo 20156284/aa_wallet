@@ -156,7 +156,7 @@ class WalletService extends GetxService {
         await appDate.deleteToken(tokenEntry);
       });
 
-      Get.offAllNamed(AppRoutes.lead);
+      Get.offNamed(AppRoutes.lead);
     } else {
       final WalletEntry walletEntry = walletList.first.copyWith(is_main: true);
       await appDate.updateWallet(walletEntry);

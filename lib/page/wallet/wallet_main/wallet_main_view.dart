@@ -1,8 +1,11 @@
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
+import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/page/wallet/wallet_management_widget/wallet_management_widget_view.dart';
 import 'package:aa_wallet/res.dart';
 import 'package:aa_wallet/route/app_pages.dart';
+import 'package:aa_wallet/service/wallet_service.dart';
+import 'package:aa_wallet/utils/token_server.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +13,40 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'wallet_main_logic.dart';
 
-class WalletMainPage extends GetView<WalletMainLogic> {
+class WalletMainPage extends StatefulWidget {
   const WalletMainPage({Key? key}) : super(key: key);
+
+  @override
+  _WalletMainPageState createState() => _WalletMainPageState();
+}
+
+class _WalletMainPageState extends State<WalletMainPage> {
+  final WalletMainLogic logic = Get.put(WalletMainLogic());
+  //刷新控件
+  late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
+
+  late Worker worker;
+
+  @override
+  void initState() {
+    super.initState();
+    final walletService = WalletService.to;
+    //监听钱包的变化
+    worker = ever(walletService.wallet, handleWalletChanged);
+  }
+
+  /**
+   * 监听钱包变换的事件
+   * @author Will
+   * @date 2021/11/18 15:05
+   * @param _wallet 钱包实体类
+   */
+  void handleWalletChanged(WalletEntry _wallet) async {
+    logic.wallet.value = _wallet;
+    logic.wallet.refresh();
+    logic.onShow();
+    onRefreshFun();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +75,17 @@ class WalletMainPage extends GetView<WalletMainLogic> {
           enablePullDown: true,
           enablePullUp: false,
           header: const WaterDropHeader(),
-          controller: controller.refreshCtrl,
-          onRefresh: () => controller.onRefreshFun(),
+          controller: refreshCtrl,
+          onRefresh: () => onRefreshFun(),
           child: _buildChild(),
         ),
       ),
+      // child: Column(
+      //   children: [
+      //     _buildWalletMain(),
+      //     _buildAssets(),
+      //   ],
+      // ),
     );
   }
 
@@ -55,13 +96,9 @@ class WalletMainPage extends GetView<WalletMainLogic> {
           case 0:
             return _buildWalletMain();
           case 1:
-            return const SizedBox(
-              height: 15,
-            );
-          case 2:
             return _buildAssets();
           default:
-            final tokenEntry = controller.tokenList[i - 3];
+            final tokenEntry = logic.tokenList[i - 2];
             return _buildCell(
               title: tokenEntry.coinKey,
               imageUrl: tokenEntry.imageUrl,
@@ -72,7 +109,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
             );
         }
       },
-      itemCount: controller.tokenList.length + 3,
+      itemCount: logic.tokenList.length + 2,
     );
   }
 
@@ -84,16 +121,16 @@ class WalletMainPage extends GetView<WalletMainLogic> {
         color: const Color(0xFF0F6EFF),
         borderRadius: BorderRadius.circular(6),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
-              print(controller.wallet.value.toString());
+              print(logic.wallet.value.toString());
               Get.toNamed(AppRoutes.walletDetails,
-                  arguments: controller.wallet.value);
+                  arguments: logic.wallet.value);
             },
             child: Row(
               mainAxisSize: MainAxisSize.max,
@@ -102,7 +139,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
               children: [
                 Obx(
                   () => Text(
-                    controller.wallet.value.name ?? '',
+                    logic.wallet.value.name ?? '',
                     style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -119,9 +156,9 @@ class WalletMainPage extends GetView<WalletMainLogic> {
           ),
           Obx(
             () => InkWell(
-              onTap: () => controller.onCopy(),
+              onTap: () => logic.onCopy(),
               child: Text(
-                controller.showAddress.value,
+                logic.showAddress.value,
                 style: const TextStyle(fontSize: 14, color: Colors.white),
               ),
             ),
@@ -143,7 +180,7 @@ class WalletMainPage extends GetView<WalletMainLogic> {
             style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
           InkWell(
-            onTap: () => controller.onAddAssets(),
+            onTap: () => logic.onAddAssets(),
             child: Container(
               width: 30,
               height: 30,
@@ -291,5 +328,47 @@ class WalletMainPage extends GetView<WalletMainLogic> {
         );
       },
     );
+  }
+
+  void onRefreshFun() async {
+    logic.dbTokenList = await WalletService.to.appDate.getAllToken();
+
+    final newList = <TokenEntry>[];
+    for (final tokenEntry in logic.dbTokenList) {
+      TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
+      //只去查询 当前 主币下 代币的余额
+      if (tokenEntry.protocol == logic.wallet.value.protocol &&
+          tokenEntry.wallet_id == logic.wallet.value.id) {
+        if (tokenEntry.contractAddress == null) {
+          //这个是主币 所以 获取主币的余额
+          final balance = await TokenService.getBalance(
+            logic.wallet.value.address!,
+          );
+          WalletService.to.aaaAmount.value = num.parse(balance);
+          newTokenEntry = tokenEntry.copyWith(balance: balance);
+        } else {
+          //这个是代币的 获取小数点
+          final int decimals =
+              await TokenService.getDecimals(tokenEntry.contractAddress!);
+          final balance = await TokenService.getTokenBalance(decimals,
+              logic.wallet.value.address!, tokenEntry.contractAddress!);
+          newTokenEntry =
+              tokenEntry.copyWith(balance: balance, decimals: decimals);
+        }
+        newList.add(newTokenEntry);
+      }
+    }
+
+    logic.tokenList.value = newList;
+    logic.tokenList.refresh();
+
+    refreshCtrl.refreshCompleted();
+  }
+
+  @override
+  void dispose() {
+    //释放当前页面的监听事件
+    worker.dispose();
+    super.dispose();
   }
 }

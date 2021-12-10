@@ -55,7 +55,6 @@ import 'package:aa_wallet/page/wallet/wallet_details/wallet_details_binding.dart
 import 'package:aa_wallet/page/wallet/wallet_details/wallet_details_view.dart';
 import 'package:aa_wallet/page/wallet/wallet_edit_name/wallet_edit_name_binding.dart';
 import 'package:aa_wallet/page/wallet/wallet_edit_name/wallet_edit_name_view.dart';
-import 'package:aa_wallet/page/wallet/wallet_main/wallet_main_binding.dart';
 import 'package:aa_wallet/page/wallet/wallet_management/wallet_management_binding.dart';
 import 'package:aa_wallet/page/wallet/wallet_management/wallet_management_view.dart';
 import 'package:get/get.dart';
@@ -80,7 +79,6 @@ class AppPages {
       transition: Transition.zoom,
       bindings: [
         AppMainBinding(),
-        WalletMainBinding(),
         ProfilePageBinding(),
       ],
     ),

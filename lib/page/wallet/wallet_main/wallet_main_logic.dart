@@ -7,19 +7,13 @@ import 'package:aa_wallet/utils/token_server.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class WalletMainLogic extends GetxController {
-  //刷新控件
-  late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
-
   List<TokenEntry> dbTokenList = <TokenEntry>[];
   final walletList = <WalletEntry>[].obs;
   final tokenList = <TokenEntry>[].obs;
   final wallet = WalletEntry(id: 0).obs;
   final showAddress = ''.obs;
-
-  late Worker worker;
 
   @override
   void onInit() async {
@@ -34,29 +28,6 @@ class WalletMainLogic extends GetxController {
       }
     }
     onShow();
-
-    //监听钱包的变化
-    worker = ever(walletService.wallet, handleWalletChanged);
-  }
-
-  @override
-  void onClose() {
-    //释放当前页面的监听事件
-    worker.dispose();
-    super.onClose();
-  }
-
-  /**
-   * 监听钱包变换的事件
-   * @author Will
-   * @date 2021/11/18 15:05
-   * @param _wallet 钱包实体类
-   */
-  void handleWalletChanged(WalletEntry _wallet) async {
-    wallet.value = _wallet;
-    wallet.refresh();
-    onShow();
-    onRefreshFun();
   }
 
   /**
@@ -116,39 +87,5 @@ class WalletMainLogic extends GetxController {
    */
   void onAddAssets() {
     Get.toNamed(AppRoutes.addToken);
-  }
-
-  void onRefreshFun() async {
-    dbTokenList = await WalletService.to.appDate.getAllToken();
-
-    final newList = <TokenEntry>[];
-    for (final tokenEntry in dbTokenList) {
-      TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
-      //只去查询 当前 主币下 代币的余额
-      if (tokenEntry.protocol == wallet.value.protocol) {
-        if (tokenEntry.contractAddress == null) {
-          //这个是主币 所以 获取主币的余额
-          final balance = await TokenService.getBalance(
-            wallet.value.address!,
-          );
-          WalletService.to.aaaAmount.value = num.parse(balance);
-          newTokenEntry = tokenEntry.copyWith(balance: balance);
-        } else {
-          //这个是代币的 获取小数点
-          final int decimals =
-              await TokenService.getDecimals(tokenEntry.contractAddress!);
-          final balance = await TokenService.getTokenBalance(
-              decimals, wallet.value.address!, tokenEntry.contractAddress!);
-          newTokenEntry =
-              tokenEntry.copyWith(balance: balance, decimals: decimals);
-        }
-        newList.add(newTokenEntry);
-      }
-    }
-
-    tokenList.value = newList;
-    tokenList.refresh();
-
-    refreshCtrl.refreshCompleted();
   }
 }
