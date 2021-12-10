@@ -17,6 +17,8 @@ class RecoverByMnemonicLogic extends GetxController {
   final pwdVisible = true.obs;
   final repeatVisible = true.obs;
 
+  late Worker worker;
+
   @override
   void onInit() {
     super.onInit();
@@ -41,6 +43,20 @@ class RecoverByMnemonicLogic extends GetxController {
       pwdEdit = TextEditingController(text: 'Aa123456');
       repeatPwdEdit = TextEditingController(text: 'Aa123456');
     }
+
+    //监听钱包名变换
+    worker = ever(WalletService.to.walletName, handleWalletNameChanged);
+  }
+
+  void handleWalletNameChanged(_name) {
+    debugPrint(WalletService.to.walletName.value);
+    nameEdit.text = WalletService.to.walletName.value;
+  }
+
+  @override
+  void onClose() {
+    worker.dispose();
+    super.onClose();
   }
 
   /**
@@ -123,7 +139,6 @@ class RecoverByMnemonicLogic extends GetxController {
       name: WalletService.to.walletName.value,
       password: pwdEdit.text,
       mnemonic: mnemonic,
-      protocol: WalletService.to.protocol.value,
     );
   }
 }

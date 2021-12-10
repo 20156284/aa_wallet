@@ -36,10 +36,10 @@ class Wallet extends Table {
   //是否选择为主钱包
   BoolColumn get is_main => boolean().nullable()();
 
-  //是否第一次默认的创建 因为默认创建的话 会添加 aa的所有代币
-  //其他不需要 当然相对应的删除 也就没有
-  //包括回复钱包的时候 也会默认给他创建aa的代币
-  BoolColumn get is_fist => boolean().nullable()();
+  // //是否第一次默认的创建 因为默认创建的话 会天机 aa的所有代币
+  // //其他不需要 当然相对应的删除 也就没有
+  // //包括回复钱包的时候 也会默认给他创建aa的代币
+  // BoolColumn get is_fist => boolean().nullable()();
 }
 
 @DataClassName('TokenEntry')
@@ -70,6 +70,8 @@ class Token extends Table {
 
   //当前币种的兑换后的显示的价格 但是不会存进数据库 只是方便前端显示而已
   TextColumn get totalMoney => text().nullable()();
+
+  BoolColumn get is_main_coin => boolean().nullable()();
 }
 
 @UseMoor(tables: [Wallet, Token])
@@ -79,7 +81,19 @@ class AppDatabase extends _$AppDatabase {
             path: 'db.sqlite', logStatements: true));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onCreate: (Migrator m) {
+          return m.createAll();
+        },
+        onUpgrade: (Migrator m, int from, int to) async {
+          if (from < 2) {
+            await m.addColumn(token, token.is_main_coin);
+          }
+        },
+      );
 
   Future<List<WalletEntry>> getAllWallets() => select(wallet).get();
 
@@ -96,7 +110,6 @@ class AppDatabase extends _$AppDatabase {
     String? address,
     String? rpcUrl,
     bool? isMain,
-    bool? isFist,
   }) {
     return into(wallet).insert(
       WalletCompanion(
@@ -108,7 +121,6 @@ class AppDatabase extends _$AppDatabase {
         mnemonic: Value(mnemonic),
         rpcUrl: Value(rpcUrl),
         is_main: Value(isMain),
-        is_fist: Value(isFist),
       ),
     );
   }
@@ -136,6 +148,7 @@ class AppDatabase extends _$AppDatabase {
     String? protocol,
     String? coinKey,
     int? decimals,
+    bool? isMainCoin,
   }) =>
       into(token).insert(
         TokenCompanion(
@@ -145,6 +158,7 @@ class AppDatabase extends _$AppDatabase {
           protocol: Value(protocol),
           coinKey: Value(coinKey),
           decimals: Value(decimals),
+          is_main_coin: Value(isMainCoin),
         ),
       );
 

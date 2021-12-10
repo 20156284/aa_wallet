@@ -336,9 +336,8 @@ class _WalletMainPageState extends State<WalletMainPage> {
   void onRefreshFun() async {
     //默认的rpcUrl
     String rpcUrl = Env.envConfig.aaaRpcUrl;
-    final walletService = WalletService.to;
 
-    switch (walletService.protocol.value) {
+    switch (logic.wallet.value.protocol) {
       case 'ERC20':
         rpcUrl = Env.envConfig.ethRpcUrl;
         break;

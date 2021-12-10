@@ -152,7 +152,6 @@ class ConfirmMnemonicLogic extends GetxController {
       name: wService.walletName.value,
       password: wService.password.value,
       mnemonic: mnemonic,
-      protocol: wService.protocol.value,
     );
   }
 

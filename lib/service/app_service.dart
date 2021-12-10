@@ -170,8 +170,6 @@ class AppService extends GetxService {
     required String? password,
     String? privateKey,
     String? mnemonic,
-    String? protocol,
-    String? rpcUrl,
   }) async {
     CustomDialog.showCustomDialog(
       Get.context!,
@@ -204,8 +202,6 @@ class AppService extends GetxService {
         password: password,
         privateKey: privateKey,
         mnemonic: mnemonic,
-        protocol: protocol,
-        rpcUrl: rpcUrl,
       );
     });
   }
@@ -218,26 +214,16 @@ class AppService extends GetxService {
    * @param password 密码
    * @param mnemonic 助记词
    * @param privateKey 私钥
-   * @param protocol 币区块
    * @param address 钱包地址
-   * @param rpcUrl 调用的是那个rpc
    */
   void insert({
     required String? name,
     required String? password,
     String? privateKey,
     String? mnemonic,
-    String? protocol,
-    String? rpcUrl,
   }) async {
     final wService = WalletService.to;
-
-    bool isFist = false;
-    if (app.value.isFistTime == null) {
-      isFist = true;
-    } else {
-      isFist = app.value.isFistTime!;
-    }
+    String protocol = wService.protocol.value;
 
     debugPrint('password =>$password');
     //加密后的密码
@@ -259,7 +245,7 @@ class AppService extends GetxService {
         TokenService.getPublicAddress(privateKey!);
 
     //去重 表示已經有
-    if (await duplicateRemoval(publicAddress.hexEip55)) {
+    if (await duplicateRemoval(publicAddress.hexEip55, protocol)) {
       Get.back();
       CustomDialog.showCustomDialog(
         Get.context!,
@@ -301,10 +287,8 @@ class AppService extends GetxService {
         privateKey: privateKey,
         protocol: protocol,
         address: publicAddress.hexEip55,
-        rpcUrl: rpcUrl,
         //所有创建的钱包 都变成主钱包
         isMain: true,
-        isFist: isFist,
       );
 
       final WalletEntry wallet = WalletEntry(
@@ -315,10 +299,8 @@ class AppService extends GetxService {
         mnemonic: mnemonic,
         privateKey: privateKey,
         protocol: protocol,
-        rpcUrl: rpcUrl,
         //所有创建的钱包 都变成主钱包
         is_main: true,
-        is_fist: isFist,
       );
 
       //不管是不是主要钱包 都给他做成 主要钱包
@@ -340,10 +322,6 @@ class AppService extends GetxService {
 
       //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
       Get.offNamed(AppRoutes.appMain);
-
-      //回复初始值
-      wService.protocol.value = 'ARC20';
-      wService.walletName.value = 'AAA';
     }
   }
 
@@ -377,6 +355,7 @@ class AppService extends GetxService {
           imageUrl: coinKeyEntity.imageUrl,
           protocol: coinKeyEntity.protocol,
           coinKey: coinKeyEntity.coinKey,
+          // isMainCoin: true,
         );
       }
     }
@@ -423,11 +402,11 @@ class AppService extends GetxService {
    * @param address 钱包地址
    * @return 返回是否
    */
-  Future<bool> duplicateRemoval(String address) async {
+  Future<bool> duplicateRemoval(String address, String protocol) async {
     bool isHasAddress = false;
     final dbWalletList = await WalletService.to.appDate.getAllWallets();
     for (final walletEntry in dbWalletList) {
-      if (walletEntry.address == address) {
+      if (walletEntry.address == address && walletEntry.protocol == protocol) {
         isHasAddress = true;
         break;
       }
