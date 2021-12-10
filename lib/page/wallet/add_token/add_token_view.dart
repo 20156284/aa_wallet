@@ -30,10 +30,10 @@ class AddTokenPage extends GetView<AddTokenLogic> {
             title: AppS().token_user_all_assets,
             onTap: () => Get.toNamed(AppRoutes.walletAssets, arguments: false),
           ),
-          // _buildCell(
-          //   title: AppS().token_customize,
-          //   onTap: () => CoreKitToast.showIconText(text: AppS().app_build_now),
-          // ),
+          _buildCell(
+            title: AppS().token_customize,
+            onTap: () => Get.toNamed(AppRoutes.customToken),
+          ),
         ],
       ),
     );

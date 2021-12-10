@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/service/app_service.dart';
@@ -149,26 +148,11 @@ class ConfirmMnemonicLogic extends GetxController {
   void onCreat(String mnemonic) async {
     final wService = WalletService.to;
 
-    //默认的rpcUrl
-    String rpcUrl = Env.envConfig.aaaRpcUrl;
-
-    switch (wService.protocol.value) {
-      case 'ERC20':
-        rpcUrl = Env.envConfig.ethRpcUrl;
-        break;
-      case 'TRC20':
-        break;
-      case 'ARC20':
-        rpcUrl = Env.envConfig.aaaRpcUrl;
-        break;
-    }
-
     AppService.to.insertWallet(
       name: wService.walletName.value,
       password: wService.password.value,
       mnemonic: mnemonic,
       protocol: wService.protocol.value,
-      rpcUrl: rpcUrl,
     );
   }
 

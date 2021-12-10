@@ -24,8 +24,10 @@ class WalletService extends GetxService {
   final walletName = 'AAA'.obs;
 
   final appDate = AppDatabase();
+
   //当前App默认的钱包
   final wallet = WalletEntry(id: 0).obs;
+
   //当前代币价格
   final aaaAmount = num.parse('0').obs;
 
@@ -135,8 +137,17 @@ class WalletService extends GetxService {
   void onDel(WalletEntry entry) async {
     //先关闭弹窗
     Get.back();
-    final del = await appDate.deleteWallet(entry);
-    if (del != null) {}
+
+    await appDate.deleteWallet(entry);
+    final List<TokenEntry> list = await appDate.getAllToken();
+
+    //删除他相对应的代币
+    for (final token in list) {
+      if (token.wallet_id == entry.id) {
+        await appDate.deleteToken(token);
+      }
+    }
+
     final List<WalletEntry> walletList = await appDate.getAllWallets();
     if (walletList.isEmpty) {
       AppService.to.app.update((val) {
@@ -148,13 +159,9 @@ class WalletService extends GetxService {
       //通常 使用获取用户信息之后 存入数据库 让数据永远保存最新的一份
       AppUserPreferences.getInstance()
           .then((v) => v.setApp(AppService.to.app.value));
+
       protocol.value = 'ARC20';
       walletName.value = 'AAA';
-
-      final List<TokenEntry> list = await appDate.getAllToken();
-      list.forEach((tokenEntry) async {
-        await appDate.deleteToken(tokenEntry);
-      });
 
       Get.offNamed(AppRoutes.lead);
     } else {

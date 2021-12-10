@@ -1,3 +1,4 @@
+import 'package:aa_wallet/const/env_config.dart';
 import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
@@ -23,6 +24,7 @@ class WalletMainPage extends StatefulWidget {
 
 class _WalletMainPageState extends State<WalletMainPage> {
   final WalletMainLogic logic = Get.put(WalletMainLogic());
+
   //刷新控件
   late RefreshController refreshCtrl = RefreshController(initialRefresh: true);
 
@@ -332,45 +334,63 @@ class _WalletMainPageState extends State<WalletMainPage> {
   }
 
   void onRefreshFun() async {
-    final cancelFunc = CoreKitToast.showLoading();
-    logic.dbTokenList = await WalletService.to.appDate.getAllToken();
+    //默认的rpcUrl
+    String rpcUrl = Env.envConfig.aaaRpcUrl;
+    final walletService = WalletService.to;
 
-    final newList = <TokenEntry>[];
-    for (final tokenEntry in logic.dbTokenList) {
-      TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
-      //只去查询 当前 主币下 代币的余额
-      if (tokenEntry.protocol == logic.wallet.value.protocol &&
-          tokenEntry.wallet_id == logic.wallet.value.id) {
-        if (tokenEntry.contractAddress == null) {
-          //这个是主币 所以 获取主币的余额
-          final balance = await TokenService.getBalance(
-            logic.wallet.value.address!,
-            rpcUrl: logic.wallet.value.rpcUrl,
-          );
-          WalletService.to.aaaAmount.value = num.parse(balance);
-          newTokenEntry = tokenEntry.copyWith(balance: balance);
-        } else {
-          //这个是代币的 获取小数点
-          final int decimals = await TokenService.getDecimals(
-            tokenEntry.contractAddress!,
-            rpcUrl: logic.wallet.value.rpcUrl,
-          );
-          final balance = await TokenService.getTokenBalance(decimals,
-              logic.wallet.value.address!, tokenEntry.contractAddress!,
-              rpcUrl: logic.wallet.value.rpcUrl);
-          newTokenEntry =
-              tokenEntry.copyWith(balance: balance, decimals: decimals);
-        }
-        newList.add(newTokenEntry);
-      }
+    switch (walletService.protocol.value) {
+      case 'ERC20':
+        rpcUrl = Env.envConfig.ethRpcUrl;
+        break;
+      case 'TRC20':
+        break;
+      case 'ARC20':
+        rpcUrl = Env.envConfig.aaaRpcUrl;
+        break;
     }
 
-    logic.tokenList.value = newList;
-    logic.tokenList.refresh();
+    final cancelFunc = CoreKitToast.showLoading();
 
-    refreshCtrl.refreshCompleted();
+    WalletService.to.appDate.getAllToken().then((value) async {
+      logic.dbTokenList = value;
 
-    cancelFunc();
+      final newList = <TokenEntry>[];
+      for (final tokenEntry in logic.dbTokenList) {
+        TokenEntry newTokenEntry = TokenEntry(id: 0, wallet_id: 0);
+        //只去查询 当前 主币下 代币的余额
+        if (tokenEntry.protocol == logic.wallet.value.protocol &&
+            tokenEntry.wallet_id == logic.wallet.value.id) {
+          if (tokenEntry.contractAddress == null) {
+            //这个是主币 所以 获取主币的余额
+            final balance = await TokenService.getBalance(
+              logic.wallet.value.address!,
+              rpcUrl: rpcUrl,
+            );
+            WalletService.to.aaaAmount.value = num.parse(balance);
+            newTokenEntry = tokenEntry.copyWith(balance: balance);
+          } else {
+            //这个是代币的 获取小数点
+            final int decimals = await TokenService.getDecimals(
+              tokenEntry.contractAddress!,
+              rpcUrl: rpcUrl,
+            );
+            final balance = await TokenService.getTokenBalance(decimals,
+                logic.wallet.value.address!, tokenEntry.contractAddress!,
+                rpcUrl: rpcUrl);
+            newTokenEntry =
+                tokenEntry.copyWith(balance: balance, decimals: decimals);
+          }
+          newList.add(newTokenEntry);
+        }
+      }
+
+      logic.tokenList.value = newList;
+      logic.tokenList.refresh();
+
+      refreshCtrl.refreshCompleted();
+    }).catchError((error) {
+      CoreKitToast.showError(error);
+    }).whenComplete(cancelFunc);
   }
 
   @override

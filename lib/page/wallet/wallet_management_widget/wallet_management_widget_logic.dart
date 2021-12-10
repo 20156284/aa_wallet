@@ -58,6 +58,9 @@ class WalletManagementWidgetLogic extends GetxController {
    * @param walletEntry 选择的钱包对象
    */
   void onChoose(WalletEntry walletEntry) async {
+    // 关闭弹窗或者是返回上一级
+    Get.back();
+
     final wService = WalletService.to;
     //获取之前显示的主钱包 替换下来
     WalletEntry beforeWallet = wService.wallet.value;
@@ -66,12 +69,9 @@ class WalletManagementWidgetLogic extends GetxController {
     //更新新的钱包 作为一个主要钱包
     walletEntry = walletEntry.copyWith(is_main: true);
 
-    await wService.onUpdateWallet(walletEntry);
-    await wService.onUpdateWallet(beforeWallet);
-
     wService.wallet.value = walletEntry;
 
-    // 关闭弹窗或者是返回上一级
-    Get.back();
+    await wService.onUpdateWallet(walletEntry);
+    await wService.onUpdateWallet(beforeWallet);
   }
 }

@@ -401,7 +401,7 @@ class AppService extends GetxService {
     }
 
     //等于 1的情况下表示只有相对应该主币下钱包只有一个 添加 他旗下的默认支持的代币
-    if (hasWall == 1) {
+    if (hasWall == 1 && wallet.protocol == 'ARC20') {
       for (final coinKeyEntity in list) {
         if (coinKeyEntity.protocol == wService.protocol.value) {
           wService.appDate.insertToken(

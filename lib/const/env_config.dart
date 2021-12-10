@@ -12,8 +12,6 @@ class EnvConfig {
     required this.baseUrl,
     required this.aaaRpcUrl,
     required this.ethRpcUrl,
-    required this.aaaWss,
-    required this.ethWss,
   });
 
   //环境名称
@@ -26,11 +24,6 @@ class EnvConfig {
   final String aaaRpcUrl;
   //ethRpc 的地址
   final String ethRpcUrl;
-
-  //aaa wss 的地址
-  final String aaaWss;
-  //ethRpc 的地址
-  final String ethWss;
 }
 
 // 获取的配置信息
@@ -46,8 +39,6 @@ class Env {
     baseUrl: 'http://test2-api.aapay.io',
     aaaRpcUrl: 'http://159.138.134.163:8000',
     ethRpcUrl: 'http://eth.aachain.org',
-    aaaWss: '',
-    ethWss: 'wss://ropsten.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );
 
   // 发布环境
@@ -56,8 +47,6 @@ class Env {
     baseUrl: 'https://aatoken.aachain.org',
     aaaRpcUrl: 'http://rpc.aachain.org',
     ethRpcUrl: 'http://eth.aachain.org',
-    aaaWss: '',
-    ethWss: 'wss://mainnet.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );
 
   // 开发抓包
@@ -65,9 +54,7 @@ class Env {
     appTitle: 'debugTitle',
     baseUrl: 'http://test2-api.aapay.io',
     aaaRpcUrl: 'http://159.138.134.163:8000',
-    ethRpcUrl: 'https://ropsten.infura.io/v3/4129fe30d0a340388d20e1fbd19d8039',
-    aaaWss: '',
-    ethWss: 'wss://ropsten.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
+    ethRpcUrl: 'http://eth.aachain.org',
   );
 
   // 上线抓包
@@ -76,8 +63,6 @@ class Env {
     baseUrl: 'https://aatoken.aachain.org',
     aaaRpcUrl: 'http://rpc.aachain.org',
     ethRpcUrl: 'http://eth.aachain.org',
-    aaaWss: '',
-    ethWss: 'wss://mainnet.infura.io/ws/v3/4129fe30d0a340388d20e1fbd19d8039',
   );
 
   static EnvConfig get envConfig => _getEnvConfig();

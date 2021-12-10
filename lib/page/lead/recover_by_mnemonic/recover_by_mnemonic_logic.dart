@@ -119,27 +119,11 @@ class RecoverByMnemonicLogic extends GetxController {
    * @param mnemonics 助记词
    */
   void onRecover(String mnemonic) async {
-    //默认的rpcUrl
-    String rpcUrl = Env.envConfig.aaaRpcUrl;
-    final walletService = WalletService.to;
-
-    switch (walletService.protocol.value) {
-      case 'ERC20':
-        rpcUrl = Env.envConfig.ethRpcUrl;
-        break;
-      case 'TRC20':
-        break;
-      case 'ARC20':
-        rpcUrl = Env.envConfig.aaaRpcUrl;
-        break;
-    }
-
     AppService.to.insertWallet(
       name: WalletService.to.walletName.value,
       password: pwdEdit.text,
       mnemonic: mnemonic,
       protocol: WalletService.to.protocol.value,
-      rpcUrl: rpcUrl,
     );
   }
 }
