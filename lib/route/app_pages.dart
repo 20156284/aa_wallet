@@ -27,7 +27,6 @@ import 'package:aa_wallet/page/lead/recover_by_private_key/recover_by_private_ke
 import 'package:aa_wallet/page/lead/recover_by_private_key/recover_by_private_key_view.dart';
 import 'package:aa_wallet/page/lead/recover_wallet/recover_wallet_binding.dart';
 import 'package:aa_wallet/page/lead/recover_wallet/recover_wallet_view.dart';
-import 'package:aa_wallet/page/profile/profile_page/profile_page_binding.dart';
 import 'package:aa_wallet/page/profile/update_record/update_record_binding.dart';
 import 'package:aa_wallet/page/profile/update_record/update_record_view.dart';
 import 'package:aa_wallet/page/splash/splash_view.dart';
@@ -79,10 +78,7 @@ class AppPages {
       name: _Paths.appMain,
       page: () => const AppMainPage(),
       transition: Transition.zoom,
-      bindings: [
-        AppMainBinding(),
-        ProfilePageBinding(),
-      ],
+      binding: AppMainBinding(),
     ),
     GetPage(
       name: _Paths.lead,

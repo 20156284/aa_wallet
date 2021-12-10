@@ -321,7 +321,7 @@ class AppService extends GetxService {
       await creatToken(wallet);
 
       //创建好 地址 保存钱包 密码 钱包名称 跳转到首页
-      Get.offNamed(AppRoutes.appMain);
+      Get.offAllNamed(AppRoutes.appMain);
     }
   }
 

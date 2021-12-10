@@ -43,10 +43,10 @@ class AuthService extends GetxService {
   void _loadLocalDate() async {
     //查找用户是否 创建过钱包 如果创建过 直接不引导
     if (await getAllWall()) {
-      Get.offNamed(AppRoutes.appMain);
+      Get.offAllNamed(AppRoutes.appMain);
     } else {
       //没用户数据 跳转 引导页面
-      Get.offNamed(AppRoutes.lead);
+      Get.offAllNamed(AppRoutes.lead);
     }
     //檢測更新
     AppService.to.checkAppUpdate();

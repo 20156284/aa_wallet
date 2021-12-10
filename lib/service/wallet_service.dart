@@ -163,7 +163,7 @@ class WalletService extends GetxService {
       protocol.value = 'ARC20';
       walletName.value = 'AAA';
 
-      Get.offNamed(AppRoutes.lead);
+      Get.offAllNamed(AppRoutes.lead);
     } else {
       final WalletEntry walletEntry = walletList.first.copyWith(is_main: true);
       await appDate.updateWallet(walletEntry);

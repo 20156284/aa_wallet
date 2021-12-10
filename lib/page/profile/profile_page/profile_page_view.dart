@@ -7,8 +7,17 @@ import 'package:get/get.dart';
 
 import 'profile_page_logic.dart';
 
-class ProfilePage extends GetView<ProfilePageLogic> {
+
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final ProfilePageLogic logic = Get.put(ProfilePageLogic());
+  
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +70,14 @@ class ProfilePage extends GetView<ProfilePageLogic> {
           children: [
             Obx(
               () => Text(
-                AppS().app_version(controller.version.value),
+                AppS().app_version(logic.version.value),
                 style: const TextStyle(
                     fontSize: 12, color: CupertinoColors.systemGrey),
               ),
             ),
             Obx(
               () => Text(
-                AppS().app_build(controller.buildNumber.value),
+                AppS().app_build(logic.buildNumber.value),
                 style: const TextStyle(
                     fontSize: 12, color: CupertinoColors.systemGrey),
               ),
