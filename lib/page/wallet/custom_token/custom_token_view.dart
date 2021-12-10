@@ -1,3 +1,5 @@
+import 'package:aa_wallet/generated/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +10,16 @@ class CustomTokenPage extends GetView<CustomTokenLogic> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(AppS().token_customize),
+        backgroundColor: Colors.white,
+        border: Border.all(width: 0.0, style: BorderStyle.none),
+      ),
+      child: ListView(
+        children: [],
+      ),
+    );
   }
 }

@@ -25,7 +25,7 @@ class RecoverByPrivateKeyLogic extends GetxController {
     debugPrint(WalletService.to.walletName.value);
     nameEdit.text = WalletService.to.walletName.value;
 
-    if (Env.appEnv != EnvName.release) {
+    if (Env.appEnv != EnvName.release || Env.appEnv != EnvName.charlesRelease) {
       //
       //  第一测试 密要 匹配  song convince art planet domain property load satoshi rocket west vital cycle 私钥
       // privateEdit = TextEditingController(
