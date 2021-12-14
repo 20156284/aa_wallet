@@ -188,6 +188,6 @@
   "custom_token_symbol_input": "Please enter Symbol",
   "custom_token_decimal": "Decimal",
   "custom_token_decimal_input": "Please enter Decimal",
-  "custom_token_add_success": "Add coin success when {time}/s come back",
+  "custom_token_add_success": "Add coin success when {time}s come back",
   "custom_token_no_support": "The token is not currently supported"
 }

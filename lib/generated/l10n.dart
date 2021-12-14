@@ -1680,10 +1680,10 @@ class AppS {
     );
   }
 
-  /// `Add coin success when {time}/s come back`
+  /// `Add coin success when {time}s come back`
   String custom_token_add_success(Object time) {
     return Intl.message(
-      'Add coin success when $time/s come back',
+      'Add coin success when ${time}s come back',
       name: 'custom_token_add_success',
       desc: '',
       args: [time],

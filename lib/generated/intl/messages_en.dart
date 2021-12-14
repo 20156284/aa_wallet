@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(coin) => "Scan the QR code and transfer to ${coin}";
 
-  static String m5(time) => "Add coin success when ${time}/s come back";
+  static String m5(time) => "Add coin success when ${time}s come back";
 
   static String m6(money) => "≈${money} ASDT";
 
