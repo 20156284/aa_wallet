@@ -57,6 +57,7 @@ abstract class ToKenApi {
     @SendProgress() ProgressCallback? onSendProgress,
     @ReceiveProgress() ProgressCallback? onReceiveProgress,
     @Field('type') String? type,
+    @Field('protocol') String? protocol,
   });
 
   @POST('/wallet/transactionRecords')

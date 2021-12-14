@@ -320,6 +320,16 @@ class AppS {
     );
   }
 
+  /// `Save`
+  String get app_save {
+    return Intl.message(
+      'Save',
+      name: 'app_save',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet`
   String get wallet {
     return Intl.message(
@@ -365,6 +375,26 @@ class AppS {
     return Intl.message(
       'Create/Import',
       name: 'wallet_create_import',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can't remove main coin`
+  String get wallet_del_coin_err {
+    return Intl.message(
+      'Can\'t remove main coin',
+      name: 'wallet_del_coin_err',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure to delete the coin`
+  String get wallet_del_coin_tips {
+    return Intl.message(
+      'Are you sure to delete the coin',
+      name: 'wallet_del_coin_tips',
       desc: '',
       args: [],
     );
@@ -1585,6 +1615,86 @@ class AppS {
     return Intl.message(
       'Change password fail',
       name: 'change_page_pwd_fail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coin address`
+  String get custom_token_addr {
+    return Intl.message(
+      'Coin address',
+      name: 'custom_token_addr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter coin address`
+  String get custom_token_addr_input {
+    return Intl.message(
+      'Please enter coin address',
+      name: 'custom_token_addr_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Symbol`
+  String get custom_token_symbol {
+    return Intl.message(
+      'Symbol',
+      name: 'custom_token_symbol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Symbol`
+  String get custom_token_symbol_input {
+    return Intl.message(
+      'Please enter Symbol',
+      name: 'custom_token_symbol_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Decimal`
+  String get custom_token_decimal {
+    return Intl.message(
+      'Decimal',
+      name: 'custom_token_decimal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Decimal`
+  String get custom_token_decimal_input {
+    return Intl.message(
+      'Please enter Decimal',
+      name: 'custom_token_decimal_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add coin success when {time}/s come back`
+  String custom_token_add_success(Object time) {
+    return Intl.message(
+      'Add coin success when $time/s come back',
+      name: 'custom_token_add_success',
+      desc: '',
+      args: [time],
+    );
+  }
+
+  /// `The token is not currently supported`
+  String get custom_token_no_support {
+    return Intl.message(
+      'The token is not currently supported',
+      name: 'custom_token_no_support',
       desc: '',
       args: [],
     );

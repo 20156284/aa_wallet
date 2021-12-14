@@ -30,17 +30,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(coin) => "Scan the QR code and transfer to ${coin}";
 
-  static String m5(money) => "≈${money} ASDT";
+  static String m5(time) => "Add coin success when ${time}/s come back";
 
-  static String m6(fee) => "Fee:${fee}";
+  static String m6(money) => "≈${money} ASDT";
 
-  static String m7(amount) => "AAA Amount:${amount}";
+  static String m7(fee) => "Fee:${fee}";
 
-  static String m8(money) => "0/${money}AAA<1minute";
+  static String m8(amount) => "AAA Amount:${amount}";
 
-  static String m9(money) => "0/${money}AAA<5minute";
+  static String m9(money) => "0/${money}AAA<1minute";
 
-  static String m10(money) => "0/${money}AAA<30minute";
+  static String m10(money) => "0/${money}AAA<5minute";
+
+  static String m11(money) => "0/${money}AAA<30minute";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -90,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("permission tips"),
         "app_permission_video_close":
             MessageLookupByLibrary.simpleMessage("video permission is close"),
+        "app_save": MessageLookupByLibrary.simpleMessage("Save"),
         "app_save_photos": MessageLookupByLibrary.simpleMessage("Save photo"),
         "app_save_photos_failure":
             MessageLookupByLibrary.simpleMessage("Save photo fail"),
@@ -183,6 +186,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "\n1.The password will be used as the transaction password of the wallet.\n2. The wallet will not store the password, nor can it help you retrieve it. Please be sure to keep the password properly."),
         "creat_wallet_title":
             MessageLookupByLibrary.simpleMessage("Creat wallet"),
+        "custom_token_add_success": m5,
+        "custom_token_addr":
+            MessageLookupByLibrary.simpleMessage("Coin address"),
+        "custom_token_addr_input":
+            MessageLookupByLibrary.simpleMessage("Please enter coin address"),
+        "custom_token_decimal": MessageLookupByLibrary.simpleMessage("Decimal"),
+        "custom_token_decimal_input":
+            MessageLookupByLibrary.simpleMessage("Please enter Decimal"),
+        "custom_token_no_support": MessageLookupByLibrary.simpleMessage(
+            "The token is not currently supported"),
+        "custom_token_symbol": MessageLookupByLibrary.simpleMessage("Symbol"),
+        "custom_token_symbol_input":
+            MessageLookupByLibrary.simpleMessage("Please enter Symbol"),
         "language_choose":
             MessageLookupByLibrary.simpleMessage("Choose Language"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -215,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customize Token"),
         "token_details_collection":
             MessageLookupByLibrary.simpleMessage("Collection"),
-        "token_details_roughly_money": m5,
+        "token_details_roughly_money": m6,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("All"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("In"),
@@ -244,22 +260,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_transfer_customize":
             MessageLookupByLibrary.simpleMessage("Customize"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("Fee"),
-        "token_transfer_fee_aa": m6,
+        "token_transfer_fee_aa": m7,
         "token_transfer_fee_err":
             MessageLookupByLibrary.simpleMessage("Insufficient expenses"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("Amount"),
-        "token_transfer_money_aa": m7,
+        "token_transfer_money_aa": m8,
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("please enter amount"),
         "token_transfer_no_more":
             MessageLookupByLibrary.simpleMessage("Insufficient balance"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("Quick"),
-        "token_transfer_quick_info": m8,
+        "token_transfer_quick_info": m9,
         "token_transfer_recommend":
             MessageLookupByLibrary.simpleMessage("Recommend"),
-        "token_transfer_recommend_info": m9,
+        "token_transfer_recommend_info": m10,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("Slow"),
-        "token_transfer_slow_info": m10,
+        "token_transfer_slow_info": m11,
         "token_transfer_success": MessageLookupByLibrary.simpleMessage(
             "Has been packaged to be on the chain"),
         "token_user_all_assets":
@@ -272,6 +288,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet_create_import":
             MessageLookupByLibrary.simpleMessage("Create/Import"),
         "wallet_del": MessageLookupByLibrary.simpleMessage("Delete wallet"),
+        "wallet_del_coin_err":
+            MessageLookupByLibrary.simpleMessage("Can\'t remove main coin"),
+        "wallet_del_coin_tips": MessageLookupByLibrary.simpleMessage(
+            "Are you sure to delete the coin"),
         "wallet_del_only": MessageLookupByLibrary.simpleMessage(
             "Are you sure to delete the current wallet?"),
         "wallet_details_title":

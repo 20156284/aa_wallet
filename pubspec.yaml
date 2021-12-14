@@ -80,7 +80,7 @@ dependencies:
   # 消息小圈圈 https://pub.dev/packages/badges
   #  badges: ^2.0.1
   # 强大的图片拓展工具 https://pub.dev/packages/extended_image
-  extended_image: ^5.1.3
+  extended_image: ^6.0.1
   # 特殊的TextSpan https://pub.dev/packages/extended_text
   extended_text: ^7.0.1
   # 一个强大的瀑布流布局UI控件 https://pub.dev/packages/flutter_staggered_grid_view

@@ -110,8 +110,8 @@ class WalletAssetsPage extends GetView<WalletAssetsLogic> {
         endActionPane: controller.isManagement.value == true
             ? ActionPane(
                 motion: const ScrollMotion(),
-                dismissible: DismissiblePane(
-                    onDismissed: () => controller.onDel(walletEntry)),
+                // dismissible: DismissiblePane(
+                //     onDismissed: () => controller.onDel(walletEntry)),
                 children: [
                   SlidableAction(
                     onPressed: (context) => controller.onDel(walletEntry),

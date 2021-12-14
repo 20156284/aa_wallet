@@ -26,6 +26,7 @@
   "app_build": "build:{build}",
   "app_del": "Delete",
   "app_update_now": "Update now",
+  "app_save": "Save",
 
 
   "wallet": "Wallet",
@@ -33,6 +34,8 @@
   "wallet_choose": "Choose wallet",
   "wallet_identity": "Wallet identity",
   "wallet_create_import": "Create/Import",
+  "wallet_del_coin_err":"Can't remove main coin",
+  "wallet_del_coin_tips": "Are you sure to delete the coin",
 
 
 
@@ -177,5 +180,14 @@
   "change_page_confirm_pwd_input": "Please enter confirm password",
   "change_page_confirm": "Confirm change",
   "change_page_pwd_success": "Change password success",
-  "change_page_pwd_fail": "Change password fail"
+  "change_page_pwd_fail": "Change password fail",
+
+  "custom_token_addr": "Coin address",
+  "custom_token_addr_input": "Please enter coin address",
+  "custom_token_symbol": "Symbol",
+  "custom_token_symbol_input": "Please enter Symbol",
+  "custom_token_decimal": "Decimal",
+  "custom_token_decimal_input": "Please enter Decimal",
+  "custom_token_add_success": "Add coin success when {time}/s come back",
+  "custom_token_no_support": "The token is not currently supported"
 }

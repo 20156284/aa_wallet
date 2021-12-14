@@ -10,6 +10,7 @@ import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:aa_wallet/utils/token_server.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -103,10 +104,7 @@ class _WalletMainPageState extends State<WalletMainPage> {
           default:
             final tokenEntry = logic.tokenList[i - 2];
             return _buildCell(
-              title: tokenEntry.coinKey,
-              imageUrl: tokenEntry.imageUrl,
-              balance: tokenEntry.balance,
-              totalMoney: tokenEntry.totalMoney,
+              tokenEntry: tokenEntry,
               onTap: () =>
                   Get.toNamed(AppRoutes.tokenDetails, arguments: tokenEntry),
             );
@@ -200,66 +198,84 @@ class _WalletMainPageState extends State<WalletMainPage> {
     );
   }
 
-  Widget _buildCell(
-      {required String? title,
-      String? imageUrl,
-      String? balance,
-      String? totalMoney,
-      GestureTapCallback? onTap}) {
+  Widget _buildCell({TokenEntry? tokenEntry, GestureTapCallback? onTap}) {
+    final title = tokenEntry!.coinKey;
+    final imageUrl = tokenEntry.imageUrl;
+    final balance = tokenEntry.balance;
+    final totalMoney = tokenEntry.totalMoney;
+
     return InkWell(
       onTap: () {
         if (onTap != null) onTap();
       },
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                CoreKitStyle.image(imageUrl!, size: 40),
-                const SizedBox(
-                  width: 13,
-                ),
-                Expanded(
-                  child: Text(
-                    title ?? '',
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w500),
+      child: Slidable(
+        key: Key(tokenEntry.id.toString()),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  CoreKitStyle.image(imageUrl!, size: 40),
+                  const SizedBox(
+                    width: 13,
                   ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      balance ?? '',
+                  Expanded(
+                    child: Text(
+                      title ?? '',
                       style: const TextStyle(
                           fontSize: 17, fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      totalMoney ?? '',
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Color(0xFF878889),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        balance ?? '',
+                        style: const TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w500),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        totalMoney ?? '',
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Color(0xFF878889),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          const Divider(
-            indent: 71,
-          ),
-        ],
+            const Divider(
+              indent: 71,
+            ),
+          ],
+        ),
+        endActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          // dismissible: DismissiblePane(
+          //   onDismissed: () => logic.onDelWallet(tokenEntry),
+          // ),
+          children: [
+            SlidableAction(
+              onPressed: (context) => logic.onDelWallet(tokenEntry),
+              backgroundColor: const Color(0xFFFF5454),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: AppS().app_del,
+            ),
+          ],
+        ),
       ),
     );
   }

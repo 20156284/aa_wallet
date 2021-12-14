@@ -355,7 +355,7 @@ class AppService extends GetxService {
           imageUrl: coinKeyEntity.imageUrl,
           protocol: coinKeyEntity.protocol,
           coinKey: coinKeyEntity.coinKey,
-          // isMainCoin: true,
+          isMainCoin: true,
         );
       }
     }

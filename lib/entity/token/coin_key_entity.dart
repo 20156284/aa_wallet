@@ -21,8 +21,12 @@ class CoinKeyEntity {
   final String? contractAddress;
   final String? imageUrl;
 
-  const CoinKeyEntity(
-      this.protocol, this.coinKey, this.contractAddress, this.imageUrl);
+  const CoinKeyEntity({
+    this.protocol,
+    this.coinKey,
+    this.contractAddress,
+    this.imageUrl,
+  });
 
   /// A necessary factory constructor for creating a new CoinKeyEntity instance
   /// from a map. Pass the map to the generated `_$CoinKeyEntityFromJson()` constructor.

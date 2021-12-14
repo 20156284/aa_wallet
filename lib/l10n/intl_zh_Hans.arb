@@ -26,6 +26,7 @@
   "app_build": "build:{build}",
   "app_del": "删除",
   "app_update_now": "立刻更新",
+  "app_save": "保存",
 
 
   "wallet": "钱包",
@@ -33,6 +34,8 @@
   "wallet_choose": "选择钱包",
   "wallet_identity": "钱包身份",
   "wallet_create_import": "创建/导入",
+  "wallet_del_coin_err":"不能删除主币",
+  "wallet_del_coin_tips": "您确定要删除该代币?",
 
 
 
@@ -177,5 +180,14 @@
   "change_page_confirm_pwd_input": "请确认新密码",
   "change_page_confirm": "确认修改",
   "change_page_pwd_success": "修改密码成功",
-  "change_page_pwd_fail": "修改密码失败"
+  "change_page_pwd_fail": "修改密码失败",
+
+  "custom_token_addr": "代币合约地址",
+  "custom_token_addr_input": "请输入代币合约地址",
+  "custom_token_symbol": "Symbol",
+  "custom_token_symbol_input": "请输入Symbol",
+  "custom_token_decimal": "Decimal",
+  "custom_token_decimal_input": "请输入Decimal",
+  "custom_token_add_success": "添加代币成功{time}秒后返回",
+  "custom_token_no_support": "暂不支持该代币"
 }

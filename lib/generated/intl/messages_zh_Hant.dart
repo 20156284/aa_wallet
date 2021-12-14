@@ -30,17 +30,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(coin) => "掃二維碼，轉入${coin}";
 
-  static String m5(money) => "≈${money} ASDT";
+  static String m5(time) => "添加代幣成功${time}秒後返回";
 
-  static String m6(fee) => "手續費:${fee}";
+  static String m6(money) => "≈${money} ASDT";
 
-  static String m7(amount) => "AAA 數量:${amount}";
+  static String m7(fee) => "手續費:${fee}";
 
-  static String m8(money) => "0/${money}AAA<1分鐘";
+  static String m8(amount) => "AAA 數量:${amount}";
 
-  static String m9(money) => "0/${money}AAA<5分鐘";
+  static String m9(money) => "0/${money}AAA<1分鐘";
 
-  static String m10(money) => "0/${money}AAA<30分鐘";
+  static String m10(money) => "0/${money}AAA<5分鐘";
+
+  static String m11(money) => "0/${money}AAA<30分鐘";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -86,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_permission_title": MessageLookupByLibrary.simpleMessage("權限提醒"),
         "app_permission_video_close":
             MessageLookupByLibrary.simpleMessage("音頻權限被您關閉"),
+        "app_save": MessageLookupByLibrary.simpleMessage("保存"),
         "app_save_photos": MessageLookupByLibrary.simpleMessage("保存圖片至相冊"),
         "app_save_photos_failure": MessageLookupByLibrary.simpleMessage("保存失敗"),
         "app_save_photos_success":
@@ -163,6 +166,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "creat_wallet_tips_content": MessageLookupByLibrary.simpleMessage(
             "\n1.該密碼將作為錢包的交易密碼.\n2.錢包不會存儲密碼，也無法幫您找回，請務必妥善保管密碼."),
         "creat_wallet_title": MessageLookupByLibrary.simpleMessage("創建錢包"),
+        "custom_token_add_success": m5,
+        "custom_token_addr": MessageLookupByLibrary.simpleMessage("代幣合約地址"),
+        "custom_token_addr_input":
+            MessageLookupByLibrary.simpleMessage("請輸入代幣合約地址"),
+        "custom_token_decimal": MessageLookupByLibrary.simpleMessage("Decimal"),
+        "custom_token_decimal_input":
+            MessageLookupByLibrary.simpleMessage("請輸入Decimal"),
+        "custom_token_no_support":
+            MessageLookupByLibrary.simpleMessage("暂不支援該代幣"),
+        "custom_token_symbol": MessageLookupByLibrary.simpleMessage("Symbol"),
+        "custom_token_symbol_input":
+            MessageLookupByLibrary.simpleMessage("請輸入Symbol"),
         "language_choose": MessageLookupByLibrary.simpleMessage("選擇語言"),
         "profile": MessageLookupByLibrary.simpleMessage("我的"),
         "profile_update_record": MessageLookupByLibrary.simpleMessage("更新記錄"),
@@ -188,7 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "token_add": MessageLookupByLibrary.simpleMessage("添加代幣"),
         "token_customize": MessageLookupByLibrary.simpleMessage("自定義代幣"),
         "token_details_collection": MessageLookupByLibrary.simpleMessage("收款"),
-        "token_details_roughly_money": m5,
+        "token_details_roughly_money": m6,
         "token_details_state_all": MessageLookupByLibrary.simpleMessage("全部"),
         "token_details_state_transfer_in":
             MessageLookupByLibrary.simpleMessage("轉入"),
@@ -212,19 +227,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("交易數量"),
         "token_transfer_customize": MessageLookupByLibrary.simpleMessage("自定義"),
         "token_transfer_fee": MessageLookupByLibrary.simpleMessage("礦工費"),
-        "token_transfer_fee_aa": m6,
+        "token_transfer_fee_aa": m7,
         "token_transfer_fee_err": MessageLookupByLibrary.simpleMessage("手續費不足"),
         "token_transfer_money": MessageLookupByLibrary.simpleMessage("數量"),
-        "token_transfer_money_aa": m7,
+        "token_transfer_money_aa": m8,
         "token_transfer_money_input":
             MessageLookupByLibrary.simpleMessage("請輸入轉賬數量"),
         "token_transfer_no_more": MessageLookupByLibrary.simpleMessage("餘額不足"),
         "token_transfer_quick": MessageLookupByLibrary.simpleMessage("快"),
-        "token_transfer_quick_info": m8,
+        "token_transfer_quick_info": m9,
         "token_transfer_recommend": MessageLookupByLibrary.simpleMessage("推薦"),
-        "token_transfer_recommend_info": m9,
+        "token_transfer_recommend_info": m10,
         "token_transfer_slow": MessageLookupByLibrary.simpleMessage("慢"),
-        "token_transfer_slow_info": m10,
+        "token_transfer_slow_info": m11,
         "token_transfer_success":
             MessageLookupByLibrary.simpleMessage("已打包待上鏈"),
         "token_user_all_assets": MessageLookupByLibrary.simpleMessage("我的所有資產"),
@@ -235,6 +250,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet_choose": MessageLookupByLibrary.simpleMessage("選擇錢包"),
         "wallet_create_import": MessageLookupByLibrary.simpleMessage("創建/導入"),
         "wallet_del": MessageLookupByLibrary.simpleMessage("刪除錢包"),
+        "wallet_del_coin_err": MessageLookupByLibrary.simpleMessage("主幣不可刪除"),
+        "wallet_del_coin_tips":
+            MessageLookupByLibrary.simpleMessage("您確定要刪除該代幣"),
         "wallet_del_only": MessageLookupByLibrary.simpleMessage("您確定刪除當前錢包?"),
         "wallet_details_title": MessageLookupByLibrary.simpleMessage("錢包詳情"),
         "wallet_edit_name": MessageLookupByLibrary.simpleMessage("錢包暱稱修改"),

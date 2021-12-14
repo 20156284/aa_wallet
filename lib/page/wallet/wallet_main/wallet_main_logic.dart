@@ -1,3 +1,5 @@
+import 'package:aa_wallet/core/toast.dart';
+import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
 import 'package:aa_wallet/generated/l10n.dart';
@@ -87,5 +89,89 @@ class WalletMainLogic extends GetxController {
    */
   void onAddAssets() {
     Get.toNamed(AppRoutes.addToken);
+  }
+
+  /**
+   * 删除代币地址弹框
+   * @author Will
+   * @date 2021/11/18 14:32
+   * @param entry 钱包实体类
+   */
+  void onDelWallet(TokenEntry tokenEntry) async {
+    CustomDialog.showCustomDialog(
+      Get.context!,
+      dialogWidget(tokenEntry),
+      isShowCloseBtn: false,
+      borderRadius: BorderRadius.circular(20),
+    );
+  }
+
+  /**
+   * 删除代币地址视图
+   * @author Will
+   * @date 2021/11/18 14:32
+   * @param entry 钱包实体类
+   */
+  Widget dialogWidget(TokenEntry tokenEntry) {
+    final width = Get.width * 339 / 375;
+    return SizedBox(
+      width: width,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 23,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Text(
+              AppS().wallet_del_coin_tips,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(
+            height: 28.5,
+          ),
+          Row(
+            children: [
+              CoreKitStyle.cupertinoButton(
+                Get.context!,
+                backgroundColor: const Color(0xFFE9E9E9),
+                title: AppS().app_cancel,
+                titleStyle: const TextStyle(color: Color(0xFF666666)),
+                borderRadius: const BorderRadius.all(Radius.circular(0)),
+                onPressed: () => Get.back(),
+                width: width / 2,
+              ),
+              CoreKitStyle.cupertinoButton(
+                Get.context!,
+                title: AppS().app_confirm,
+                onPressed: () => onDel(tokenEntry),
+                borderRadius: const BorderRadius.all(Radius.circular(0)),
+                width: width / 2,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  /**
+   * 删除代币地址方法
+   * @author Will
+   * @date 2021/11/18 14:33
+   * @param entry 钱包实体类
+   */
+  void onDel(TokenEntry tokenEntry) {
+    //先关闭弹窗
+    Get.back();
+
+    if (tokenEntry.is_main_coin != null && tokenEntry.is_main_coin!) {
+      CoreKitToast.showError(AppS().wallet_del_coin_err);
+      return;
+    }
+
+    tokenList.remove(tokenEntry);
+    WalletService.to.appDate.deleteToken(tokenEntry);
   }
 }
