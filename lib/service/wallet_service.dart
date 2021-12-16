@@ -7,9 +7,12 @@
 
 import 'dart:ui';
 
+import 'package:aa_wallet/api/token/token_api.dart';
+import 'package:aa_wallet/core/toast.dart';
 import 'package:aa_wallet/core/widget/core_kit_style.dart';
 import 'package:aa_wallet/core/widget/custom_dialog/show_alert_dialog.dart';
 import 'package:aa_wallet/data_base/moor_database.dart';
+import 'package:aa_wallet/entity/token/coin_key_entity.dart';
 import 'package:aa_wallet/generated/l10n.dart';
 import 'package:aa_wallet/preference/app_user_preferences.dart';
 import 'package:aa_wallet/route/app_pages.dart';
@@ -33,9 +36,13 @@ class WalletService extends GetxService {
 
   final password = ''.obs;
 
+  final serverSupportMainCoin = <CoinKeyEntity>[].obs;
+
   @override
   void onInit() async {
     super.onInit();
+
+    getServerSupportMainCoin();
 
     final List<WalletEntry> walletList = await appDate.getAllWallets();
 
@@ -180,5 +187,21 @@ class WalletService extends GetxService {
    */
   Future<bool> onUpdateWallet(WalletEntry entry) {
     return appDate.updateWallet(entry);
+  }
+
+  /*
+   * 获取服务器支持的主链币
+   * @author Will
+   * @date 2021/12/16 12:19
+   */
+  void getServerSupportMainCoin() {
+    ToKenApi.acquire().walletGetCoinKey(type: '1').then((value) {
+      if (value.isNotEmpty) {
+        serverSupportMainCoin.value = value;
+        serverSupportMainCoin.refresh();
+      }
+    }).catchError((error) {
+      CoreKitToast.showError(error);
+    });
   }
 }

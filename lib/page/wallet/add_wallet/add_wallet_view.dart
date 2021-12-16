@@ -18,34 +18,46 @@ class AddWalletPage extends GetView<AddWalletLogic> {
         backgroundColor: CupertinoTheme.of(context).scaffoldBackgroundColor,
         border: Border.all(width: 0.0, style: BorderStyle.none),
       ),
-      child: ListView(
-        padding: const EdgeInsets.only(top: 20),
-        children: [
-          _buildCell(
-            title: AppS().add_wallet_eth,
-            subTitle: AppS().add_wallet_eth_subtitle,
-            icon: Res.ic_eth_select,
-            onTap: () => controller.onGotoCreate(0),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          // _buildCell(
-          //   title: AppS().add_wallet_btc,
-          //   subTitle: AppS().add_wallet_btc_subtitle,
-          //   icon: Res.ic_btc_select,
-          //   onTap: () => controller.onGotoCreate(1),
-          // ),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          _buildCell(
-            title: AppS().add_wallet_aac,
-            subTitle: AppS().add_wallet_aac_subtitle,
-            icon: Res.ic_aaa_select,
-            onTap: () => controller.onGotoCreate(2),
-          ),
-        ],
+      child: Obx(
+        () => ListView.separated(
+          padding: const EdgeInsets.all(0),
+          itemBuilder: (BuildContext context, int index) {
+            final info = controller.serverSupportMainCoin[index];
+            String title = '';
+            String subTitle = '';
+            String icon = '';
+            switch (info.protocol) {
+              case 'ERC20':
+                title = AppS().add_wallet_eth;
+                subTitle = AppS().add_wallet_eth_subtitle;
+                icon = Res.ic_eth_select;
+                break;
+              case 'TRC20':
+                title = AppS().add_wallet_btc;
+                subTitle = AppS().add_wallet_btc_subtitle;
+                icon = Res.ic_btc_select;
+                break;
+              case 'ARC20':
+                title = AppS().add_wallet_aac;
+                subTitle = AppS().add_wallet_aac_subtitle;
+                icon = Res.ic_aaa_select;
+                break;
+            }
+
+            return _buildCell(
+              title: title,
+              subTitle: subTitle,
+              icon: icon,
+              onTap: () => controller.onGotoCreate(info.protocol!),
+            );
+          },
+          itemCount: controller.serverSupportMainCoin.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(
+              height: 10,
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,18 +1,39 @@
 import 'package:aa_wallet/data_base/moor_database.dart';
+import 'package:aa_wallet/entity/token/coin_key_entity.dart';
 import 'package:aa_wallet/service/wallet_service.dart';
 import 'package:get/get.dart';
 
 class WalletManagementWidgetLogic extends GetxController {
-  final btnTag = 0.obs;
+  final btnTag = '0'.obs;
   final walletList = <WalletEntry>[].obs;
   final isDialog = false.obs;
   List<WalletEntry> dbWalletList = <WalletEntry>[];
 
+  final serverSupportMainCoin = <CoinKeyEntity>[].obs;
+
+  late Worker worker;
+
   @override
   void onInit() async {
     super.onInit();
+
+    serverSupportMainCoin.value = WalletService.to.serverSupportMainCoin.value;
+    //支持主链币的变换
+    worker = ever(
+        WalletService.to.serverSupportMainCoin, handleSupportMainCoinChanged);
+
     dbWalletList = await WalletService.to.appDate.getAllWallets();
     onGetAllWallet();
+  }
+
+  void handleSupportMainCoinChanged(_serverSupportMainCoin) {
+    serverSupportMainCoin.value = WalletService.to.serverSupportMainCoin.value;
+  }
+
+  @override
+  void onClose() {
+    worker.dispose();
+    super.onClose();
   }
 
   /**
@@ -23,22 +44,22 @@ class WalletManagementWidgetLogic extends GetxController {
   void onGetAllWallet() async {
     List<WalletEntry> newList = <WalletEntry>[];
 
-    if (btnTag.value == 0) {
+    if (btnTag.value == '0') {
       newList = dbWalletList;
     } else {
       for (final wallet in dbWalletList) {
         switch (btnTag.value) {
-          case 1:
+          case 'ERC20':
             if (wallet.protocol == 'ERC20') {
               newList.add(wallet);
             }
             break;
-          case 2:
+          case 'TRC20':
             if (wallet.protocol == 'TRC20') {
               newList.add(wallet);
             }
             break;
-          case 3:
+          case 'ARC20':
             if (wallet.protocol == 'ARC20') {
               newList.add(wallet);
             }

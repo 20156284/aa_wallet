@@ -71,4 +71,13 @@ abstract class ToKenApi {
     @Field('type') String? type,
     @Field('coinKey') String? coinKey,
   });
+
+  @POST('/wallet/getContractAddressInfo')
+  Future<List<CoinKeyEntity>> getContractAddressInfo({
+    @DioOptions() Options? options,
+    @CancelRequest() CancelToken? cancelToken,
+    @SendProgress() ProgressCallback? onSendProgress,
+    @ReceiveProgress() ProgressCallback? onReceiveProgress,
+    @Field('contractAddress') String? contractAddress,
+  });
 }

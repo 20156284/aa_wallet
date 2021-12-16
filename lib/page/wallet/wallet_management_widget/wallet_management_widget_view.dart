@@ -34,33 +34,45 @@ class _WalletManagementWidgetPageState
       children: [
         SizedBox(
           width: 76,
-          child: Obx(
-            () => Container(
-              color: const Color(0xFFF1F5F6),
-              child: ListView(
+          child: Container(
+            color: const Color(0xFFF1F5F6),
+            child: Obx(
+              () => ListView.builder(
                 padding: const EdgeInsets.all(0),
-                children: [
-                  _buildItems(
-                    selectIcon: Res.ic_wallet_all_select,
-                    icon: Res.ic_wallet_all,
-                    btnTag: 0,
-                  ),
-                  _buildItems(
-                    selectIcon: Res.ic_eth_select,
-                    icon: Res.ic_eth,
-                    btnTag: 1,
-                  ),
-                  // _buildItems(
-                  //   selectIcon: Res.ic_btc_select,
-                  //   icon: Res.ic_btc,
-                  //   btnTag: 2,
-                  // ),
-                  _buildItems(
-                    selectIcon: Res.ic_aaa_select,
-                    icon: Res.ic_aaa,
-                    btnTag: 3,
-                  ),
-                ],
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == 0) {
+                    return _buildItems(
+                      selectIcon: Res.ic_wallet_all_select,
+                      icon: Res.ic_wallet_all,
+                      btnTag: '0',
+                    );
+                  } else {
+                    final info = logic.serverSupportMainCoin[index - 1];
+                    String selectIcon = '';
+                    String icon = '';
+                    switch (info.protocol) {
+                      case 'ERC20':
+                        selectIcon = Res.ic_eth_select;
+                        icon = Res.ic_eth;
+                        break;
+                      case 'TRC20':
+                        selectIcon = Res.ic_btc_select;
+                        icon = Res.ic_btc;
+                        break;
+                      case 'ARC20':
+                        selectIcon = Res.ic_aaa_select;
+                        icon = Res.ic_aaa;
+                        break;
+                    }
+
+                    return _buildItems(
+                      selectIcon: selectIcon,
+                      icon: icon,
+                      btnTag: info.protocol!,
+                    );
+                  }
+                },
+                itemCount: logic.serverSupportMainCoin.length + 1,
               ),
             ),
           ),
@@ -82,14 +94,15 @@ class _WalletManagementWidgetPageState
   }
 
   Widget _buildItems({
-    String? selectIcon,
-    String? icon,
-    int? btnTag,
+    required String selectIcon,
+    required String icon,
+    required String btnTag,
   }) {
     return InkWell(
       onTap: () {
-        logic.btnTag.value = btnTag!;
+        logic.btnTag.value = btnTag;
         logic.onGetAllWallet();
+        logic.serverSupportMainCoin.refresh();
       },
       child: Container(
         width: 76,
@@ -99,7 +112,7 @@ class _WalletManagementWidgetPageState
             ? Colors.white
             : const Color(0xFFF1F5F6),
         child: Image.asset(
-          logic.btnTag.value == btnTag ? selectIcon! : icon!,
+          logic.btnTag.value == btnTag ? selectIcon : icon,
           width: 32,
           height: 32,
         ),
