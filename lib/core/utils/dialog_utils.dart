@@ -1,6 +1,6 @@
 // ===============================================
 // dialog_utils
-// 
+//
 // Create by Will on 2020/11/6 2:29 PM
 // Copyright @flutter_core_kit.All rights reserved.
 // ===============================================
@@ -14,7 +14,7 @@ class DialogUtils {
   static Future<T?> showAlert<T>({
     required BuildContext context,
     TextSpan? title,
-    TextSpan? content,
+    Widget? content,
     ListWidgetBuilder? actionsBuilder,
     bool useRootNavigator = true,
     RouteSettings? routeSettings,
@@ -26,17 +26,10 @@ class DialogUtils {
           title: title == null
               ? null
               : Text.rich(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          content: content == null
-              ? null
-              : Center(
-            child: Text.rich(
-              content,
-              textAlign: TextAlign.start,
-            ),
-          ),
+                  title,
+                  textAlign: TextAlign.center,
+                ),
+          content: content,
           actions: actionsBuilder?.call(context) ?? [],
         );
       },

@@ -1,6 +1,6 @@
 // ===============================================
 // PermissionUtils
-// 
+//
 // Create by Will on 2020/11/6 2:28 PM
 // Copyright @flutter_core_kit.All rights reserved.
 // ===============================================
@@ -14,6 +14,7 @@ import 'dialog_utils.dart';
 
 class PermissionUtils {
   PermissionUtils();
+
   static Future<void> requestPermissions({
     required BuildContext context,
     required List<Permission> permissions,
@@ -64,11 +65,11 @@ class PermissionUtils {
     bool useRootNavigator = true,
     RouteSettings? routeSettings,
   }) async {
-    final heyTeaS = CoreKitS.of(context);
+    final coreS = CoreKitS.of(context);
 
     return showAllowDialog(
       context: context,
-      title: title ?? TextSpan(text: heyTeaS.dialog_title_permissionRequired),
+      title: title ?? TextSpan(text: coreS.dialogTitlePermissionRequired),
       content: content,
       onAllow: () async {
         // 去申请权限
@@ -90,16 +91,16 @@ class PermissionUtils {
     bool useRootNavigator = true,
     RouteSettings? routeSettings,
   }) {
-    final heyTeaS = CoreKitS.of(context);
+    final coreS = CoreKitS.of(context);
 
     return showAllowDialog(
       context: context,
-      title: title ?? TextSpan(text: heyTeaS.dialog_title_permissionSettings),
+      title: title ?? TextSpan(text: coreS.dialogTitlePermissionSettings),
       content: content,
       onAllow: () async {
         final isOpened = await openAppSettings();
         if (isOpened == false) {
-          CoreKitToast.showFailure(heyTeaS.error_openAppSettings);
+          CoreKitToast.showFailure(coreS.errorOpenAppSettings);
         }
         onProcessed?.call();
       },
@@ -118,19 +119,24 @@ class PermissionUtils {
     bool useRootNavigator = true,
     RouteSettings? routeSettings,
   }) {
-    final heyTeaS = CoreKitS.of(context);
+    final coreS = CoreKitS.of(context);
 
     return DialogUtils.showAlert(
       context: context,
       title: title,
-      content: content,
+      content: Center(
+        child: Text.rich(
+          content!,
+          textAlign: TextAlign.start,
+        ),
+      ),
       actionsBuilder: (context) => [
         CupertinoDialogAction(
           onPressed: () {
             Navigator.pop(context);
             onDisallow?.call();
           },
-          child: Text(heyTeaS.btn_disallow),
+          child: Text(coreS.btnDisallow),
         ),
         CupertinoDialogAction(
           onPressed: () {
@@ -138,7 +144,7 @@ class PermissionUtils {
             onAllow?.call();
           },
           isDefaultAction: true,
-          child: Text(heyTeaS.btn_allow),
+          child: Text(coreS.btnAllow),
         ),
       ],
       useRootNavigator: useRootNavigator,
