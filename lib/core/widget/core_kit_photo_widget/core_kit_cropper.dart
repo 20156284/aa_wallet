@@ -5,12 +5,15 @@
 // Copyright @lankaidriver.All rights reserved.
 // ===============================================
 
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 import '../../core_kit_localizations.dart';
@@ -52,7 +55,7 @@ class CoreKitCropper extends StatefulWidget {
       rootNavigator: useRootNavigator,
     ).push<AssetEntity>(
       AssetPickerPageRoute<AssetEntity>(
-        builder: CoreKitCropper(
+        builder: (BuildContext context) => CoreKitCropper(
           selectedAssets: selectedAssets,
           editorConfig: editorConfig,
         ),
@@ -191,7 +194,12 @@ class _CoreKitCropperState extends State<CoreKitCropper> {
         : (await cropImageDataWithNativeLibrary(
             state: editorKey.currentState!))!);
 
-    PhotoManager.editor.saveImage(fileData).then((value) {
+    final packageInfo = await PackageInfo.fromPlatform();
+    final appName = packageInfo.appName;
+
+    PhotoManager.editor
+        .saveImage(fileData, title: appName + DateUtil.getNowDateStr())
+        .then((value) {
       Navigator.of(context).pop(value);
     });
   }

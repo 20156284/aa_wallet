@@ -338,9 +338,11 @@ class CoreKitPhoto {
     if (pickerPhotoType == PickerPhotoType.Album) {
       final asset = await AssetPicker.pickAssets(
         context,
-        selectedAssets: selectedAssets,
-        requestType: RequestType.image,
-        maxAssets: maxAssets ?? 9,
+        pickerConfig: AssetPickerConfig(
+          selectedAssets: selectedAssets,
+          requestType: RequestType.image,
+          maxAssets: maxAssets ?? 9,
+        ),
       );
 
       if (asset == null) {

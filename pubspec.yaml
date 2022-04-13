@@ -33,26 +33,26 @@ dependencies:
 #  # https://pub.dev/packages/decimal
 #  decimal: ^1.5.0
   # https://pub.dev/packages/url_launcher
-  url_launcher: ^6.0.17
+  url_launcher: ^6.0.20
   # getx 状态管理框架 https://pub.dev/packages/get  搭配手脚架使用 https://github.com/jonataslaw/get_cli
   get: ^4.6.1
 
   # 复制粘贴 https://pub.dev/packages/clipboard
   clipboard: ^0.1.3
   # 用于生成copyWith扩展的注释  https://pub.dev/packages/copy_with_extension
-  copy_with_extension: ^2.0.2
+  copy_with_extension: ^4.0.0
   # https://pub.dev/packages/encrypt
   encrypt: ^5.0.1
   # 国际化 https://pub.dev/packages/intl
   intl: ^0.17.0
   # json映射 https://pub.flutter-io.cn/packages/json_serializable
-  json_serializable: ^6.1.1
+  json_serializable: ^6.1.5
   # json映射 https://pub.flutter-io.cn/packages/json_annotation
   json_annotation: ^4.4.0
   # 手机权限 https://pub.dev/packages/permission_handler
-  permission_handler: ^8.3.0
-  # 状态管理 https://pub.dev/packages/provider
-  provider: ^6.0.1
+  permission_handler: ^9.2.0
+#  # 状态管理 https://pub.dev/packages/provider
+#  provider: ^6.0.1
   # 实用的dart转换工具 https://pub.dev/packages/quiver
   quiver: ^3.0.1+1
   # text控件拓展非常实用 https://pub.dev/packages/span_builder
@@ -62,15 +62,15 @@ dependencies:
 #  # 数据库 https://pub.flutter-io.cn/packages/sqflite
 #  sqflite: ^2.0.0+4
   # 数据库 https://pub.flutter-io.cn/packages/moor_flutter
-  moor_flutter: ^4.0.0
+  moor_flutter: ^4.1.0
 
   # Network
   # dio网络请求框架 https://pub.dev/packages/dio
-  dio: ^4.0.4
+  dio: ^4.0.6
   # dio网络转换 https://pub.dev/packages/dio_flutter_transformer
   #  dio_flutter_transformer: ^3.0.2
   # 映射dio返回 https://pub.dev/packages/retrofit
-  retrofit: ^3.0.0
+  retrofit: ^3.0.1+1
 
   # UI
   # 动画实用类 https://pub.dev/packages/animations
@@ -80,13 +80,13 @@ dependencies:
   # 消息小圈圈 https://pub.dev/packages/badges
   #  badges: ^2.0.1
   # 拓展的image控件 https://pub.dev/packages/image
-  image: ^3.1.0
+  image: ^3.1.3
   # 图片编辑 https://pub.dev/packages/image_editor
   image_editor: ^1.0.2
   # 强大的图片拓展工具 https://pub.dev/packages/extended_image
-  extended_image: ^6.0.1
+  extended_image: ^6.0.2+1
   # 特殊的TextSpan https://pub.dev/packages/extended_text
-  extended_text: ^8.0.1
+  extended_text: ^9.0.0
   # 一个强大的瀑布流布局UI控件 https://pub.dev/packages/flutter_staggered_grid_view
   # flutter_staggered_grid_view: ^0.4.1
   # 电商会比较多用的UI菜单 https://pub.dev/packages/gzx_dropdown_menu
@@ -98,16 +98,16 @@ dependencies:
   # https://pub.dev/packages/webview_flutter
 #  webview_flutter: ^3.0.0
   # 微信选择照片控件 https://pub.dev/packages/wechat_assets_picker
-  wechat_assets_picker: ^6.3.1
+  wechat_assets_picker: ^7.1.0
   # 微信照片 https://pub.dev/packages/wechat_camera_picker
-  wechat_camera_picker: ^2.6.2
+  wechat_camera_picker: ^3.0.4
 
   # https://pub.dev/packages/scrollable_positioned_list
   #  scrollable_positioned_list: ^0.2.0-nullsafety.0
   # https://pub.dev/packages/video_player
   #  video_player: ^2.1.14
   # 指示器 https://pub.dev/packages/dots_indicator
-  dots_indicator: ^2.0.0
+  dots_indicator: ^2.1.0
 
   # Utility
   #  # 异步控制 https://pub.dev/packages/async
@@ -117,23 +117,23 @@ dependencies:
   # 常用工具类库 https://pub.dev/packages/flustars
   flustars: ^2.0.1
   # 时间选择器 https://pub.dev/packages/flutter_picker
-  flutter_picker: ^2.0.2
+  flutter_picker: ^2.0.3
   # 获取系统信息类 https://pub.dev/packages/package_info_plus
-  package_info_plus: ^1.3.0
+  package_info_plus: ^1.4.2
   # 路径 https://pub.dev/packages/path
   path: ^1.8.0
 #  # 文件路径 https://pub.dev/packages/path_provider
 #  path_provider: ^2.0.8
   # 启动图片 https://pub.dev/packages/flutter_native_splash
-  flutter_native_splash: ^1.3.2
+  flutter_native_splash: ^2.1.5
   # app icon 生成图片 https://pub.dev/packages/flutter_launcher_icons
   flutter_launcher_icons: ^0.9.2
   # 本地缓存 https://pub.dev/packages/shared_preferences
-  shared_preferences: ^2.0.11
+  shared_preferences: ^2.0.13
   # html解读 https://pub.dev/packages/flutter_html
   flutter_html: ^2.2.1
   # 二维码扫描 https://pub.dev/packages/qr_code_scanner   没有WEB
-  qr_code_scanner: ^0.6.1
+  qr_code_scanner: ^0.7.0
   # 二维码控件 https://pub.dev/packages/qr_flutter
   qr_flutter: ^4.0.0
   # 加載動畫 https://pub.dev/packages/flutter_spinkit
@@ -144,7 +144,7 @@ dependencies:
   ####以上的插件，尽量不要更换；因为可能core会用到。您想更换的在下面添加您使用的####
   ########################################################################
   # web3dart https://pub.dev/packages/web3dart
-  web3dart: ^2.3.3
+  web3dart: ^2.3.5
   # bip39 https://pub.dev/packages/bip39
   bip39: ^1.0.6
   # bip32 https://pub.dev/packages/bip32
@@ -160,7 +160,7 @@ dependencies:
 #  # bitcoin_flutter https://pub.dev/packages/bitcoin_flutter
 #  bitcoin_flutter: ^2.0.2
   # 滑动删除 https://pub.dev/packages/flutter_slidable
-  flutter_slidable: ^1.1.0
+  flutter_slidable: ^1.2.0
   #  #app更新
   app_upgrade:
     git:
@@ -184,9 +184,9 @@ dev_dependencies:
   flutter_lints: ^1.0.4
 
   # https://pub.flutter-io.cn/packages/build_runner
-  build_runner: ^2.1.5
+  build_runner: ^2.1.8
   # https://pub.dev/packages/retrofit_generator
-  retrofit_generator: ^3.0.0+2
+  retrofit_generator: ^4.0.1
   # https://pub.dev/packages/moor_generator
   moor_generator: ^4.6.0+1
 
