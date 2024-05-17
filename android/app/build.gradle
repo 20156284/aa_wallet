@@ -38,7 +38,7 @@ if (project.hasProperty('dart-defines')) {
 
 
 android {
-    namespace "com.will.flutter_base"
+    namespace "com.example.aa_wallet"
     compileSdk flutter.compileSdkVersion
 
     compileOptions {
@@ -55,7 +55,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.will.flutter_base"
+        applicationId "com.example.flutter_base"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
