@@ -272,7 +272,7 @@ class WalletDetailsLogic extends GetxController {
    * @date 2021/11/19 17:07
    */
   void onCopy() {
-    Clipboard.setData(ClipboardData(text: wallet.value.address));
+    Clipboard.setData(ClipboardData(text: wallet.value.address??''));
     CustomDialog.showCustomDialog(
       Get.context!,
       onCopyDialogWidget(),

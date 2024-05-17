@@ -7,16 +7,16 @@
 
 import 'package:dio/dio.dart';
 
-extension CoreKitDioError on DioError {
+extension CoreKitDioError on DioException {
   String toDisplayText() {
     switch (type) {
-      case DioErrorType.connectTimeout:
+      case DioExceptionType.connectionTimeout:
         return 'Connect Timeout';
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         return 'Send Timeout';
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         return 'Receive Timeout';
-      case DioErrorType.response:
+      case DioExceptionType.badResponse:
         switch (response?.statusCode) {
           case 400:
             return '400 Bad Request';
@@ -102,9 +102,9 @@ extension CoreKitDioError on DioError {
             return '600 未知错误请联系服务';
         }
         return 'Response Error, statusCode: ${response?.statusCode}';
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return 'Request Cancelled';
-      case DioErrorType.other:
+      case DioExceptionType.unknown:
         return 'Default Error';
       default:
         return 'Undefined Error';

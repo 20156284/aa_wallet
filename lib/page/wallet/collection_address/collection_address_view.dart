@@ -190,7 +190,7 @@ class CollectionAddressPage extends GetView<CollectionAddressLogic> {
 
   Widget _buildQrCode() {
     final qrCode = controller.address.value;
-    return QrImage(
+    return QrImageView(
       padding: const EdgeInsets.all(25),
       data: qrCode,
       size: Get.width * 229 / 375,

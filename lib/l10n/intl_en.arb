@@ -1,4 +1,6 @@
 {
+  "@@locale": "en_US",
+
   "app_name": "AAToken",
   "app_cancel": "cancel",
   "app_confirm":"confirm",

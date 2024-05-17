@@ -1,4 +1,6 @@
 {
+  "@@locale": "zh_HK",
+
   "app_name": "AAToken",
   "app_cancel": "取消",
   "app_confirm":"確定",

@@ -11,7 +11,7 @@ class CoreKitAPIException implements Exception {
   const CoreKitAPIException(this.code, {this.message});
 
   CoreKitAPIException.fromDioError(DioError dioError)
-      : this(dioError.error as int, message: dioError.toString());
+      : this(dioError.error! as int, message: dioError.toString());
 
   final int code;
   final String? message;

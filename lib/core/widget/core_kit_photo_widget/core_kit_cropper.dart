@@ -189,18 +189,18 @@ class _CoreKitCropperState extends State<CoreKitCropper> {
   }
 
   void onFinish() async {
-    final Uint8List fileData = Uint8List.fromList(kIsWeb
-        ? (await cropImageDataWithDartLibrary(state: editorKey.currentState!))!
-        : (await cropImageDataWithNativeLibrary(
-            state: editorKey.currentState!))!);
-
-    final packageInfo = await PackageInfo.fromPlatform();
-    final appName = packageInfo.appName;
-
-    PhotoManager.editor
-        .saveImage(fileData, title: appName + DateUtil.getNowDateStr())
-        .then((value) {
-      Navigator.of(context).pop(value);
-    });
+    // final Uint8List fileData = Uint8List.fromList(kIsWeb
+    //     ? (await cropImageDataWithDartLibrary(state: editorKey.currentState!))!
+    //     : (await cropImageDataWithNativeLibrary(
+    //         state: editorKey.currentState!))!);
+    //
+    // final packageInfo = await PackageInfo.fromPlatform();
+    // final appName = packageInfo.appName;
+    //
+    // PhotoManager.editor
+    //     .saveImage(fileData, title: appName + DateUtil.getNowDateStr())
+    //     .then((value) {
+    //   Navigator.of(context).pop(value);
+    // });
   }
 }
